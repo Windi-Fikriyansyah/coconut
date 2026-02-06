@@ -3,6 +3,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Shield, FileCheck, Award, CheckCircle2, Gavel, LucideIcon } from 'lucide-react';
+import Image from 'next/image';
 
 const iconMap: { [key: string]: LucideIcon } = {
   Shield,
@@ -75,11 +76,15 @@ const Certificates = ({ data }: { data?: CertificateData[] }) => {
                 <div className="w-full aspect-square bg-white border border-coco-forest/5 rounded-2xl flex items-center justify-center p-6 shadow-sm group-hover:shadow-xl group-hover:border-coco-gold/30 transition-all duration-500 relative overflow-hidden">
                   <div className="absolute inset-0 bg-gradient-to-br from-transparent to-coco-sandy/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
                   {cert.logo ? (
-                    <img
-                      src={cert.logo}
-                      alt={`${cert.title} logo`}
-                      className="w-full h-full object-contain transition-all duration-500 relative z-10"
-                    />
+                    <div className="relative w-full h-full p-2">
+                      <Image
+                        src={cert.logo}
+                        alt={`${cert.title} logo`}
+                        fill
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        className="object-contain relative z-10"
+                      />
+                    </div>
                   ) : (
                     <div className="w-full h-full flex items-center justify-center text-coco-forest/20 group-hover:text-coco-gold transition-colors">
                       <Shield size={48} strokeWidth={1} />

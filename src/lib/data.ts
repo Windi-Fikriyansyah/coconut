@@ -60,7 +60,10 @@ export async function getProductBySlug(slug: string): Promise<Product | null> {
 
 export async function getCertificates(): Promise<Certificate[]> {
     const [rows] = await pool.query<Certificate[]>('SELECT * FROM certificates ORDER BY id ASC');
-    return rows;
+    return rows.map(row => ({
+        ...row,
+        logo: sanitizeImageUrl(row.logo)
+    }));
 }
 
 export async function getProcessSteps(): Promise<ProcessStep[]> {
@@ -79,7 +82,11 @@ export interface HeroData {
 
 export async function getHeroData(): Promise<HeroData | null> {
     const [rows] = await pool.query<(HeroData & RowDataPacket)[]>('SELECT * FROM hero_section LIMIT 1');
-    return rows.length > 0 ? rows[0] : null;
+    if (rows.length === 0) return null;
+    return {
+        ...rows[0],
+        background_image: sanitizeImageUrl(rows[0].background_image)
+    };
 }
 
 export interface StatItem {
@@ -174,7 +181,11 @@ export interface ContactData extends RowDataPacket {
 export async function getContactData(): Promise<ContactData | null> {
     try {
         const [rows] = await pool.query<ContactData[]>('SELECT * FROM contact_section LIMIT 1');
-        return rows.length > 0 ? rows[0] : null;
+        if (rows.length === 0) return null;
+        return {
+            ...rows[0],
+            map_image: sanitizeImageUrl(rows[0].map_image)
+        };
     } catch (error) {
         console.error("Error fetching contact data:", error);
         return null;
