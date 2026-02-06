@@ -3,14 +3,7 @@ import { getBlogPostBySlug, getBlogPosts } from '@/lib/data';
 import { notFound } from 'next/navigation';
 import BlogPostPageClient from '@/components/BlogPostPageClient';
 
-export const revalidate = 3600; // ISR: Revalidate every 1 hour
-
-export async function generateStaticParams() {
-    const posts = await getBlogPosts();
-    return posts.map((post) => ({
-        slug: post.slug,
-    }));
-}
+export const revalidate = 0;
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
     const { slug } = await params;

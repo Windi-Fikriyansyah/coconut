@@ -7,14 +7,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import * as FramerMotion from 'framer-motion';
 
-export const revalidate = 3600; // ISR: Revalidate every 1 hour
-
-export async function generateStaticParams() {
-    const products = await getProducts();
-    return products.map((product) => ({
-        slug: product.slug,
-    }));
-}
+export const revalidate = 0;
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
     const { slug } = await params;

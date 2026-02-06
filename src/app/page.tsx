@@ -23,7 +23,7 @@ import {
   getCertificates
 } from "@/lib/data";
 
-export const revalidate = 3600;
+export const revalidate = 0;
 
 export default async function Home() {
   const [

@@ -3,7 +3,7 @@ import AboutPageClient from '@/components/AboutPageClient';
 import { getAboutPageData } from '@/lib/data';
 import { notFound } from 'next/navigation';
 
-export const revalidate = 86400;
+export const revalidate = 0;
 
 export default async function AboutPage() {
     const data = await getAboutPageData();
