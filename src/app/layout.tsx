@@ -10,6 +10,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://indonesiacoco.com'),
   title: "Indonesia Coconut Supplier | PT Sumber Niaga Alam Sejahtera",
   description: "Global exporter of premium coconut derivatives: Charcoal Briquettes, VCO, Desiccated Coconut, Cocopeat, and Organic Coconut Sugar. ISO Certified & Sustainable sourcing from Indonesia.",
   keywords: "Indonesia coconut exporter, coconut charcoal briquettes supplier, bulk virgin coconut oil, desiccated coconut factory, organic coconut sugar wholesale, cocopeat and cocofiber exporter, coconut milk distributor, copra supplier Indonesia",
