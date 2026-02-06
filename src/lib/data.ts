@@ -50,12 +50,19 @@ function sanitizeImageUrl(url: string | null | undefined): string {
 }
 
 export async function getProducts(): Promise<Product[]> {
-    const [rows] = await pool.query<Product[]>('SELECT * FROM products ORDER BY id ASC');
-    return rows.map(row => ({
-        ...row,
-        image: sanitizeImageUrl(row.image),
-        bts_image: sanitizeImageUrl(row.bts_image)
-    }));
+    try {
+        const [rows] = await pool.query<Product[]>('SELECT * FROM products ORDER BY id ASC');
+        if (!Array.isArray(rows)) return [];
+        return rows.map(row => ({
+            ...row,
+            image: sanitizeImageUrl(row.image),
+            bts_image: sanitizeImageUrl(row.bts_image)
+        }));
+    } catch (error) {
+        console.error("Database connection failed in getProducts:", error);
+        // Returning empty array prevents checking crash (503)
+        return [];
+    }
 }
 
 export async function getProductBySlug(slug: string): Promise<Product | null> {

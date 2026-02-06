@@ -1,6 +1,7 @@
 const { createServer } = require('http');
 const { parse } = require('url');
 const next = require('next');
+require('dotenv').config(); // Load env vars immediately for shared hosting
 
 const dev = process.env.NODE_ENV !== 'production';
 const hostname = 'localhost';
