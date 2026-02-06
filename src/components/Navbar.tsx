@@ -37,7 +37,7 @@ const Navbar = ({ solid = false }: { solid?: boolean }) => {
         <Link href="/" className="flex items-center group">
           <img
             src="/logo1.webp"
-            alt="Global Coco Prime Logo"
+            alt="PT Sumber Niaga Alam Sejahtera Logo"
             className="h-10 md:h-12 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
           />
         </Link>

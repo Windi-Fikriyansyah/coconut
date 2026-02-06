@@ -12,7 +12,7 @@ interface AboutProps {
 const About = ({ data }: AboutProps) => {
     const subtitle = data?.subtitle || "The Heritage";
     const title = data?.title || "Rooted in Nature, <br />Driven by Excellence";
-    const aboutText = data?.description || "Global Coco Prime started as a small initiative to bring high-quality Indonesian coconut products to the world. We believe that sustainability and industrial progress can go hand-in-hand.";
+    const aboutText = data?.description || "PT Sumber Niaga Alam Sejahtera started as a small initiative to bring high-quality Indonesian coconut products to the world. We believe that sustainability and industrial progress can go hand-in-hand.";
     const image = data?.image || "https://images.unsplash.com/photo-1589139265243-78c773ee49fb?q=80&w=1200&auto=format&fit=crop";
     const highlightValue = data?.highlight_value || "15+ Years";
     const highlightText = data?.highlight_text || "Empowering more than 500 local farmers across the Indonesian archipelago.";

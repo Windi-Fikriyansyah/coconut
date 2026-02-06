@@ -24,7 +24,7 @@ const statsData = [
 const aboutData = {
     subtitle: 'The Heritage',
     title: 'Rooted in Nature, <br />Driven by Excellence',
-    description: 'Global Coco Prime is a leading exporter of premium coconut derivatives from Indonesia. We specialize in providing high-quality Semi Husked Coconut, Virgin Coconut Oil, and Charcoal Briquettes to partners worldwide. Our commitment to quality, sustainability, and transparency has made us a trusted name in the global coconut industry.',
+    description: 'PT Sumber Niaga Alam Sejahtera is a leading exporter of premium coconut derivatives from Indonesia. We specialize in providing high-quality Semi Husked Coconut, Virgin Coconut Oil, and Charcoal Briquettes to partners worldwide. Our commitment to quality, sustainability, and transparency has made us a trusted name in the global coconut industry.',
     image: 'https://images.unsplash.com/photo-1589139265243-78c773ee49fb?q=80&w=1200&auto=format&fit=crop',
     highlight_value: '15+ Years',
     highlight_text: 'Empowering more than 500 local farmers across the Indonesian archipelago.',

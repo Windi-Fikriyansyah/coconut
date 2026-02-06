@@ -88,7 +88,7 @@ const BlogPostPageClient = ({ post }: BlogPostPageClientProps) => {
                             <div className="relative z-10 text-center md:text-left">
                                 <h4 className="text-xl font-bold mb-2">Written by {post.author}</h4>
                                 <p className="text-white/60 leading-relaxed">
-                                    Global Coco Prime editorial team provides expert insights into the coconut industry, focusing on sustainable exports and international quality standards.
+                                    PT Sumber Niaga Alam Sejahtera editorial team provides expert insights into the coconut industry, focusing on sustainable exports and international quality standards.
                                 </p>
                             </div>
                             {/* Decoration */}

@@ -10,15 +10,24 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Global Coco Prime | Premium Coconut Derivatives Exporter",
-  description: "Global Coco Prime is a leading exporter of high-quality coconut derivatives including charcoal briquettes, virgin coconut oil, and desiccated coconut. Organic, sustainable, and ISO certified.",
-  keywords: "coconut charcoal briquettes, virgin coconut oil, desiccated coconut, coconut exporter Indonesia, sustainable coconut products",
+  title: "Indonesia Coconut Supplier | PT Sumber Niaga Alam Sejahtera",
+  description: "Global exporter of premium coconut derivatives: Charcoal Briquettes, VCO, Desiccated Coconut, Cocopeat, and Organic Coconut Sugar. ISO Certified & Sustainable sourcing from Indonesia.",
+  keywords: "Indonesia coconut exporter, coconut charcoal briquettes supplier, bulk virgin coconut oil, desiccated coconut factory, organic coconut sugar wholesale, cocopeat and cocofiber exporter, coconut milk distributor, copra supplier Indonesia",
   openGraph: {
-    title: "Global Coco Prime | Premium Coconut Derivatives",
-    description: "Premium Coconut Derivatives for the Global Market. Sustainably sourced, industrially processed.",
+    title: "Premium Coconut Derivatives Exporter | PT Sumber Niaga Alam Sejahtera",
+    description: "Your trusted partner for high-quality coconut products from Indonesia. We supply Briquettes, VCO, Cocopeat, and more for global industrial needs.",
+    url: "https://coconiagaalam.com", // Ganti dengan domain Anda
     type: "website",
     locale: "en_US",
-    siteName: "Global Coco Prime",
+    siteName: "PT Sumber Niaga Alam Sejahtera",
+    images: [
+      {
+        url: "/og-image.webp", // Pastikan ada gambar menarik untuk share link
+        width: 1200,
+        height: 630,
+        alt: "PT Sumber Niaga Alam Sejahtera Coconut Products",
+      },
+    ],
   },
 };
 

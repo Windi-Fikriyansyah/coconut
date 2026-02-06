@@ -19,7 +19,7 @@ const Footer = ({ products }: { products?: Product[] }) => {
                         <Link href="/" className="inline-block mb-8">
                             <img
                                 src="/logo.png"
-                                alt="Global Coco Prime Logo"
+                                alt="PT Sumber Niaga Alam Sejahtera Logo"
                                 className="h-10 w-auto object-contain brightness-110"
                             />
                         </Link>

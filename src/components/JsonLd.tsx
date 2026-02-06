@@ -4,7 +4,7 @@ const JsonLd = () => {
     const organizationSchema = {
         "@context": "https://schema.org",
         "@type": "Organization",
-        "name": "Global Coco Prime",
+        "name": "PT Sumber Niaga Alam Sejahtera",
         "url": "https://globalcocoprime.com",
         "logo": "https://globalcocoprime.com/logo.png",
         "description": "Premium Coconut Derivatives Exporter for the Global Market",
