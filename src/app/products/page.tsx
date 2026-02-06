@@ -2,6 +2,8 @@ import React from 'react';
 import ProductsPageClient from '@/components/ProductsPageClient';
 import { getProducts } from '@/lib/data';
 
+export const revalidate = 3600;
+
 export default async function ProductsPage() {
     const products = await getProducts();
 

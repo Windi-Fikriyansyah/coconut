@@ -2,6 +2,8 @@ import React from 'react';
 import BlogPageClient from '@/components/BlogPageClient';
 import { getBlogPostsPaginated, getBlogPostsCount } from '@/lib/data';
 
+export const revalidate = 3600;
+
 export default async function BlogPage({ searchParams }: { searchParams: Promise<{ page?: string }> }) {
     const params = await searchParams;
     const page = parseInt(params.page || '1');

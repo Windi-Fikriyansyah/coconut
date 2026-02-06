@@ -1,11 +1,20 @@
 import type { Metadata } from 'next';
-import { getProductBySlug } from '@/lib/data';
+import { getProductBySlug, getProducts } from '@/lib/data';
 import { notFound } from 'next/navigation';
 import Navbar from '@/components/Navbar';
 import { Download, Mail, ChevronRight, CheckCircle2 } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import * as FramerMotion from 'framer-motion';
+
+export const revalidate = 3600; // ISR: Revalidate every 1 hour
+
+export async function generateStaticParams() {
+    const products = await getProducts();
+    return products.map((product) => ({
+        slug: product.slug,
+    }));
+}
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
     const { slug } = await params;
