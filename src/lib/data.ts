@@ -38,12 +38,9 @@ function sanitizeImageUrl(url: string | null | undefined): string {
     // Handles: http://localhost:3000, https://localhost:3000, http://127.0.0.1:3000, etc.
     let cleanPath = url.replace(/^(https?:\/\/)(localhost|127\.0\.0\.1)(:\d+)?/, '');
 
-    // If we have a base URL in env, prepend it to relative paths
-    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
-    if (baseUrl && cleanPath.startsWith('/')) {
-        // Remove trailing slash from baseUrl if present
-        const cleanBaseUrl = baseUrl.replace(/\/$/, '');
-        return `${cleanBaseUrl}${cleanPath}`;
+    // Ensure it starts with / if not empty and not http
+    if (cleanPath && !cleanPath.startsWith('/') && !cleanPath.startsWith('http')) {
+        cleanPath = `/${cleanPath}`;
     }
 
     return cleanPath;
