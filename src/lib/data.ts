@@ -34,8 +34,9 @@ export interface ProcessStep extends RowDataPacket {
 
 function sanitizeImageUrl(url: string | null | undefined): string {
     if (!url) return '';
-    // Strip http://localhost:3000 or http://127.0.0.1:3000 to avoid private IP errors in Next.js Image
-    return url.replace(/^https?:\/\/(localhost|127\.0\.0\.1):3000/, '');
+    // Robustly strip localhost URLs to prevent mixed content/private IP errors in production
+    // Handles: http://localhost:3000, https://localhost:3000, http://127.0.0.1:3000, etc.
+    return url.replace(/^(https?:\/\/)(localhost|127\.0\.0\.1)(:\d+)?/, '');
 }
 
 export async function getProducts(): Promise<Product[]> {
