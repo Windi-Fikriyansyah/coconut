@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Premium Coconut Derivatives Exporter | PT Sumber Niaga Alam Sejahtera",
     description: "Your trusted partner for high-quality coconut products from Indonesia. We supply Briquettes, VCO, Cocopeat, and more for global industrial needs.",
-    url: "https://coconiagaalam.com", // Ganti dengan domain Anda
+    url: "https://indonesiacoco.com", // Ganti dengan domain Anda
     type: "website",
     locale: "en_US",
     siteName: "PT Sumber Niaga Alam Sejahtera",

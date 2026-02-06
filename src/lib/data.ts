@@ -60,14 +60,10 @@ export async function getProductBySlug(slug: string): Promise<Product | null> {
 
 export async function getCertificates(): Promise<Certificate[]> {
     const [rows] = await pool.query<Certificate[]>('SELECT * FROM certificates ORDER BY id ASC');
-    return rows.map(row => {
-        const logo = sanitizeImageUrl(row.logo);
-        console.log(`[DEBUG] Certificate ID ${row.id}: Raw Logo="${row.logo}", Sanitized Logo="${logo}"`);
-        return {
-            ...row,
-            logo
-        };
-    });
+    return rows.map(row => ({
+        ...row,
+        logo: sanitizeImageUrl(row.logo)
+    }));
 }
 
 export async function getProcessSteps(): Promise<ProcessStep[]> {
