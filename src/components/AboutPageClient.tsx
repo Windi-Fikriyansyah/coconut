@@ -1,6 +1,7 @@
 "use client";
 
-import React from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
 import Navbar from '@/components/Navbar';
 import { Target, Eye, Heart, ShieldCheck, Users, Globe } from 'lucide-react';
 import { AboutPageData } from '@/lib/data';
@@ -24,7 +25,13 @@ export default function AboutPageClient({ data }: { data: AboutPageData }) {
             {/* Hero Header */}
             <section className="relative pt-32 pb-20 bg-coco-forest overflow-hidden text-center">
                 <div className="absolute inset-0 opacity-10">
-                    <img src={data.hero_image} className="w-full h-full object-cover" alt="" />
+                    <Image
+                        src={data.hero_image}
+                        fill
+                        className="object-cover"
+                        alt=""
+                        priority
+                    />
                 </div>
                 <div className="container mx-auto px-6 relative z-10">
                     <motion.span
@@ -73,9 +80,16 @@ export default function AboutPageClient({ data }: { data: AboutPageData }) {
                             initial={{ opacity: 0, x: 30 }}
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
-                            className="rounded-3xl overflow-hidden shadow-2xl"
+                            className="rounded-3xl overflow-hidden shadow-2xl relative"
                         >
-                            <img src={data.journey_image} alt="Our Journey" className="w-full h-auto" />
+                            <Image
+                                src={data.journey_image}
+                                alt="Our Journey"
+                                width={800}
+                                height={600}
+                                className="w-full h-auto"
+                                sizes="(max-width: 1024px) 100vw, 50vw"
+                            />
                         </motion.div>
                     </div>
                 </div>

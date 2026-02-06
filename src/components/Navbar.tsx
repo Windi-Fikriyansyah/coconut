@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Leaf } from 'lucide-react';
 
@@ -35,10 +36,13 @@ const Navbar = ({ solid = false }: { solid?: boolean }) => {
     >
       <div className="container mx-auto px-6 flex justify-between items-center">
         <Link href="/" className="flex items-center group">
-          <img
+          <Image
             src="/logo1.webp"
             alt="PT Sumber Niaga Alam Sejahtera Logo"
+            width={180}
+            height={48}
             className="h-10 md:h-12 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+            priority
           />
         </Link>
 

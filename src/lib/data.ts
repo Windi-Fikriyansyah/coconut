@@ -32,14 +32,30 @@ export interface ProcessStep extends RowDataPacket {
     icon: string;
 }
 
+function sanitizeImageUrl(url: string | null | undefined): string {
+    if (!url) return '';
+    // Strip http://localhost:3000 or http://127.0.0.1:3000 to avoid private IP errors in Next.js Image
+    return url.replace(/^https?:\/\/(localhost|127\.0\.0\.1):3000/, '');
+}
+
 export async function getProducts(): Promise<Product[]> {
     const [rows] = await pool.query<Product[]>('SELECT * FROM products ORDER BY id ASC');
-    return rows;
+    return rows.map(row => ({
+        ...row,
+        image: sanitizeImageUrl(row.image),
+        bts_image: sanitizeImageUrl(row.bts_image)
+    }));
 }
 
 export async function getProductBySlug(slug: string): Promise<Product | null> {
     const [rows] = await pool.query<Product[]>('SELECT * FROM products WHERE slug = ?', [slug]);
-    return rows.length > 0 ? rows[0] : null;
+    if (rows.length === 0) return null;
+    const product = rows[0];
+    return {
+        ...product,
+        image: sanitizeImageUrl(product.image),
+        bts_image: sanitizeImageUrl(product.bts_image)
+    };
 }
 
 export async function getCertificates(): Promise<Certificate[]> {
@@ -91,7 +107,11 @@ export interface AboutData {
 
 export async function getAboutData(): Promise<AboutData | null> {
     const [rows] = await pool.query<(AboutData & RowDataPacket)[]>('SELECT * FROM about_section LIMIT 1');
-    return rows.length > 0 ? rows[0] : null;
+    if (rows.length === 0) return null;
+    return {
+        ...rows[0],
+        image: sanitizeImageUrl(rows[0].image)
+    };
 }
 
 export interface TrustItem {
@@ -118,7 +138,10 @@ export interface ShippingGalleryRow extends ShippingGalleryItem, RowDataPacket {
 export async function getShippingGallery(): Promise<ShippingGalleryItem[]> {
     try {
         const [rows] = await pool.query<ShippingGalleryRow[]>('SELECT * FROM shipping_gallery ORDER BY display_order ASC');
-        return rows;
+        return rows.map(row => ({
+            ...row,
+            image: sanitizeImageUrl(row.image)
+        }));
     } catch (error) {
         console.error("Error fetching shipping gallery:", error);
         return [];
@@ -192,7 +215,12 @@ export interface AboutPageData extends RowDataPacket {
 export async function getAboutPageData(): Promise<AboutPageData | null> {
     try {
         const [rows] = await pool.query<AboutPageData[]>('SELECT * FROM about_page LIMIT 1');
-        return rows.length > 0 ? rows[0] : null;
+        if (rows.length === 0) return null;
+        return {
+            ...rows[0],
+            hero_image: sanitizeImageUrl(rows[0].hero_image),
+            journey_image: sanitizeImageUrl(rows[0].journey_image)
+        };
     } catch (error) {
         console.error("Error fetching about page data:", error);
         return null;
@@ -215,7 +243,10 @@ export interface BlogPost extends RowDataPacket {
 export async function getBlogPosts(): Promise<BlogPost[]> {
     try {
         const [rows] = await pool.query<BlogPost[]>('SELECT * FROM blog_posts ORDER BY created_at DESC');
-        return rows;
+        return rows.map(post => ({
+            ...post,
+            image: sanitizeImageUrl(post.image)
+        }));
     } catch (error) {
         console.error("Error fetching blog posts:", error);
         return [];
@@ -225,7 +256,11 @@ export async function getBlogPosts(): Promise<BlogPost[]> {
 export async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> {
     try {
         const [rows] = await pool.query<BlogPost[]>('SELECT * FROM blog_posts WHERE slug = ?', [slug]);
-        return rows.length > 0 ? rows[0] : null;
+        if (rows.length === 0) return null;
+        return {
+            ...rows[0],
+            image: sanitizeImageUrl(rows[0].image)
+        };
     } catch (error) {
         console.error("Error fetching blog post by slug:", error);
         return null;
@@ -236,7 +271,10 @@ export async function getBlogPostsPaginated(page: number, limit: number): Promis
     try {
         const offset = (page - 1) * limit;
         const [rows] = await pool.query<BlogPost[]>('SELECT * FROM blog_posts ORDER BY created_at DESC LIMIT ? OFFSET ?', [limit, offset]);
-        return rows;
+        return rows.map(post => ({
+            ...post,
+            image: sanitizeImageUrl(post.image)
+        }));
     } catch (error) {
         console.error("Error fetching paginated blog posts:", error);
         return [];

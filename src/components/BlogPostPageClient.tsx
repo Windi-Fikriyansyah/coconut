@@ -5,6 +5,7 @@ import Navbar from '@/components/Navbar';
 import { motion } from 'framer-motion';
 import { Calendar, User, ChevronLeft, Tag } from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { BlogPost } from '@/lib/data';
 
 interface BlogPostPageClientProps {
@@ -21,7 +22,13 @@ const BlogPostPageClient = ({ post }: BlogPostPageClientProps) => {
             {/* Hero Section */}
             <section className="relative pt-32 pb-20 bg-coco-forest overflow-hidden">
                 <div className="absolute inset-0 opacity-20">
-                    <img src={post.image} className="w-full h-full object-cover blur-sm" alt="" />
+                    <Image
+                        src={post.image}
+                        fill
+                        className="object-cover blur-sm"
+                        alt=""
+                        priority
+                    />
                 </div>
                 <div className="container mx-auto px-6 relative z-10">
                     <Link href="/blog" className="inline-flex items-center gap-2 text-coco-gold font-bold text-sm mb-8 hover:translate-x-[-4px] transition-transform">

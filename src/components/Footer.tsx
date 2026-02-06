@@ -1,6 +1,7 @@
 import React from 'react';
 import { Linkedin, Twitter, Instagram, ArrowUpRight } from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Product } from '@/lib/data';
 
 const Footer = ({ products }: { products?: Product[] }) => {
@@ -17,9 +18,11 @@ const Footer = ({ products }: { products?: Product[] }) => {
                     {/* Brand Col */}
                     <div className="lg:col-span-1">
                         <Link href="/" className="inline-block mb-8">
-                            <img
+                            <Image
                                 src="/logo.png"
                                 alt="PT Sumber Niaga Alam Sejahtera Logo"
+                                width={160}
+                                height={40}
                                 className="h-10 w-auto object-contain brightness-110"
                             />
                         </Link>

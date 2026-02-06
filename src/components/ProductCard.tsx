@@ -24,10 +24,12 @@ const ProductCard: React.FC<ProductCardProps> = ({ slug, title, description, ima
                 className="group bg-white rounded-3xl overflow-hidden shadow-[0_10px_40px_rgba(0,0,0,0.04)] border border-coco-forest/5 hover:shadow-xl transition-all duration-500"
             >
                 <div className="relative h-72 overflow-hidden">
-                    <img
+                    <Image
                         src={image}
                         alt={title}
-                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                        fill
+                        className="object-cover group-hover:scale-110 transition-transform duration-700"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     />
                     <div className="absolute top-4 left-4 flex gap-2">
                         {tags.map((tag, i) => (

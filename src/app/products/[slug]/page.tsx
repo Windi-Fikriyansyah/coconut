@@ -1,13 +1,39 @@
-import React from 'react';
+import type { Metadata } from 'next';
 import { getProductBySlug } from '@/lib/data';
 import { notFound } from 'next/navigation';
 import Navbar from '@/components/Navbar';
 import { Download, Mail, ChevronRight, CheckCircle2 } from 'lucide-react';
+import Image from 'next/image';
+import Link from 'next/link';
 import * as FramerMotion from 'framer-motion';
 
-// Helper to handle motion components in server components if necessary, 
-// but here we just need the data. Since we want to keep animations, 
-// we'll keep the motion elements but the data fetching is now server-side.
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+    const { slug } = await params;
+    const product = await getProductBySlug(slug);
+
+    if (!product) {
+        return {
+            title: 'Product Not Found | PT Sumber Niaga Alam Sejahtera',
+        };
+    }
+
+    return {
+        title: `${product.title} | Indonesia Coconut Supplier`,
+        description: product.short_description,
+        openGraph: {
+            title: `${product.title} | Premium Coconut Derivatives`,
+            description: product.short_description,
+            images: [
+                {
+                    url: product.image,
+                    width: 800,
+                    height: 800,
+                    alt: product.title,
+                },
+            ],
+        },
+    };
+}
 
 export default async function ProductPage({ params }: { params: Promise<{ slug: string }> }) {
     const { slug } = await params;
@@ -28,15 +54,21 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
             {/* Hero Header */}
             <section className="relative pt-32 pb-20 bg-coco-forest overflow-hidden">
                 <div className="absolute inset-0 opacity-10">
-                    <img src={product.image} className="w-full h-full object-cover blur-sm" alt="" />
+                    <Image
+                        src={product.image}
+                        fill
+                        className="object-cover blur-sm"
+                        alt=""
+                        priority
+                    />
                     <div className="absolute inset-0 bg-coco-forest/80"></div>
                 </div>
 
                 <div className="container mx-auto px-6 relative z-10">
                     <nav className="flex items-center gap-2 text-white/50 text-xs font-bold uppercase tracking-widest mb-8">
-                        <a href="/" className="hover:text-coco-gold">Home</a>
+                        <Link href="/" className="hover:text-coco-gold transition-colors">Home</Link>
                         <ChevronRight size={12} />
-                        <span className="text-white">Products</span>
+                        <Link href="/products" className="hover:text-coco-gold transition-colors">Products</Link>
                         <ChevronRight size={12} />
                         <span className="text-coco-gold">{product.title}</span>
                     </nav>
@@ -100,7 +132,15 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
                                         Main Product
                                     </span>
                                 </div>
-                                <img src={product.image} className="w-full aspect-square object-cover transition-transform duration-700 group-hover:scale-110" alt={product.title} />
+                                <div className="relative aspect-square">
+                                    <Image
+                                        src={product.image}
+                                        fill
+                                        className="object-cover transition-transform duration-700 group-hover:scale-110"
+                                        alt={product.title}
+                                        sizes="(max-width: 768px) 100vw, 50vw"
+                                    />
+                                </div>
                             </div>
 
                             <div className="bg-coco-forest p-10 rounded-3xl text-white relative overflow-hidden">
@@ -111,8 +151,14 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
                                         {product.slug === "virgin-coconut-oil" && "Our cold extraction process is strictly monitored to preserve enzyme purity."}
                                         {product.slug === "bbq-charcoal-briquettes" && "Regular burn tests to ensure heat consistency and burning duration."}
                                     </p>
-                                    <div className="rounded-2xl overflow-hidden border border-white/10 group">
-                                        <img src={product.bts_image} className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500" alt="Production Process" />
+                                    <div className="rounded-2xl overflow-hidden border border-white/10 group relative h-64">
+                                        <Image
+                                            src={product.bts_image || product.image}
+                                            fill
+                                            className="object-cover group-hover:scale-105 transition-transform duration-500"
+                                            alt="Production Process"
+                                            sizes="(max-width: 768px) 100vw, 50vw"
+                                        />
                                     </div>
                                 </div>
                                 {/* Decoration */}
