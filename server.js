@@ -3,7 +3,8 @@ const { parse } = require('url');
 const next = require('next');
 require('dotenv').config(); // Load env vars immediately for shared hosting
 
-const dev = process.env.NODE_ENV !== 'production';
+// Default to production if not explicitly 'development'
+const dev = process.env.NODE_ENV === 'development';
 const hostname = 'localhost';
 const port = process.env.PORT || 3000;
 // when using middleware `hostname` and `port` must be provided below
