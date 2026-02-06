@@ -1,4 +1,3 @@
-```typescript
 import type { Metadata } from 'next';
 import { getBlogPostBySlug, getBlogPosts } from '@/lib/data';
 import { notFound } from 'next/navigation';
@@ -24,7 +23,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     }
 
     return {
-        title: `${ post.title } | Coconut Industry Insights`,
+        title: `${post.title} | Coconut Industry Insights`,
         description: post.excerpt,
         openGraph: {
             title: post.title,
