@@ -109,24 +109,6 @@ const Process = ({ data }: { data?: ProcessStepData[] }) => {
                     })}
                 </div>
 
-                {/* Bottom CTA for transparency */}
-                <motion.div
-                    initial={{ opacity: 0, y: 40 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    className="mt-20 pt-16 border-t border-white/10 flex flex-col items-center text-center"
-                >
-                    <p className="text-white/50 italic mb-8 max-w-2xl">
-                        "We prioritize transparency at every stage of production. We invite our global partners to conduct factory audits and visit our facilities in Indonesia to witness our quality excellence firsthand."
-                    </p>
-                    <motion.div
-                        whileHover={{ scale: 1.05 }}
-                        className="flex items-center gap-4 text-coco-gold font-bold hover:text-white cursor-pointer transition-colors"
-                    >
-                        <span>View Facility Gallery</span>
-                        <div className="w-6 h-6 rounded-full border border-coco-gold flex items-center justify-center text-[10px]">→</div>
-                    </motion.div>
-                </motion.div>
             </div>
         </section>
     );

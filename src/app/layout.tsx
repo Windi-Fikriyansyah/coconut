@@ -22,17 +22,26 @@ export const metadata: Metadata = {
   },
 };
 
+import { getProducts, getContactData } from "@/lib/data";
+import WhatsAppButton from "@/components/WhatsAppButton";
+
 export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const [products, contact] = await Promise.all([
+    getProducts(),
+    getContactData()
+  ]);
+
   return (
     <html lang="en" className="scroll-smooth" suppressHydrationWarning>
       <body className={`${inter.variable} font-sans antialiased`} suppressHydrationWarning>
         <JsonLd />
         {children}
-        <Footer />
+        <WhatsAppButton number={contact?.whatsapp} />
+        <Footer products={products} />
       </body>
     </html>
   );

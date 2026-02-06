@@ -6,6 +6,7 @@ import About from "@/components/About";
 import Process from "@/components/Process";
 import TrustSection from "@/components/TrustSection";
 import WhyChooseUs from "@/components/WhyChooseUs";
+import ShippingGallery from "@/components/ShippingGallery";
 import Certificates from "@/components/Certificates";
 import Contact from "@/components/Contact";
 
@@ -16,6 +17,7 @@ import {
   getStatsData,
   getAboutData,
   getTrustData,
+  getShippingGallery,
   getWhyChooseUsData,
   getContactData,
   getCertificates
@@ -29,6 +31,7 @@ export default async function Home() {
     statsData,
     aboutData,
     trustData,
+    shippingGalleryData,
     whyChooseUsData,
     contactData,
     certificatesData
@@ -39,6 +42,7 @@ export default async function Home() {
     getStatsData(),
     getAboutData(),
     getTrustData(),
+    getShippingGallery(),
     getWhyChooseUsData(),
     getContactData(),
     getCertificates()
@@ -52,6 +56,7 @@ export default async function Home() {
       <ProductGrid data={products} />
       <About data={aboutData} />
       <Process data={processSteps} />
+      <ShippingGallery data={shippingGalleryData} />
       <WhyChooseUs data={whyChooseUsData} />
       <TrustSection data={trustData} />
       <Certificates data={certificatesData} />

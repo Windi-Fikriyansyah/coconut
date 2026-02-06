@@ -1,8 +1,15 @@
 import React from 'react';
-import { Leaf, Linkedin, Twitter, Instagram, ArrowUpRight } from 'lucide-react';
+import { Linkedin, Twitter, Instagram, ArrowUpRight } from 'lucide-react';
 import Link from 'next/link';
+import { Product } from '@/lib/data';
 
-const Footer = () => {
+const Footer = ({ products }: { products?: Product[] }) => {
+    const displayProducts = products && products.length > 0 ? products : [
+        { title: 'Semi Husked Coconut', slug: 'semi-husked-coconut' },
+        { title: 'Virgin Coconut Oil', slug: 'virgin-coconut-oil' },
+        { title: 'Charcoal Briquettes', slug: 'bbq-charcoal-briquettes' }
+    ];
+
     return (
         <footer className="bg-coco-sandy pt-24 pb-12 border-t border-coco-forest/10">
             <div className="container mx-auto px-6">
@@ -52,14 +59,10 @@ const Footer = () => {
                     <div>
                         <h4 className="text-sm font-bold uppercase tracking-widest text-coco-forest mb-8">Products</h4>
                         <ul className="space-y-4">
-                            {[
-                                { name: 'Semi Husked Coconut', href: '/products/semi-husked-coconut' },
-                                { name: 'Virgin Coconut Oil', href: '/products/virgin-coconut-oil' },
-                                { name: 'Charcoal Briquettes', href: '/products/bbq-charcoal-briquettes' }
-                            ].map((item, i) => (
+                            {displayProducts.map((item, i) => (
                                 <li key={i}>
-                                    <Link href={item.href} className="text-coco-forest/60 hover:text-coco-gold text-sm font-medium transition-colors flex items-center gap-2 group">
-                                        {item.name}
+                                    <Link href={`/products/${item.slug}`} className="text-coco-forest/60 hover:text-coco-gold text-sm font-medium transition-colors flex items-center gap-2 group">
+                                        {item.title}
                                         <ArrowUpRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
                                     </Link>
                                 </li>
@@ -89,7 +92,7 @@ const Footer = () => {
 
                 <div className="pt-12 border-t border-coco-forest/10 flex flex-col md:flex-row justify-between items-center gap-6">
                     <div className="text-xs text-coco-forest/40 font-medium">
-                        © 2026 PT GLOBAL COCO PRIME TBK. ALL RIGHTS RESERVED.
+                        © 2026 PT Sumber Niaga Alam Sejahtera. ALL RIGHTS RESERVED.
                     </div>
                     <div className="flex gap-8 text-xs font-bold text-coco-forest/40 uppercase tracking-widest">
                         <a href="#" className="hover:text-coco-forest transition-colors">Privacy</a>
