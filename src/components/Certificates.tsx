@@ -23,6 +23,23 @@ interface CertificateData {
 const Certificates = ({ data }: { data?: CertificateData[] }) => {
   const displayData = data || [];
 
+  // Fail-safe: Sanitize URL on the client side just in case the server sends localhost
+  const safeImage = (url: string | null) => {
+    if (!url) return '';
+    if (url.startsWith('/')) return url; // Already relative
+    try {
+      // If it's a localhost URL, strip the origin
+      if (url.includes('localhost') || url.includes('127.0.0.1')) {
+        const urlObj = new URL(url);
+        return urlObj.pathname;
+      }
+    } catch (e) {
+      // If URL parsing fails, just return original or try to strip manually
+      return url.replace(/^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?/, '');
+    }
+    return url;
+  };
+
   if (displayData.length === 0) return null;
 
   return (
@@ -78,7 +95,7 @@ const Certificates = ({ data }: { data?: CertificateData[] }) => {
                   {cert.logo ? (
                     <div className="relative w-full h-full p-2">
                       <Image
-                        src={cert.logo}
+                        src={safeImage(cert.logo)}
                         alt={`${cert.title} logo`}
                         fill
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
