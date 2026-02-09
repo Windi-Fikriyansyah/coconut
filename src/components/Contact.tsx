@@ -8,9 +8,10 @@ import { ContactData } from '@/lib/data';
 
 interface ContactProps {
     data?: ContactData | null;
+    isGlobal?: boolean;
 }
 
-const Contact = ({ data }: ContactProps) => {
+const Contact = ({ data, isGlobal }: ContactProps) => {
     const subtitle = data?.subtitle || "Get In Touch";
     const title = data?.title || "Let's Discuss Your <br />Industrial Needs";
     const description = data?.description || "Ready to elevate your supply chain? Reach out to our team for export inquiries, samples, or customized specifications.";
@@ -24,14 +25,17 @@ const Contact = ({ data }: ContactProps) => {
     // Don't show the global contact section on the dedicated contact page
     if (pathname === '/contact') return null;
 
+    // Hide global instance on home page (we'll place it manually)
+    if (isGlobal && pathname === '/') return null;
+
     return (
         <section id="contact" className="py-32 bg-white">
-            <div className="container mx-auto px-6">
+            <div className="container mx-auto px-8 md:px-16">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-20">
                     <div>
                         <span className="text-coco-gold font-bold uppercase tracking-widest text-xs mb-4 block">{subtitle}</span>
-                        <h2 className="text-4xl md:text-5xl font-bold text-coco-forest mb-8" dangerouslySetInnerHTML={{ __html: title }} />
-                        <p className="text-coco-forest/60 text-lg mb-12 max-w-md">
+                        <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold text-coco-forest mb-8" dangerouslySetInnerHTML={{ __html: title }} />
+                        <p className="text-coco-forest/60 text-sm md:text-base mb-12 max-w-md">
                             {description}
                         </p>
 
@@ -54,15 +58,17 @@ const Contact = ({ data }: ContactProps) => {
                             ))}
                         </div>
 
-                        <div className="mt-12 w-full h-64 bg-coco-sandy rounded-3xl overflow-hidden border border-coco-forest/5 relative group">
-                            <div className="absolute inset-0 bg-coco-forest/10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity z-10">
-                                <span className="bg-coco-forest text-coco-sandy px-4 py-2 rounded-full text-xs font-bold">Open Maps</span>
-                            </div>
-                            <img
-                                src={mapImage}
-                                className="w-full h-full object-cover filter grayscale blur-[1px]"
-                                alt="Map placeholder"
-                            />
+                        <div className="mt-8 w-full h-[250px] bg-coco-sandy rounded-[2rem] overflow-hidden border border-coco-forest/5 relative shadow-inner">
+                            <iframe
+                                src={data?.map_embed_url || "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126920.2415175923!2d106.759478!3d-6.2293867!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f3e098ed2323%3A0x6d11f7c0d0232490!2sJakarta%20Pusat%2C%20Kota%20Jakarta%20Pusat%2C%20Daerah%20Khusus%20Ibukota%20Jakarta!5e0!3m2!1sid!2sid!4v1700000000000!5m2!1sid!2sid"}
+                                width="100%"
+                                height="100%"
+                                style={{ border: 0, filter: 'grayscale(0.2)' }}
+                                allowFullScreen={true}
+                                loading="lazy"
+                                referrerPolicy="no-referrer-when-downgrade"
+                                className="w-full h-full grayscale-[0.2]"
+                            ></iframe>
                         </div>
                     </div>
 

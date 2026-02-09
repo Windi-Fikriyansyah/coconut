@@ -4,46 +4,47 @@ import React from 'react';
 import Navbar from '@/components/Navbar';
 import ProductGrid from '@/components/ProductGrid';
 import { motion } from 'framer-motion';
-import { Product } from '@/lib/data';
+import { Product, ProductsPageData } from '@/lib/data';
 
 interface ProductsPageClientProps {
     products: Product[];
+    data: ProductsPageData;
 }
 
-const ProductsPageClient = ({ products }: ProductsPageClientProps) => {
+const ProductsPageClient = ({ products, data }: ProductsPageClientProps) => {
     return (
         <main className="min-h-screen bg-coco-sandy">
             <Navbar solid />
 
             {/* Hero Header */}
-            <section className="relative pt-32 pb-20 bg-coco-forest overflow-hidden text-center">
-                <div className="absolute inset-0 opacity-10">
-                    <img src="https://images.unsplash.com/photo-1621441394707-160682245c11?q=80&w=1600&auto=format&fit=crop" className="w-full h-full object-cover" alt="" />
+            <section className="relative min-h-[100dvh] flex items-center justify-center overflow-hidden text-center">
+                {/* Background with overlay */}
+                <div
+                    className="absolute inset-0 bg-cover bg-center z-0"
+                    style={{
+                        backgroundImage: `url("${data.hero_image}")`,
+                    }}
+                >
+                    <div className="absolute inset-0 bg-black/50"></div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-coco-forest via-transparent to-transparent"></div>
                 </div>
-                <div className="container mx-auto px-6 relative z-10">
-                    <motion.span
-                        initial={{ opacity: 0, y: 10 }}
+
+                <div className="container mx-auto px-6 relative z-10 pt-12">
+                    <motion.div
+                        initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
-                        className="text-coco-gold font-bold uppercase tracking-widest text-sm mb-4 block"
+                        transition={{ duration: 0.8 }}
+                        className="flex flex-col items-center"
                     >
-                        Premium Portfolio
-                    </motion.span>
-                    <motion.h1
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.1 }}
-                        className="text-4xl md:text-6xl font-bold text-white mb-6"
-                    >
-                        Exclusive <span className="text-coco-gold">Product Catalog</span>
-                    </motion.h1>
-                    <motion.p
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.2 }}
-                        className="text-xl text-white/70 max-w-3xl mx-auto leading-relaxed"
-                    >
-                        We offer the finest coconut derivative products with rigorous international standards.
-                    </motion.p>
+
+                        <h1
+                            className="text-2xl sm:text-3xl md:text-5xl font-bold text-white leading-[1.1] mb-6 drop-shadow-lg max-w-4xl"
+                            dangerouslySetInnerHTML={{ __html: data.hero_title }}
+                        />
+                        <p className="text-sm md:text-base text-coco-sandy/90 mb-10 max-w-3xl mx-auto leading-relaxed drop-shadow-md">
+                            {data.hero_description}
+                        </p>
+                    </motion.div>
                 </div>
             </section>
 
@@ -54,18 +55,20 @@ const ProductsPageClient = ({ products }: ProductsPageClientProps) => {
 
             {/* Sustainable Quality Section */}
             <section className="py-24 bg-white border-t border-coco-forest/5">
-                <div className="container mx-auto px-6">
+                <div className="container mx-auto px-8 md:px-16">
                     <div className="bg-coco-forest p-12 rounded-[3rem] text-center relative overflow-hidden">
                         <div className="relative z-10 max-w-2xl mx-auto">
-                            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">Looking for Custom Specifications?</h2>
-                            <p className="text-white/70 text-lg mb-10">
-                                We can customize product specifications (coconut weight, FFA levels in VCO, or briquette size) according to your international market needs.
+                            <h2 className="text-xl md:text-3xl font-bold text-white mb-6">
+                                {data.cta_title}
+                            </h2>
+                            <p className="text-white/70 text-sm md:text-base mb-10">
+                                {data.cta_description}
                             </p>
                             <a
                                 href="/contact"
                                 className="inline-block bg-coco-gold text-coco-forest px-10 py-4 rounded-full font-bold hover:bg-white transition-all transform hover:scale-105"
                             >
-                                Discuss Your Requirements
+                                {data.cta_button_text}
                             </a>
                         </div>
                         {/* Decoration */}

@@ -50,17 +50,17 @@ const BlogPostPageClient = ({ post }: BlogPostPageClientProps) => {
                             ))}
                         </div>
 
-                        <h1 className="text-4xl md:text-6xl font-bold text-white mb-8 leading-tight">
+                        <h1 className="text-2xl sm:text-3xl md:text-5xl font-bold text-white mb-8 leading-tight">
                             {post.title}
                         </h1>
 
-                        <div className="flex items-center gap-6 text-white/50 text-sm font-bold uppercase tracking-widest">
+                        <div className="flex items-center gap-6 text-white/50 text-[10px] font-bold uppercase tracking-widest">
                             <span className="flex items-center gap-2">
-                                <Calendar size={18} className="text-coco-gold" />
+                                <Calendar size={14} className="text-coco-gold" />
                                 {post.date_str}
                             </span>
                             <span className="flex items-center gap-2">
-                                <User size={18} className="text-coco-gold" />
+                                <User size={14} className="text-coco-gold" />
                                 {post.author}
                             </span>
                         </div>
@@ -70,7 +70,7 @@ const BlogPostPageClient = ({ post }: BlogPostPageClientProps) => {
 
             {/* Post Content */}
             <section className="py-24">
-                <div className="container mx-auto px-6">
+                <div className="container mx-auto px-8 md:px-16">
                     <div className="max-w-4xl mx-auto">
                         <motion.div
                             initial={{ opacity: 0, y: 30 }}

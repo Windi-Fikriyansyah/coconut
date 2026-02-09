@@ -1,5 +1,6 @@
 import pool from './mysql';
 import { RowDataPacket } from 'mysql2';
+import { cache } from 'react';
 
 export interface Product extends RowDataPacket {
     id: number;
@@ -34,9 +35,18 @@ export interface ProcessStep extends RowDataPacket {
 
 function sanitizeImageUrl(url: string | null | undefined): string {
     if (!url) return '';
+
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || '';
+
     // Robustly strip localhost URLs to prevent mixed content/private IP errors in production
-    // Handles: http://localhost:3000, https://localhost:3000, http://127.0.0.1:3000, etc.
     let cleanPath = url.replace(/^(https?:\/\/)(localhost|127\.0\.0\.1)(:\d+)?/, '');
+
+    // Remove /public prefix if it exists (database might store as /public/...)
+    if (cleanPath.startsWith('/public/')) {
+        cleanPath = cleanPath.replace('/public/', '/');
+    } else if (cleanPath.startsWith('public/')) {
+        cleanPath = cleanPath.replace('public/', '/');
+    }
 
     // Ensure it starts with / if not empty and not http
     if (cleanPath && !cleanPath.startsWith('/') && !cleanPath.startsWith('http')) {
@@ -46,7 +56,7 @@ function sanitizeImageUrl(url: string | null | undefined): string {
     return cleanPath;
 }
 
-export async function getProducts(): Promise<Product[]> {
+export const getProducts = cache(async (): Promise<Product[]> => {
     try {
         const [rows] = await pool.query<Product[]>('SELECT * FROM products ORDER BY id ASC');
         if (!Array.isArray(rows)) return [];
@@ -60,9 +70,9 @@ export async function getProducts(): Promise<Product[]> {
         // Returning empty array prevents checking crash (503)
         return [];
     }
-}
+});
 
-export async function getProductBySlug(slug: string): Promise<Product | null> {
+export const getProductBySlug = cache(async (slug: string): Promise<Product | null> => {
     const [rows] = await pool.query<Product[]>('SELECT * FROM products WHERE slug = ?', [slug]);
     if (rows.length === 0) return null;
     const product = rows[0];
@@ -71,7 +81,7 @@ export async function getProductBySlug(slug: string): Promise<Product | null> {
         image: sanitizeImageUrl(product.image),
         bts_image: sanitizeImageUrl(product.bts_image)
     };
-}
+});
 
 export async function getCertificates(): Promise<Certificate[]> {
     const [rows] = await pool.query<Certificate[]>('SELECT * FROM certificates ORDER BY id ASC');
@@ -191,6 +201,7 @@ export interface ContactData extends RowDataPacket {
     address: string;
     whatsapp: string;
     map_image: string;
+    map_embed_url: string; // New field for Google Maps iframe
 }
 
 export async function getContactData(): Promise<ContactData | null> {
@@ -316,3 +327,48 @@ export async function getBlogPostsCount(): Promise<number> {
         return 0;
     }
 }
+export interface ProductsPageData extends RowDataPacket {
+    id: number;
+    hero_badge: string;
+    hero_title: string;
+    hero_description: string;
+    hero_image: string;
+    cta_title: string;
+    cta_description: string;
+    cta_button_text: string;
+}
+
+export const getProductsPageData = cache(async (): Promise<ProductsPageData | null> => {
+    try {
+        const [rows] = await pool.query<ProductsPageData[]>('SELECT * FROM products_page LIMIT 1');
+        if (rows.length === 0) return null;
+        return {
+            ...rows[0],
+            hero_image: sanitizeImageUrl(rows[0].hero_image)
+        };
+    } catch (error) {
+        console.error("Error fetching products page data:", error);
+        return null;
+    }
+});
+export interface ProductDetailRow extends RowDataPacket {
+    id: number;
+    product_id: number;
+    title: string | null;
+    description: string | null;
+    image: string;
+    display_order: number;
+}
+
+export const getProductRowDetails = cache(async (productId: number): Promise<ProductDetailRow[]> => {
+    try {
+        const [rows] = await pool.query<ProductDetailRow[]>('SELECT * FROM product_details WHERE product_id = ? ORDER BY display_order ASC', [productId]);
+        return rows.map(row => ({
+            ...row,
+            image: sanitizeImageUrl(row.image)
+        }));
+    } catch (error) {
+        console.error("Error fetching product row details:", error);
+        return [];
+    }
+});

@@ -4,6 +4,9 @@ import "./globals.css";
 import JsonLd from "@/components/JsonLd";
 import Footer from "@/components/Footer";
 import Script from "next/script";
+import Certificates from "@/components/Certificates";
+import Contact from "@/components/Contact";
+
 
 const inter = Inter({
   subsets: ["latin"],
@@ -33,18 +36,21 @@ export const metadata: Metadata = {
   },
 };
 
-import { getProducts, getContactData } from "@/lib/data";
+import { getProducts, getContactData, getCertificates } from "@/lib/data";
 import WhatsAppButton from "@/components/WhatsAppButton";
+
 
 export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const [products, contact] = await Promise.all([
+  const [products, contact, certificates] = await Promise.all([
     getProducts(),
-    getContactData()
+    getContactData(),
+    getCertificates()
   ]);
+
 
   return (
     <html lang="en" className="scroll-smooth" suppressHydrationWarning>
@@ -64,8 +70,12 @@ export default async function RootLayout({
         </Script>
         <JsonLd />
         {children}
+        <Certificates data={certificates} isGlobal={true} />
+        <Contact data={contact} isGlobal={true} />
         <WhatsAppButton number={contact?.whatsapp} />
+
         <Footer products={products} />
+
       </body>
     </html>
   );

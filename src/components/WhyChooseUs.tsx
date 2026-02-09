@@ -46,7 +46,7 @@ const WhyChooseUs = ({ data, title = "Why Global Partners <br />Trust Us", subti
 
     return (
         <section className="py-32 bg-coco-forest text-coco-sandy">
-            <div className="container mx-auto px-6">
+            <div className="container mx-auto px-8 md:px-16">
                 <div className="text-center max-w-2xl mx-auto mb-20">
                     <span className="text-coco-gold font-bold uppercase tracking-widest text-xs mb-4 block">{subtitle}</span>
                     <h2 className="text-4xl md:text-5xl font-bold mb-6" dangerouslySetInnerHTML={{ __html: title }} />

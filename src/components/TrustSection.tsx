@@ -48,7 +48,7 @@ const TrustSection = ({ data, title = "Confidence at Scale: Your Strategic Suppl
 
     return (
         <section className="py-24 bg-coco-sandy/50 border-t border-coco-forest/5">
-            <div className="container mx-auto px-6">
+            <div className="container mx-auto px-8 md:px-16">
                 <div className="max-w-4xl mx-auto">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
@@ -59,7 +59,7 @@ const TrustSection = ({ data, title = "Confidence at Scale: Your Strategic Suppl
                         <span className="text-coco-gold font-bold uppercase tracking-widest text-sm mb-4 block">
                             {subtitle}
                         </span>
-                        <h2 className="text-4xl md:text-5xl font-bold text-coco-forest mb-6">
+                        <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold text-coco-forest mb-6">
                             {title}
                         </h2>
                         <div className="w-24 h-1 bg-coco-gold mx-auto"></div>
@@ -86,7 +86,7 @@ const TrustSection = ({ data, title = "Confidence at Scale: Your Strategic Suppl
                                         <h3 className="text-xl font-bold text-coco-forest mb-2 group-hover:text-coco-gold transition-colors">
                                             {item.title}
                                         </h3>
-                                        <p className="text-coco-forest/60 leading-relaxed">
+                                        <p className="text-sm md:text-base text-coco-forest/60 leading-relaxed">
                                             {item.text}
                                         </p>
                                     </div>

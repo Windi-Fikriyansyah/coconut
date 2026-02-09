@@ -23,45 +23,46 @@ export default function AboutPageClient({ data }: { data: AboutPageData }) {
             <Navbar solid />
 
             {/* Hero Header */}
-            <section className="relative pt-32 pb-20 bg-coco-forest overflow-hidden text-center">
-                <div className="absolute inset-0 opacity-10">
-                    <Image
-                        src={data.hero_image}
-                        fill
-                        className="object-cover"
-                        alt=""
-                        priority
-                    />
+            <section className="relative min-h-[100dvh] flex items-center justify-center overflow-hidden text-center">
+                {/* Background with overlay */}
+                <div
+                    className="absolute inset-0 bg-cover bg-center z-0"
+                    style={{
+                        backgroundImage: `url("${data.hero_image}")`,
+                    }}
+                >
+                    <div className="absolute inset-0 bg-black/50"></div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-coco-forest via-transparent to-transparent"></div>
                 </div>
-                <div className="container mx-auto px-6 relative z-10">
-                    <motion.span
-                        initial={{ opacity: 0, y: 10 }}
+
+                <div className="container mx-auto px-6 relative z-10 pt-12">
+                    <motion.div
+                        initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
-                        className="text-coco-gold font-bold uppercase tracking-widest text-sm mb-4 block"
+                        transition={{ duration: 0.8 }}
+                        className="flex flex-col items-center"
                     >
-                        {data.hero_badge}
-                    </motion.span>
-                    <motion.h1
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.1 }}
-                        className="text-4xl md:text-6xl font-bold text-white mb-6"
-                        dangerouslySetInnerHTML={{ __html: data.hero_title }}
-                    />
-                    <motion.p
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.2 }}
-                        className="text-xl text-white/70 max-w-3xl mx-auto leading-relaxed"
-                    >
-                        {data.hero_description}
-                    </motion.p>
+                        <motion.span
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            className="text-coco-gold font-bold uppercase tracking-widest text-sm mb-4 block drop-shadow-md"
+                        >
+                            {data.hero_badge}
+                        </motion.span>
+                        <h1
+                            className="text-2xl sm:text-3xl md:text-5xl font-bold text-white leading-[1.1] mb-6 drop-shadow-lg max-w-4xl"
+                            dangerouslySetInnerHTML={{ __html: data.hero_title }}
+                        />
+                        <p className="text-sm md:text-base text-coco-sandy/90 mb-10 max-w-2xl mx-auto leading-relaxed drop-shadow-md">
+                            {data.hero_description}
+                        </p>
+                    </motion.div>
                 </div>
             </section>
 
             {/* Story Section */}
-            <section className="py-24">
-                <div className="container mx-auto px-6">
+            {/* <section className="py-24">
+                <div className="container mx-auto px-8 md:px-16">
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
                         <motion.div
                             initial={{ opacity: 0, x: -30 }}
@@ -93,7 +94,100 @@ export default function AboutPageClient({ data }: { data: AboutPageData }) {
                         </motion.div>
                     </div>
                 </div>
+            </section> */}
+
+            {/* Our Journey */}
+            <section className="py-32 bg-coco-sandy relative overflow-hidden">
+
+                {/* glow effect */}
+                <div className="absolute -right-24 top-0 w-96 h-96 bg-coco-gold/5 rounded-full blur-3xl"></div>
+
+                <div className="container mx-auto px-8 md:px-16">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-stretch">
+
+
+
+                        {/* TEXT */}
+                        <motion.div
+                            initial={{ opacity: 0, x: 40 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true }}
+                        >
+
+                            <span className="text-coco-gold font-bold uppercase tracking-widest text-sm">
+                                Our Journey
+                            </span>
+
+                            <h2 className="text-4xl md:text-5xl font-bold text-coco-forest mb-8 leading-tight mt-4">
+                                {data.journey_title}
+                            </h2>
+
+                            <p className="text-coco-forest/60 text-base leading-relaxed mb-6">
+                                {data.journey_description_1}
+                            </p>
+
+                            <p className="text-coco-forest/60 text-base leading-relaxed mb-10">
+                                {data.journey_description_2}
+                            </p>
+
+                            {/* OPTIONAL BUTTON */}
+                            <Link
+                                href="/contact"
+                                className="inline-block bg-coco-forest text-coco-sandy px-10 py-4 rounded-full font-bold hover:bg-coco-leaf transition-all"
+                            >
+                                Contact Us
+                            </Link>
+
+                        </motion.div>
+
+
+                        {/* IMAGE GRID */}
+                        <motion.div
+                            initial={{ opacity: 0, scale: 0.95 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.8 }}
+                            className="relative h-full"
+                        >
+                            <div className="grid grid-cols-2 gap-4 h-full">
+
+                                {/* BIG - Left Column */}
+                                <div className="col-span-1 row-span-2 relative rounded-3xl overflow-hidden shadow-lg group">
+                                    <Image
+                                        src={data.journey_image}
+                                        alt="Our Journey"
+                                        fill
+                                        className="object-cover hover:scale-105 transition duration-500"
+                                    />
+                                </div>
+
+                                {/* SMALL - Top Right */}
+                                <div className="relative rounded-3xl overflow-hidden shadow-lg group">
+                                    <Image
+                                        src="/semi_husked_sorting_1770259203229.png"
+                                        alt="Production"
+                                        fill
+                                        className="object-cover hover:scale-105 transition duration-500"
+                                    />
+                                </div>
+
+                                {/* SMALL - Bottom Right */}
+                                <div className="relative rounded-3xl overflow-hidden shadow-lg group">
+                                    <Image
+                                        src="/charcoal_briquette_test_1770259238325.png"
+                                        alt="Testing"
+                                        fill
+                                        className="object-cover hover:scale-105 transition duration-500"
+                                    />
+                                </div>
+
+                            </div>
+                        </motion.div>
+
+                    </div>
+                </div>
             </section>
+
 
             {/* Vision & Mission */}
             <section className="py-24 bg-coco-forest text-white">
@@ -108,8 +202,8 @@ export default function AboutPageClient({ data }: { data: AboutPageData }) {
                             <div className="w-16 h-16 bg-coco-gold rounded-2xl flex items-center justify-center mb-6">
                                 <Eye className="text-coco-forest" size={32} />
                             </div>
-                            <h3 className="text-3xl font-bold mb-4">{data.vision_title}</h3>
-                            <p className="text-white/70 text-lg leading-relaxed">
+                            <h3 className="text-xl md:text-2xl font-bold mb-4">{data.vision_title}</h3>
+                            <p className="text-white/70 text-sm md:text-base leading-relaxed">
                                 {data.vision_description}
                             </p>
                         </motion.div>
@@ -124,8 +218,8 @@ export default function AboutPageClient({ data }: { data: AboutPageData }) {
                             <div className="w-16 h-16 bg-coco-gold rounded-2xl flex items-center justify-center mb-6">
                                 <Target className="text-coco-forest" size={32} />
                             </div>
-                            <h3 className="text-3xl font-bold mb-4">{data.mission_title}</h3>
-                            <ul className="space-y-4 text-white/70 text-lg">
+                            <h3 className="text-xl md:text-2xl font-bold mb-4">{data.mission_title}</h3>
+                            <ul className="space-y-4 text-white/70 text-sm md:text-base">
                                 {missionPoints.map((point: string, i: number) => (
                                     <li key={i} className="flex gap-3">
                                         <div className="mt-1.5 w-1.5 h-1.5 bg-coco-gold rounded-full flex-shrink-0"></div>

@@ -27,7 +27,7 @@ const BlogPageClient = ({ posts, currentPage, totalPages }: BlogPageClientProps)
                     <motion.h1
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        className="text-4xl md:text-6xl font-bold text-white mb-6"
+                        className="text-2xl sm:text-3xl md:text-5xl font-bold text-white mb-6"
                     >
                         Blog & <span className="text-coco-gold">Insights</span>
                     </motion.h1>
@@ -35,7 +35,7 @@ const BlogPageClient = ({ posts, currentPage, totalPages }: BlogPageClientProps)
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.1 }}
-                        className="text-xl text-white/70 max-w-2xl mx-auto leading-relaxed"
+                        className="text-sm md:text-base text-white/70 max-w-2xl mx-auto leading-relaxed"
                     >
                         Sharing the latest information on the Indonesian coconut industry and international trade tips.
                     </motion.p>
@@ -44,7 +44,7 @@ const BlogPageClient = ({ posts, currentPage, totalPages }: BlogPageClientProps)
 
             {/* Blog List Section */}
             <section className="py-24">
-                <div className="container mx-auto px-6">
+                <div className="container mx-auto px-8 md:px-16">
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
                         {posts.map((post, index) => {
                             const tags = typeof post.tags === 'string' ? JSON.parse(post.tags) : post.tags;
@@ -72,11 +72,10 @@ const BlogPageClient = ({ posts, currentPage, totalPages }: BlogPageClientProps)
                                     </Link>
 
                                     <div className="p-8">
-                                        <div className="flex items-center gap-4 text-coco-forest/40 text-xs font-bold uppercase tracking-widest mb-4">
-                                            <span className="flex items-center gap-1.5"><Calendar size={14} /> {post.date_str}</span>
-                                            <span className="flex items-center gap-1.5"><User size={14} /> {post.author}</span>
+                                        <div className="flex items-center gap-4 text-coco-forest/40 text-[10px] font-bold uppercase tracking-widest mb-4">
+                                            <span className="flex items-center gap-1.5"><Calendar size={12} /> {post.date_str}</span>
+                                            <span className="flex items-center gap-1.5"><User size={12} /> {post.author}</span>
                                         </div>
-
                                         <Link href={`/blog/${post.slug}`}>
                                             <h3 className="text-xl font-bold text-coco-forest mb-4 group-hover:text-coco-gold transition-colors leading-tight">
                                                 {post.title}
@@ -135,8 +134,8 @@ const BlogPageClient = ({ posts, currentPage, totalPages }: BlogPageClientProps)
             <section className="py-24 bg-coco-forest text-white overflow-hidden relative">
                 <div className="container mx-auto px-6 relative z-10">
                     <div className="max-w-4xl mx-auto text-center">
-                        <h2 className="text-3xl md:text-4xl font-bold mb-6">Get Industry Insights Delivered Straight to Your Inbox</h2>
-                        <p className="text-white/60 mb-10">Subscribe to our newsletter for monthly stock updates and the latest export market trends.</p>
+                        <h2 className="text-xl md:text-3xl font-bold mb-6">Get Industry Insights Delivered Straight to Your Inbox</h2>
+                        <p className="text-white/60 text-sm md:text-base mb-10">Subscribe to our newsletter for monthly stock updates and the latest export market trends.</p>
                         <form className="flex flex-col sm:flex-row gap-4 max-w-lg mx-auto" onSubmit={(e) => e.preventDefault()}>
                             <input type="email" className="flex-1 bg-white/5 border border-white/10 p-4 rounded-xl focus:outline-none focus:border-coco-gold transition-colors text-white" placeholder="email@company.com" />
                             <button className="bg-coco-gold text-coco-forest px-8 py-4 rounded-xl font-bold hover:bg-white transition-all">Subscribe</button>

@@ -31,7 +31,7 @@ const Process = ({ data }: { data?: ProcessStepData[] }) => {
                 <div className="absolute bottom-0 right-10 w-96 h-96 bg-coco-gold rounded-full blur-3xl"></div>
             </div>
 
-            <div className="container mx-auto px-6 relative z-10">
+            <div className="container mx-auto px-8 md:px-16 relative z-10">
                 <div className="text-center mb-16 max-w-3xl mx-auto">
                     <motion.span
                         initial={{ opacity: 0, y: 10 }}

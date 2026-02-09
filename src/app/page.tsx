@@ -1,6 +1,5 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
-import Stats from "@/components/Stats";
 import ProductGrid from "@/components/ProductGrid";
 import About from "@/components/About";
 import Process from "@/components/Process";
@@ -14,7 +13,6 @@ import {
   getProcessSteps,
   getProducts,
   getHeroData,
-  getStatsData,
   getAboutData,
   getTrustData,
   getShippingGallery,
@@ -30,7 +28,6 @@ export default async function Home() {
     processSteps,
     products,
     heroData,
-    statsData,
     aboutData,
     trustData,
     shippingGalleryData,
@@ -41,7 +38,6 @@ export default async function Home() {
     getProcessSteps(),
     getProducts(),
     getHeroData(),
-    getStatsData(),
     getAboutData(),
     getTrustData(),
     getShippingGallery(),
@@ -54,16 +50,17 @@ export default async function Home() {
     <main className="relative min-h-screen">
       <Navbar />
       <Hero data={heroData} />
-      <Stats data={statsData} />
-      <ProductGrid data={products} />
       <About data={aboutData} />
-      <Process data={processSteps} />
+      <ProductGrid data={products} />
+      <Certificates data={certificatesData} />
+      {/* <Process data={processSteps} /> */}
       <ShippingGallery data={shippingGalleryData} />
       <WhyChooseUs data={whyChooseUsData} />
       <TrustSection data={trustData} />
-      <Certificates data={certificatesData} />
+
       <Contact data={contactData} />
     </main>
+
   );
 }
 

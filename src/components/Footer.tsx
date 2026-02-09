@@ -13,7 +13,7 @@ const Footer = ({ products }: { products?: Product[] }) => {
 
     return (
         <footer className="bg-coco-sandy pt-24 pb-12 border-t border-coco-forest/10">
-            <div className="container mx-auto px-6">
+            <div className="container mx-auto px-8 md:px-16">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 mb-20">
                     {/* Brand Col */}
                     <div className="lg:col-span-1">

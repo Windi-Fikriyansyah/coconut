@@ -5,7 +5,7 @@
   --color-coco-sandy: #FDFBF7;
   --color-coco-gold: #D4AF37;
   --color-coco-leaf: #1B4332;
-  
+
   --font-sans: "Inter", var(--font-geist-sans);
 }
 
@@ -37,4 +37,37 @@ body {
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Styles for HTML content in Product Descriptions */
+.product-detail-description ul {
+  list-style-type: none;
+  padding-left: 0;
+  margin-top: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.product-detail-description ul li {
+  position: relative;
+  padding-left: 1.75rem;
+  margin-bottom: 0.35rem;
+  color: var(--color-coco-forest);
+  opacity: 0.85;
+}
+
+.product-detail-description ul li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--color-coco-gold);
+  font-weight: bold;
+}
+
+.product-detail-description p {
+  margin-bottom: 1.25rem;
+}
+
+.product-detail-description strong {
+  color: var(--color-coco-forest);
+  font-weight: 700;
 }
