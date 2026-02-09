@@ -40,31 +40,28 @@ const About = ({ data }: AboutProps) => {
                     >
                         {/* Masonry-style Grid */}
                         <div className="grid grid-cols-2 gap-4 h-[400px] lg:h-full">
-                            <div className="col-span-1 row-span-2">
+                            <div className="col-span-1 row-span-2 relative">
                                 <Image
                                     src={galleryImages[0].url}
                                     alt={galleryImages[0].alt}
-                                    width={400}
-                                    height={800}
-                                    className="w-full h-full object-cover rounded-3xl shadow-lg transition-transform duration-500 hover:scale-105"
+                                    fill
+                                    className="object-cover rounded-3xl shadow-lg transition-transform duration-500 hover:scale-105"
                                 />
                             </div>
-                            <div className="col-span-1 row-span-1">
+                            <div className="col-span-1 row-span-1 relative">
                                 <Image
                                     src={galleryImages[1].url}
                                     alt={galleryImages[1].alt}
-                                    width={400}
-                                    height={400}
-                                    className="w-full h-full object-cover rounded-3xl shadow-lg transition-transform duration-500 hover:scale-105"
+                                    fill
+                                    className="object-cover rounded-3xl shadow-lg transition-transform duration-500 hover:scale-105"
                                 />
                             </div>
-                            <div className="col-span-1 row-span-1">
+                            <div className="col-span-1 row-span-1 relative">
                                 <Image
                                     src={galleryImages[2].url}
                                     alt={galleryImages[2].alt}
-                                    width={400}
-                                    height={400}
-                                    className="w-full h-full object-cover rounded-3xl shadow-lg transition-transform duration-500 hover:scale-105"
+                                    fill
+                                    className="object-cover rounded-3xl shadow-lg transition-transform duration-500 hover:scale-105"
                                 />
                             </div>
                         </div>
