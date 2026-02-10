@@ -10,7 +10,7 @@ interface Props {
   dbCountries: Country[];
 }
 
-const SamplePageClient = ({ data, products, dbCountries }: Props) => {
+const SamplePageClient = ({ products, dbCountries }: Props) => {
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
