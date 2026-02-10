@@ -3,10 +3,9 @@
 import React, { useState } from "react";
 import Navbar from "@/components/Navbar";
 import { motion } from "framer-motion";
-import { ContactData, Product, Country } from "@/lib/data";
+import { Product, Country } from "@/lib/data";
 
 interface Props {
-  data: ContactData;
   products: Product[];
   dbCountries: Country[];
 }
