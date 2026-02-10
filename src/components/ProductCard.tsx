@@ -49,9 +49,9 @@ const ProductCard: React.FC<ProductCardProps> = ({
             {title}
           </h3>
         </Link>
-        <p className="text-coco-forest/60 text-sm leading-relaxed mb-6 flex-1">
+        {/* <p className="text-coco-forest/60 text-sm leading-relaxed mb-6 flex-1">
           {description}
-        </p>
+        </p> */}
         <div className="mt-auto flex flex-col items-center gap-3 sm:flex-row sm:items-center sm:justify-start">
           <Link
             href={`/products/${slug}`}

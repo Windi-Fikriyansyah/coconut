@@ -1,5 +1,13 @@
 import React from "react";
-import { Linkedin, Twitter, Instagram, ArrowUpRight } from "lucide-react";
+import {
+  Linkedin,
+  Twitter,
+  Instagram,
+  Facebook,
+  Youtube,
+  ArrowUpRight
+} from "lucide-react";
+import { FaTiktok } from "react-icons/fa6";
 import Link from "next/link";
 import Image from "next/image";
 import { Product } from "@/lib/data";
@@ -9,10 +17,10 @@ const Footer = ({ products }: { products?: Product[] }) => {
     products && products.length > 0
       ? products
       : [
-          { title: "Semi Husked Coconut", slug: "semi-husked-coconut" },
-          { title: "Virgin Coconut Oil", slug: "virgin-coconut-oil" },
-          { title: "Charcoal Briquettes", slug: "bbq-charcoal-briquettes" },
-        ];
+        { title: "Semi Husked Coconut", slug: "semi-husked-coconut" },
+        { title: "Virgin Coconut Oil", slug: "virgin-coconut-oil" },
+        { title: "Charcoal Briquettes", slug: "bbq-charcoal-briquettes" },
+      ];
 
   return (
     <footer className="bg-coco-sandy pt-24 pb-12 border-t border-coco-forest/10">
@@ -34,10 +42,18 @@ const Footer = ({ products }: { products?: Product[] }) => {
               sources. Committed to quality, heritage, and global innovation.
             </p>
             <div className="flex gap-4">
-              {[Linkedin, Twitter, Instagram].map((Icon, i) => (
+              {[
+                { Icon: Linkedin, href: "#" },
+                { Icon: Instagram, href: "#" },
+                { Icon: Facebook, href: "#" },
+                { Icon: Youtube, href: "#" },
+                { Icon: FaTiktok, href: "#" },
+              ].map(({ Icon, href }, i) => (
                 <a
                   key={i}
-                  href="#"
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="w-10 h-10 rounded-full border border-coco-forest/10 flex items-center justify-center hover:bg-coco-forest hover:text-coco-sandy transition-all"
                 >
                   <Icon size={18} />

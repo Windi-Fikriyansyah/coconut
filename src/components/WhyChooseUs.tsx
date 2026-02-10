@@ -49,6 +49,12 @@ interface WhyChooseUsProps {
   title?: string;
 
   subtitle?: string;
+
+  reversed?: boolean;
+
+  mainImage?: string;
+
+  bgColor?: string;
 }
 
 const defaultItems: WhyChooseUsItem[] = [
@@ -106,24 +112,28 @@ const WhyChooseUs = ({
   title = "Why Global Partners <br />Trust Us",
 
   subtitle = "The Advantage",
+
+  reversed = false,
+
+  mainImage = "/semi_husked_sorting_1770259203229.png",
+
+  bgColor = "bg-coco-sandy"
 }: WhyChooseUsProps) => {
   const items = data && data.length > 0 ? data : defaultItems;
 
   return (
-    <section className="py-28 bg-coco-sandy">
+    <section className={`py-28 ${bgColor}`}>
       <div className="container mx-auto px-6 md:px-12">
         {/* Judul untuk Mobile (Tampil di atas gambar) */}
 
         {/* Perubahan Penting: Menggunakan items-start agar kolom kanan bisa memanjang bebas */}
 
         <div className="grid lg:grid-cols-2 gap-20 items-start relative">
-          {/* LEFT — IMAGE COLLAGE (STICKY) */}
+          {/* IMAGE COLLAGE (STICKY) */}
 
-          {/* h-fit memastikan container gambar hanya setinggi kontennya, bukan setinggi kolom kanan */}
-
-          <div className="lg:sticky lg:top-32 h-fit hidden lg:block">
+          <div className={`lg:sticky lg:top-32 h-fit hidden lg:block ${reversed ? 'lg:order-2' : 'lg:order-1'}`}>
             <motion.div
-              initial={{ opacity: 0, x: -60 }}
+              initial={{ opacity: 0, x: reversed ? 60 : -60 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
@@ -131,47 +141,47 @@ const WhyChooseUs = ({
             >
               {/* Main Frame */}
 
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[75%] border-[6px] border-coco-gold rounded-[40px] z-0"></div>
+              <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[75%] border-[6px] border-coco-gold rounded-[40px] z-0`}></div>
 
               {/* 1. BIG CENTER IMAGE */}
 
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[70%] h-[65%] rounded-3xl overflow-hidden shadow-2xl z-10 border-4 border-white">
                 <Image
-                  src="/semi_husked_sorting_1770259203229.png"
+                  src={mainImage}
                   alt="Warehouse storage"
                   fill
                   className="object-cover"
                 />
               </div>
 
-              {/* 2. TOP RIGHT IMAGE */}
+              {/* 2. TOP RIGHT/LEFT IMAGE */}
 
-              <div className="absolute top-[4%] right-[1%] w-[30%] h-[30%] rounded-2xl overflow-hidden border-4 border-coco-gold shadow-xl z-20">
+              <div className={`absolute top-[4%] ${reversed ? 'left-[1%]' : 'right-[1%]'} w-[30%] h-[30%] rounded-2xl overflow-hidden border-4 border-coco-gold shadow-xl z-20`}>
                 <Image
                   src="/charcoal_briquette_test_1770259238325.png"
-                  alt="Exhibition booth"
+                  alt="Quality assurance"
                   fill
                   className="object-cover"
                 />
               </div>
 
-              {/* 3. BOTTOM LEFT IMAGE */}
+              {/* 3. BOTTOM LEFT/RIGHT IMAGE */}
 
-              <div className="absolute bottom-[-9%] left-[2%] w-[45%] h-[35%] rounded-2xl overflow-hidden border-4 border-coco-gold shadow-xl z-20">
+              <div className={`absolute bottom-[-9%] ${reversed ? 'right-[2%]' : 'left-[2%]'} w-[45%] h-[35%] rounded-2xl overflow-hidden border-4 border-coco-gold shadow-xl z-20`}>
                 <Image
-                  src="/semi_husked_sorting_1770259203229.png"
-                  alt="Team working"
+                  src={mainImage}
+                  alt="Product sorting"
                   fill
                   className="object-cover"
                 />
               </div>
 
-              {/* 4. BOTTOM RIGHT IMAGE */}
+              {/* 4. BOTTOM RIGHT/LEFT IMAGE */}
 
-              <div className="absolute bottom-[1%] right-[1%] w-[25%] h-[25%] rounded-2xl overflow-hidden border-4 border-coco-gold shadow-xl z-20">
+              <div className={`absolute bottom-[1%] ${reversed ? 'left-[1%]' : 'right-[1%]'} w-[25%] h-[25%] rounded-2xl overflow-hidden border-4 border-coco-gold shadow-xl z-20`}>
                 <Image
-                  src="/charcoal_briquette_test_1770259238325.png"
-                  alt="Product packaging"
+                  src="/vco_lab_test_1770259220705.png"
+                  alt="Lab testing"
                   fill
                   className="object-cover"
                 />
@@ -179,9 +189,11 @@ const WhyChooseUs = ({
             </motion.div>
           </div>
 
-          {/* RIGHT CONTENT (SCROLLABLE LIST) */}
+          {/* CONTENT (SCROLLABLE LIST) */}
 
-          <div className="flex flex-col min-h-screen">
+          <div className={`flex flex-col min-h-screen ${reversed ? 'lg:order-1' : 'lg:order-2'}`}>
+            {/* Judul Teks */}
+
             {/* Judul untuk Desktop (Ikut terscroll ke atas bersama item) */}
 
             {/* List Items */}

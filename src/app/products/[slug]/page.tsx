@@ -6,6 +6,7 @@ import { Download, Mail, ChevronRight, CheckCircle2, ShoppingCart } from 'lucide
 import Image from 'next/image';
 import Link from 'next/link';
 import ProductGallery from '@/components/ProductGallery';
+import RelatedProductsSlider from '@/components/RelatedProductsSlider';
 
 export const revalidate = 0;
 
@@ -40,6 +41,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 export default async function ProductPage({ params }: { params: Promise<{ slug: string }> }) {
     const { slug } = await params;
     const product = await getProductBySlug(slug);
+    const allProducts = await getProducts();
+    const otherProducts = allProducts.filter(p => p.slug !== slug);
     const contactData = await getContactData();
 
     if (!product) {
@@ -71,12 +74,12 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
                 </div>
 
                 <div className="container mx-auto px-8 md:px-16 relative z-10">
-                    <div className="flex flex-col items-center">
-                        <div className="max-w-4xl text-center">
+                    <div className="flex flex-col items-start">
+                        <div className="max-w-4xl text-left">
                             <h1 className="text-2xl sm:text-3xl md:text-5xl font-bold text-white leading-[1.1] mb-6 drop-shadow-lg">
                                 {product.title}
                             </h1>
-                            <p className="text-sm md:text-base text-coco-sandy/90 max-w-3xl mx-auto leading-relaxed drop-shadow-md">
+                            <p className="text-sm md:text-base text-coco-sandy/90 max-w-3xl leading-relaxed drop-shadow-md">
                                 {product.short_description}
                             </p>
                         </div>
@@ -159,6 +162,9 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
                     </div>
                 </div>
             </section>
+
+            {/* Related Products Slider */}
+            <RelatedProductsSlider products={otherProducts} />
         </main>
     );
 }

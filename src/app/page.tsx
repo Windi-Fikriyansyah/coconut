@@ -9,6 +9,8 @@ import ShippingGallery from "@/components/ShippingGallery";
 import Certificates from "@/components/Certificates";
 import Contact from "@/components/Contact";
 
+import QualityCommitment from "@/components/QualityCommitment";
+
 import {
   getProcessSteps,
   getProducts,
@@ -52,6 +54,7 @@ export default async function Home() {
       <Hero data={heroData} />
       <About data={aboutData} />
       <ProductGrid data={products} />
+      <QualityCommitment />
       {/* <Process data={processSteps} /> */}
       <ShippingGallery data={shippingGalleryData} />
       <WhyChooseUs data={whyChooseUsData} />
@@ -59,7 +62,6 @@ export default async function Home() {
       <Certificates data={certificatesData} />
       <Contact data={contactData} />
     </main>
-
   );
 }
 

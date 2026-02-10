@@ -48,7 +48,7 @@ const Certificates = ({ data, isGlobal }: { data?: CertificateData[], isGlobal?:
   const marqueeData = [...displayData, ...displayData];
 
   return (
-    <section id="legality" className="py-24 bg-coco-forest text-coco-sandy relative overflow-hidden">
+    <section id="legality" className="py-8 bg-coco-forest text-coco-sandy relative overflow-hidden">
 
       {/* decorative blur */}
       <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 w-96 h-96 bg-coco-gold/10 rounded-full blur-3xl"></div>
