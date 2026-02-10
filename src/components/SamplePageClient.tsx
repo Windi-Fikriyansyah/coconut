@@ -24,6 +24,7 @@ const SamplePageClient = ({ products, dbCountries }: Props) => {
     paymentMethod: "", // Tambahan baru
     quantity: "", // Tambahan baru (Quantity kg)
     message: "",
+    courier: "",
   });
   const [selectedProducts, setSelectedProducts] = useState<string[]>([]);
 
@@ -65,8 +66,12 @@ const SamplePageClient = ({ products, dbCountries }: Props) => {
           address: "",
           country: "",
           town: "",
-          courier: "",
+          companyName: "",
+          businessType: "",
+          paymentMethod: "",
+          quantity: "",
           message: "",
+          courier: "",
         });
         setSelectedProducts([]);
       }
