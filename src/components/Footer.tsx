@@ -72,6 +72,7 @@ const Footer = ({ products }: { products?: Product[] }) => {
                 { name: "Home", href: "/" },
                 { name: "Products", href: "/products" },
                 { name: "About Us", href: "/about" },
+                { name: "Gallery", href: "/gallery" },
                 { name: "News", href: "/blog" },
                 { name: "Contact", href: "/contact" },
               ].map((item, i) => (

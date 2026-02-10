@@ -27,7 +27,7 @@ const Contact = ({ data, isGlobal }: ContactProps) => {
   const pathname = usePathname();
 
   if (pathname === "/contact") return null;
-  if (isGlobal && pathname === "/") return null;
+  if (isGlobal && (pathname === "/" || pathname === "/gallery")) return null;
 
   return (
     <section id="contact" className="py-24 bg-white">

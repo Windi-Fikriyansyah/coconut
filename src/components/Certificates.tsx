@@ -25,7 +25,7 @@ const Certificates = ({ data, isGlobal }: { data?: CertificateData[], isGlobal?:
   const pathname = usePathname();
   const displayData = data || [];
 
-  if (isGlobal && pathname === '/') return null;
+  if (isGlobal && (pathname === '/' || pathname === '/gallery')) return null;
   if (displayData.length === 0) return null;
 
   const safeImage = (url: string | null) => {
