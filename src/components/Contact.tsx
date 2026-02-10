@@ -1,121 +1,188 @@
 "use client";
 
-import React from 'react';
-import { motion } from 'framer-motion';
-import { Mail, Phone, MapPin, Send } from 'lucide-react';
-import { usePathname } from 'next/navigation';
-import { ContactData } from '@/lib/data';
+import React from "react";
+import { motion } from "framer-motion";
+import { Mail, Phone, MapPin, Send } from "lucide-react";
+import { usePathname } from "next/navigation";
+import { ContactData } from "@/lib/data";
 
 interface ContactProps {
-    data?: ContactData | null;
-    isGlobal?: boolean;
+  data?: ContactData | null;
+  isGlobal?: boolean;
 }
 
 const Contact = ({ data, isGlobal }: ContactProps) => {
-    const subtitle = data?.subtitle || "Get In Touch";
-    const title = data?.title || "Let's Discuss Your <br />Industrial Needs";
-    const description = data?.description || "Ready to elevate your supply chain? Reach out to our team for export inquiries, samples, or customized specifications.";
-    const email = data?.email || "hello@globalcocoprime.com";
-    const phone = data?.phone || "+62 812 3456 7890";
-    const address = data?.address || "HQ Jakarta, Indonesia";
-    const mapImage = data?.map_image || "https://images.unsplash.com/photo-1526772662000-3f88f10405ff?q=80&w=800&auto=format&fit=crop";
+  const subtitle = data?.subtitle || "Get In Touch";
+  const title = data?.title || "Let's Discuss Your <br />Industrial Needs";
+  const description =
+    data?.description ||
+    "Ready to elevate your supply chain? Reach out to our team for export inquiries, samples, or customized specifications.";
+  const email = data?.email || "hello@globalcocoprime.com";
+  const phone = data?.phone || "+6281234567890"; // Pastikan format tanpa spasi untuk WA link
+  const address = data?.address || "HQ Jakarta, Indonesia";
 
-    const pathname = usePathname();
+  // Membersihkan nomor telepon untuk link WhatsApp (menghapus spasi dan karakter non-digit)
+  const whatsappNumber = phone.replace(/[^0-9]/g, "");
 
-    // Don't show the global contact section on the dedicated contact page
-    if (pathname === '/contact') return null;
+  const pathname = usePathname();
 
-    // Hide global instance on home page (we'll place it manually)
-    if (isGlobal && pathname === '/') return null;
+  if (pathname === "/contact") return null;
+  if (isGlobal && pathname === "/") return null;
 
-    return (
-        <section id="contact" className="py-32 bg-white">
-            <div className="container mx-auto px-8 md:px-16">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-20">
-                    <div>
-                        <span className="text-coco-gold font-bold uppercase tracking-widest text-xs mb-4 block">{subtitle}</span>
-                        <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold text-coco-forest mb-8" dangerouslySetInnerHTML={{ __html: title }} />
-                        <p className="text-coco-forest/60 text-sm md:text-base mb-12 max-w-md">
-                            {description}
-                        </p>
+  return (
+    <section id="contact" className="py-24 bg-white">
+      <div className="container mx-auto px-6 md:px-16">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+          {/* LEFT COLUMN: INFORMATION CARD (#0f2922) */}
+          <div className="lg:col-span-6">
+            <div className="h-full bg-[#0f2922] rounded-[3rem] p-8 md:p-14 text-white shadow-2xl relative overflow-hidden flex flex-col">
+              <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -mr-20 -mt-20 blur-3xl" />
 
-                        <div className="space-y-8">
-                            {[
-                                { icon: Mail, label: "Email", value: email },
-                                { icon: Phone, label: "Phone", value: phone },
-                                { icon: MapPin, label: "Address", value: address }
-                            ].map((item, i) => (
+              <div className="relative z-10">
+                <span className="text-coco-gold font-bold uppercase tracking-[0.2em] text-xs mb-6 block">
+                  {subtitle}
+                </span>
+                <h2
+                  className="text-3xl md:text-5xl font-bold mb-8 leading-[1.2] tracking-tight"
+                  dangerouslySetInnerHTML={{ __html: title }}
+                />
+                <p className="text-white/70 text-base md:text-lg mb-12 max-w-md leading-relaxed">
+                  {description}
+                </p>
 
-                                <div key={i} className="flex gap-6">
-                                    <div className="w-12 h-12 rounded-full bg-coco-sandy flex items-center justify-center flex-shrink-0">
-                                        <item.icon className="text-coco-forest w-5 h-5" />
-                                    </div>
-                                    <div>
-                                        <div className="text-xs font-bold uppercase tracking-wider text-coco-forest/40 mb-1">{item.label}</div>
-                                        <div className="text-coco-forest font-semibold">{item.value}</div>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-
-                        <div className="mt-8 w-full h-[250px] bg-coco-sandy rounded-[2rem] overflow-hidden border border-coco-forest/5 relative shadow-inner">
-                            <iframe
-                                src={data?.map_embed_url || "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126920.2415175923!2d106.759478!3d-6.2293867!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f3e098ed2323%3A0x6d11f7c0d0232490!2sJakarta%20Pusat%2C%20Kota%20Jakarta%20Pusat%2C%20Daerah%20Khusus%20Ibukota%20Jakarta!5e0!3m2!1sid!2sid!4v1700000000000!5m2!1sid!2sid"}
-                                width="100%"
-                                height="100%"
-                                style={{ border: 0, filter: 'grayscale(0.2)' }}
-                                allowFullScreen={true}
-                                loading="lazy"
-                                referrerPolicy="no-referrer-when-downgrade"
-                                className="w-full h-full grayscale-[0.2]"
-                            ></iframe>
-                        </div>
+                {/* Contact Details List with Links */}
+                <div className="space-y-8 border-t border-white/10 pt-10">
+                  {/* Email Link */}
+                  <a
+                    href={`mailto:${email}`}
+                    className="flex gap-6 items-center group cursor-pointer w-fit"
+                  >
+                    <div className="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center shrink-0 border border-white/10 group-hover:bg-coco-gold/20 group-hover:border-coco-gold/50 transition-all">
+                      <Mail className="text-coco-gold w-5 h-5" />
                     </div>
+                    <div>
+                      <p className="text-[10px] font-bold uppercase tracking-widest text-white/40 mb-1">
+                        Email Address
+                      </p>
+                      <p className="text-base md:text-lg font-medium group-hover:text-coco-gold transition-colors">
+                        {email}
+                      </p>
+                    </div>
+                  </a>
 
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        className="bg-coco-sandy p-8 md:p-12 rounded-[2.5rem] shadow-sm border border-coco-forest/5"
-                    >
-                        <form className="space-y-6">
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <div>
-                                    <label className="block text-xs font-bold uppercase tracking-widest text-coco-forest/50 mb-2 px-1">Full Name</label>
-                                    <input suppressHydrationWarning type="text" className="w-full bg-white border border-coco-forest/10 rounded-2xl px-5 py-4 focus:border-coco-gold outline-none transition-colors" placeholder="John Doe" />
-                                </div>
-                                <div>
-                                    <label className="block text-xs font-bold uppercase tracking-widest text-coco-forest/50 mb-2 px-1">Email Address</label>
-                                    <input suppressHydrationWarning type="email" className="w-full bg-white border border-coco-forest/10 rounded-2xl px-5 py-4 focus:border-coco-gold outline-none transition-colors" placeholder="john@company.com" />
-                                </div>
-                            </div>
-                            <div>
-                                <label className="block text-xs font-bold uppercase tracking-widest text-coco-forest/50 mb-2 px-1">Company Name</label>
-                                <input suppressHydrationWarning type="text" className="w-full bg-white border border-coco-forest/10 rounded-2xl px-5 py-4 focus:border-coco-gold outline-none transition-colors" placeholder="Your Corp Ltd" />
-                            </div>
-                            <div>
-                                <label className="block text-xs font-bold uppercase tracking-widest text-coco-forest/50 mb-2 px-1">Product of Interest</label>
-                                <select suppressHydrationWarning className="w-full bg-white border border-coco-forest/10 rounded-2xl px-5 py-4 focus:border-coco-gold outline-none transition-colors appearance-none">
-                                    <option>Coconut Charcoal</option>
-                                    <option>Virgin Coconut Oil</option>
-                                    <option>Desiccated Coconut</option>
-                                    <option>Other / Customized</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label className="block text-xs font-bold uppercase tracking-widest text-coco-forest/50 mb-2 px-1">Message</label>
-                                <textarea rows={4} className="w-full bg-white border border-coco-forest/10 rounded-2xl px-5 py-4 focus:border-coco-gold outline-none transition-colors" placeholder="How can we help you?"></textarea>
-                            </div>
-                            <button suppressHydrationWarning className="w-full bg-coco-forest text-coco-sandy py-5 rounded-2xl font-bold flex items-center justify-center gap-3 hover:bg-coco-leaf transition-all shadow-xl shadow-coco-forest/10">
-                                Send Inquiry
-                                <Send className="w-5 h-5" />
-                            </button>
-                        </form>
-                    </motion.div>
+                  {/* WhatsApp Link */}
+                  <a
+                    href={`https://wa.me/${whatsappNumber}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex gap-6 items-center group cursor-pointer w-fit"
+                  >
+                    <div className="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center shrink-0 border border-white/10 group-hover:bg-coco-gold/20 group-hover:border-coco-gold/50 transition-all">
+                      <Phone className="text-coco-gold w-5 h-5" />
+                    </div>
+                    <div>
+                      <p className="text-[10px] font-bold uppercase tracking-widest text-white/40 mb-1">
+                        WhatsApp Support
+                      </p>
+                      <p className="text-base md:text-lg font-medium group-hover:text-coco-gold transition-colors">
+                        {phone}
+                      </p>
+                    </div>
+                  </a>
+
+                  {/* Address (Non-link or keep as is) */}
+                  <div className="flex gap-6 items-center">
+                    <div className="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center shrink-0 border border-white/10">
+                      <MapPin className="text-coco-gold w-5 h-5" />
+                    </div>
+                    <div>
+                      <p className="text-[10px] font-bold uppercase tracking-widest text-white/40 mb-1">
+                        Our Office
+                      </p>
+                      <p className="text-base md:text-lg font-medium">
+                        {address}
+                      </p>
+                    </div>
+                  </div>
                 </div>
+              </div>
+
+              <div className="relative z-10 mt-auto pt-12">
+                <div className="inline-flex items-center gap-3 px-4 py-2 bg-white/5 rounded-full border border-white/10">
+                  <span className="w-2 h-2 bg-coco-gold rounded-full animate-pulse" />
+                  <p className="text-xs italic text-white/60">
+                    Click to connect with our team.
+                  </p>
+                </div>
+              </div>
             </div>
-        </section>
-    );
+          </div>
+
+          {/* RIGHT COLUMN: INPUT CARD (#fcf9f0) */}
+          <div className="lg:col-span-6">
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="h-full bg-[#fcf9f0] p-8 md:p-14 rounded-[3rem] border border-[#0f2922]/5 shadow-sm flex flex-col justify-center"
+            >
+              <form className="space-y-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="space-y-2">
+                    <label className="text-[10px] font-bold uppercase tracking-widest text-[#0f2922]/40 ml-1">
+                      Full Name
+                    </label>
+                    <input
+                      type="text"
+                      className="w-full bg-white border border-[#0f2922]/5 rounded-2xl px-6 py-4 focus:ring-2 focus:ring-coco-gold/20 outline-none transition-all shadow-sm text-[#0f2922]"
+                      placeholder="John Doe"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-[10px] font-bold uppercase tracking-widest text-[#0f2922]/40 ml-1">
+                      Email Address
+                    </label>
+                    <input
+                      type="email"
+                      className="w-full bg-white border border-[#0f2922]/5 rounded-2xl px-6 py-4 focus:ring-2 focus:ring-coco-gold/20 outline-none transition-all shadow-sm text-[#0f2922]"
+                      placeholder="john@company.com"
+                    />
+                  </div>
+                </div>
+                <div className="space-y-2">
+                  <label className="text-[10px] font-bold uppercase tracking-widest text-[#0f2922]/40 ml-1">
+                    Company
+                  </label>
+                  <input
+                    type="text"
+                    className="w-full bg-white border border-[#0f2922]/5 rounded-2xl px-6 py-4 focus:ring-2 focus:ring-coco-gold/20 outline-none transition-all shadow-sm text-[#0f2922]"
+                    placeholder="Your Company Name"
+                  />
+                </div>
+                <div className="space-y-2">
+                  <label className="text-[10px] font-bold uppercase tracking-widest text-[#0f2922]/40 ml-1">
+                    Message
+                  </label>
+                  <textarea
+                    rows={6}
+                    className="w-full bg-white border border-[#0f2922]/5 rounded-2xl px-6 py-4 focus:ring-2 focus:ring-coco-gold/20 outline-none transition-all shadow-sm text-[#0f2922]"
+                    placeholder="How can we help you?"
+                  ></textarea>
+                </div>
+                <button
+                  type="button"
+                  className="w-full bg-[#0f2922] text-white py-5 rounded-2xl font-bold flex items-center justify-center gap-3 hover:bg-[#1a3d34] transition-all shadow-xl shadow-[#0f2922]/10 active:scale-[0.98]"
+                >
+                  Send Inquiry
+                  <Send className="w-5 h-5 text-coco-gold" />
+                </button>
+              </form>
+            </motion.div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
 };
 
 export default Contact;

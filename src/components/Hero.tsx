@@ -1,81 +1,118 @@
 "use client";
 
-import React from 'react';
-import { motion } from 'framer-motion';
-import { ArrowRight, Globe, ShieldCheck, Factory } from 'lucide-react';
-import Link from 'next/link';
-import { HeroData } from '@/lib/data';
+import React from "react";
+import { motion } from "framer-motion";
+import { ArrowRight, ArrowLeft } from "lucide-react";
+import { HeroData } from "@/lib/data";
+
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Pagination, EffectFade, Navigation } from "swiper/modules";
+
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/effect-fade";
+import "swiper/css/navigation";
 
 interface HeroProps {
-    data?: HeroData | null;
+  data?: HeroData[];
 }
 
-const Hero = ({ data }: HeroProps) => {
-    const title = data?.title || 'Premium Coconut <br className="hidden sm:block" /> <span className="text-coco-gold italic font-serif">Derivatives</span> for the <br className="hidden sm:block" /> Global Market';
-    const subtitle = data?.subtitle || 'Committed to sustainability and excellence. We bridge the gap between local artisan farmers and international industrial standards.';
-    const ctaText = data?.cta_text || 'Explore Products';
-    const ctaLink = data?.cta_link || '#products';
-    const badgeText = data?.badge_text || 'Premium Coconut Exporter';
-    const backgroundImage = data?.background_image || "/background_hero.webp";
+const Hero = ({ data = [] }: HeroProps) => {
+  if (!data.length) return null;
 
-    return (
-        <section id="home" className="relative min-h-[100dvh] flex items-center justify-center overflow-hidden py-20">
-            {/* Background with overlay */}
-            <div
-                className="absolute inset-0 bg-cover bg-center z-0"
-                style={{
+  return (
+    <section className="relative min-h-[100dvh] overflow-hidden">
+      <div
+        className="hero-prev hidden md:flex absolute left-8 top-1/2 -translate-y-1/2 z-20
+  w-14 h-14 items-center justify-center rounded-full
+  bg-black/40 backdrop-blur-md border border-white/20
+  cursor-pointer transition-all duration-300 hover:bg-black/60 hover:scale-110"
+      >
+        <ArrowLeft className="w-7 h-7 text-white" />
+      </div>
+
+      {/* RIGHT */}
+      <div
+        className="hero-next hidden md:flex absolute right-8 top-1/2 -translate-y-1/2 z-20
+  w-14 h-14 items-center justify-center rounded-full
+  bg-black/40 backdrop-blur-md border border-white/20
+  cursor-pointer transition-all duration-300 hover:bg-black/60 hover:scale-110"
+      >
+        <ArrowRight className="w-7 h-7 text-white" />
+      </div>
+      <Swiper
+        modules={[Autoplay, Pagination, EffectFade, Navigation]}
+        navigation={{
+          prevEl: ".hero-prev",
+          nextEl: ".hero-next",
+        }}
+        effect="fade"
+        autoplay={{
+          delay: 5000,
+          disableOnInteraction: false,
+        }}
+        loop
+        pagination={{ clickable: true }}
+        className="h-screen"
+      >
+        {data.map((hero, index) => {
+          const title = hero.title;
+          const subtitle = hero.subtitle;
+          const ctaText = hero.cta_text || "Explore Products";
+          const ctaLink = hero.cta_link || "#products";
+          const backgroundImage =
+            hero.background_image || "/background_hero.webp";
+
+          return (
+            <SwiperSlide key={index}>
+              <div className="relative min-h-[100dvh] flex items-center justify-center">
+                {/* Background */}
+                <div
+                  className="absolute inset-0 bg-cover bg-center"
+                  style={{
                     backgroundImage: `url("${backgroundImage}")`,
-                }}
-            >
-                <div className="absolute inset-0 bg-black/50"></div>
-                <div className="absolute inset-0 bg-gradient-to-t from-coco-forest via-transparent to-transparent"></div>
-            </div>
+                  }}
+                >
+                  <div className="absolute inset-0 bg-black/50"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-coco-forest via-transparent to-transparent"></div>
+                </div>
 
-            <div className="container mx-auto px-8 md:px-16 relative z-10 pt-24 pb-20 text-center">
-                <div className="max-w-4xl mx-auto flex flex-col items-center">
+                {/* Content */}
+                <div className="container mx-auto px-8 md:px-16 relative z-10 text-center">
+                  <div className="max-w-4xl mx-auto">
                     <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8 }}
-                        className="flex flex-col items-center"
+                      initial={{ opacity: 0, y: 40 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.8 }}
                     >
+                      <h1
+                        className="text-2xl sm:text-3xl md:text-5xl font-bold text-white leading-[1.1] mb-6 drop-shadow-lg"
+                        dangerouslySetInnerHTML={{ __html: title }}
+                      />
 
-                        <h1
-                            className="text-2xl sm:text-3xl md:text-5xl font-bold text-white leading-[1.1] mb-6 drop-shadow-lg"
-                            dangerouslySetInnerHTML={{ __html: title }}
-                        />
-                        <p className="text-sm md:text-base text-coco-sandy/90 mb-10 max-w-2xl leading-relaxed drop-shadow-md">
-                            {subtitle}
-                        </p>
+                      <p className="text-sm md:text-base text-coco-sandy/90 mb-10 max-w-2xl mx-auto">
+                        {subtitle}
+                      </p>
 
-
-                        <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                            <motion.a
-                                href="/about"
-                                whileHover={{ scale: 1.05 }}
-                                whileTap={{ scale: 0.95 }}
-                                className="bg-coco-gold text-coco-forest px-8 py-4 rounded-full font-bold flex items-center justify-center gap-2 group hover:shadow-[0_10px_30px_rgba(212,175,55,0.3)] transition-all"
-                            >
-                                {ctaText}
-                                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                            </motion.a>
-
-
-
-                        </div>
-
+                      <motion.a
+                        href={ctaLink}
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        className="bg-coco-gold text-coco-forest px-8 py-4 rounded-full font-bold inline-flex items-center gap-2"
+                      >
+                        {ctaText}
+                        <ArrowRight className="w-5 h-5" />
+                      </motion.a>
                     </motion.div>
+                  </div>
                 </div>
-            </div>
-
-            {/* Floating features info */}
-            <div className="absolute bottom-12 right-0 left-0 hidden lg:block">
-                <div className="container mx-auto px-8 md:px-16">
-
-                </div>
-            </div>
-        </section>
-    );
+              </div>
+            </SwiperSlide>
+          );
+        })}
+      </Swiper>
+    </section>
+  );
 };
 
 export default Hero;
