@@ -5,6 +5,7 @@ import Navbar from '@/components/Navbar';
 import { Download, Mail, ChevronRight, CheckCircle2, ShoppingCart } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
+import ProductGallery from '@/components/ProductGallery';
 
 export const revalidate = 0;
 
@@ -46,9 +47,9 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
     }
 
     const details = await getProductRowDetails(product.id);
-
     const whyPoints = typeof product.why_points === 'string' ? JSON.parse(product.why_points) : product.why_points;
 
+    // Email logic ...
     const emailTo = contactData?.email || 'sales@globalcocoprime.com';
     const emailSubject = encodeURIComponent(`Order Inquiry: ${product.title} `);
 
@@ -88,21 +89,32 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
                 <div className="container mx-auto px-8 md:px-16">
                     <div className="space-y-24">
                         {details.map((detail) => {
+                            // PARSING DATA GAMBAR DARI DATABASE
+                            // Jika detail.image berisi JSON string: [{"url": "..."}, {"url": "..."}]
+                            let imageGallery = [];
+                            try {
+                                imageGallery = typeof detail.image === 'string'
+                                    ? JSON.parse(detail.image)
+                                    : detail.image;
+                            } catch (e) {
+                                // Fallback jika detail.image hanya string URL biasa
+                                imageGallery = [{ url: detail.image }];
+                            }
+
                             return (
-                                <div key={detail.id} className="flex flex-col md:flex-row gap-12 lg:gap-20 items-start">
-                                    {/* Image Container - Adjusted margin top to align with description */}
-                                    <div className="flex-none w-full md:w-[350px] lg:w-[400px] md:mt-12">
-                                        <div className="rounded-3xl overflow-hidden">
-                                            <img
-                                                src={detail.image}
-                                                className="w-full h-auto rounded-3xl shadow-sm"
-                                                alt={detail.title || product.title}
-                                            />
-                                        </div>
+                                /* Tambahkan items-stretch agar tinggi kolom kiri = kanan */
+                                <div key={detail.id} className="flex flex-col md:flex-row gap-12 lg:gap-20 items-stretch">
+
+                                    {/* Image Container - Tambahkan self-stretch */}
+                                    <div className="flex-none w-full md:w-[350px] lg:w-[400px] self-stretch">
+                                        <ProductGallery
+                                            imageData={detail.image}
+                                            title={detail.title || product.title}
+                                        />
                                     </div>
 
-                                    {/* Text Container */}
-                                    <div className="flex-1 min-w-0">
+                                    {/* Text Container - Biarkan konten menentukan tinggi baris ini */}
+                                    <div className="flex-1 min-w-0 flex flex-col justify-center">
                                         <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-coco-forest mb-3">
                                             {detail.title}
                                         </h2>
@@ -111,13 +123,15 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
                                             dangerouslySetInnerHTML={{ __html: detail.description || '' }}
                                         />
 
-                                        <a
-                                            href={`mailto:${emailTo}?subject=${emailSubject}`}
-                                            className="bg-coco-gold text-coco-forest px-8 py-4 rounded-xl font-bold inline-flex items-center justify-center gap-3 hover:bg-coco-forest hover:text-white transition-all transform hover:scale-105 shadow-xl"
-                                        >
-                                            <ShoppingCart size={18} />
-                                            Order Now
-                                        </a>
+                                        <div className="mt-auto"> {/* Menaruh tombol di paling bawah jika teks pendek */}
+                                            <a
+                                                href={`mailto:${emailTo}?subject=${emailSubject}`}
+                                                className="bg-coco-gold text-coco-forest px-8 py-4 rounded-xl font-bold inline-flex items-center justify-center gap-3 hover:bg-coco-forest hover:text-white transition-all transform hover:scale-105 shadow-xl"
+                                            >
+                                                <ShoppingCart size={18} />
+                                                Order Now
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
                             );

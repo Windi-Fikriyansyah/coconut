@@ -22,7 +22,7 @@ const Navbar = ({ solid = false }: { solid?: boolean }) => {
     { name: 'Home', href: '/' },
     { name: 'Products', href: '/products' },
     { name: 'About', href: '/about' },
-    { name: 'Blog', href: '/blog' },
+    { name: 'News', href: '/blog' },
     { name: 'Contact', href: '/contact' },
   ];
 

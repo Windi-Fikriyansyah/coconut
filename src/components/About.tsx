@@ -26,7 +26,7 @@ const About = ({ data }: AboutProps) => {
     ];
 
     return (
-        <section id="about" className="py-32 bg-coco-sandy relative overflow-hidden">
+        <section id="about" className="pt-32 pb-10 bg-coco-sandy relative overflow-hidden">
             <div className="absolute -right-24 top-0 w-96 h-96 bg-coco-gold/5 rounded-full blur-3xl"></div>
 
             <div className="container mx-auto px-8 md:px-16">

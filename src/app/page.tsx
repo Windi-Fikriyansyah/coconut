@@ -52,12 +52,11 @@ export default async function Home() {
       <Hero data={heroData} />
       <About data={aboutData} />
       <ProductGrid data={products} />
-      <Certificates data={certificatesData} />
       {/* <Process data={processSteps} /> */}
       <ShippingGallery data={shippingGalleryData} />
       <WhyChooseUs data={whyChooseUsData} />
-      <TrustSection data={trustData} />
-
+      {/* <TrustSection data={trustData} /> */}
+      <Certificates data={certificatesData} />
       <Contact data={contactData} />
     </main>
 

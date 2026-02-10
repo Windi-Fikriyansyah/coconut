@@ -50,7 +50,7 @@ const ShippingGallery = ({ data }: ShippingGalleryProps) => {
     if (items.length === 0) return null;
 
     return (
-        <section className="py-24 bg-white overflow-hidden" id="documentation">
+        <section className="pt-10 pb-24 bg-white overflow-hidden" id="documentation">
             <div className="container mx-auto px-8 md:px-16">
                 {/* Header */}
                 <div className="text-center max-w-2xl mx-auto mb-16">

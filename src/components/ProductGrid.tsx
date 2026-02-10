@@ -4,7 +4,7 @@ const ProductGrid = ({ data }: { data?: any[] }) => {
     const products = data || [];
 
     return (
-        <section id="products" className="py-32 bg-white">
+        <section id="products" className="pt-5 pb-32 bg-white">
             <div className="container mx-auto px-8 md:px-16">
                 <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
                     <div className="max-w-xl">
