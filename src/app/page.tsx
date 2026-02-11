@@ -17,14 +17,14 @@ import {
   getHeroData,
   getAboutData,
   getTrustData,
-  getShippingGallery,
-  getShippingGallerySection,
   getWhyChooseUsData,
   getWhyChooseUsMetadata,
   getContactData,
   getCertificates,
   getQualityCommitmentData,
-  getQualityCommitmentItems
+  getQualityCommitmentItems,
+  getGalleryMetadata,
+  getGalleryImages
 } from "@/lib/data";
 
 export const revalidate = 0;
@@ -36,28 +36,28 @@ export default async function Home() {
     heroData,
     aboutData,
     trustData,
-    shippingGalleryData,
-    shippingGallerySection,
     whyChooseUsData,
     whyChooseUsMetadata,
     contactData,
     certificatesData,
     qualityCommitmentData,
-    qualityCommitmentItems
+    qualityCommitmentItems,
+    galleryMetadata,
+    galleryImages
   ] = await Promise.all([
     getProcessSteps(),
     getProducts(),
     getHeroData(),
     getAboutData(),
     getTrustData(),
-    getShippingGallery(),
-    getShippingGallerySection(),
     getWhyChooseUsData(),
     getWhyChooseUsMetadata(),
     getContactData(),
     getCertificates(),
     getQualityCommitmentData(),
-    getQualityCommitmentItems()
+    getQualityCommitmentItems(),
+    getGalleryMetadata(),
+    getGalleryImages()
   ]);
 
   return (
@@ -68,7 +68,7 @@ export default async function Home() {
       <ProductGrid data={products} />
       <QualityCommitment data={qualityCommitmentData} items={qualityCommitmentItems} />
       {/* <Process data={processSteps} /> */}
-      <ShippingGallery data={shippingGalleryData} section={shippingGallerySection} />
+      <ShippingGallery data={galleryImages} section={galleryMetadata} />
       <WhyChooseUs
         data={whyChooseUsData}
         title={whyChooseUsMetadata?.title}

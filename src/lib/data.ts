@@ -14,6 +14,8 @@ export interface Product extends RowDataPacket {
   why_points: any;
   applications: any;
   tags: any;
+  meta_title: string | null;
+  meta_description: string | null;
 }
 
 // Tambahkan interface ini

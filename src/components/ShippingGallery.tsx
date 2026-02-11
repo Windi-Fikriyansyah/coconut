@@ -4,15 +4,15 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { Camera, CheckCircle2, ShieldCheck } from 'lucide-react';
-import { ShippingGalleryItem, ShippingGallerySection } from '@/lib/data';
+import { GalleryImage, GalleryMetadata } from '@/lib/data';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 
 interface ShippingGalleryProps {
-    data?: ShippingGalleryItem[];
-    section?: ShippingGallerySection | null;
+    data?: GalleryImage[];
+    section?: GalleryMetadata | null;
 }
 
 const ShippingGallery = ({ data, section }: ShippingGalleryProps) => {
@@ -105,7 +105,7 @@ const ShippingGallery = ({ data, section }: ShippingGalleryProps) => {
                                     className="group relative h-64 rounded-3xl overflow-hidden shadow-lg border border-coco-forest/5"
                                 >
                                     <Image
-                                        src={item.image || ''}
+                                        src={item.src || ''}
                                         alt={item.title || 'Shipping Documentation'}
                                         fill
                                         className="object-cover transition-transform duration-700 group-hover:scale-110"

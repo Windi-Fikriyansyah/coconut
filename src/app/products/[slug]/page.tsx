@@ -20,12 +20,15 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
         };
     }
 
+    const metaTitle = product.meta_title || `${product.title} | Indonesia Coconut Supplier`;
+    const metaDescription = product.meta_description || product.short_description;
+
     return {
-        title: `${product.title} | Indonesia Coconut Supplier`,
-        description: product.short_description,
+        title: metaTitle,
+        description: metaDescription,
         openGraph: {
-            title: `${product.title} | Premium Coconut Derivatives`,
-            description: product.short_description,
+            title: product.meta_title || `${product.title} | Premium Coconut Derivatives`,
+            description: metaDescription,
             images: [
                 {
                     url: product.image,
