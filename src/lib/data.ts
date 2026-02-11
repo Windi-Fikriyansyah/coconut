@@ -53,10 +53,8 @@ export interface ProcessStep extends RowDataPacket {
   icon: string;
 }
 
-function sanitizeImageUrl(url: string | null | undefined): string {
-  if (!url) return "";
-
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "";
+function sanitizeImageUrl(url: any): string {
+  if (!url || typeof url !== "string") return "";
 
   // Robustly strip localhost URLs to prevent mixed content/private IP errors in production
   let cleanPath = url.replace(
@@ -171,7 +169,7 @@ export interface AboutData {
   subtitle: string;
   title: string;
   description: string;
-  image: string;
+  image: any;
   highlight_value: string;
   highlight_text: string;
   features: any;
@@ -184,10 +182,7 @@ export async function getAboutData(): Promise<AboutData | null> {
     "SELECT * FROM about_section LIMIT 1",
   );
   if (rows.length === 0) return null;
-  return {
-    ...rows[0],
-    image: sanitizeImageUrl(rows[0].image),
-  };
+  return rows[0];
 }
 
 export interface TrustItem {
@@ -212,7 +207,7 @@ export interface ShippingGalleryItem {
 }
 
 export interface ShippingGalleryRow
-  extends ShippingGalleryItem, RowDataPacket {}
+  extends ShippingGalleryItem, RowDataPacket { }
 
 export async function getShippingGallery(): Promise<ShippingGalleryItem[]> {
   try {

@@ -9,22 +9,49 @@ import { AboutData } from '@/lib/data';
 interface AboutProps {
     data?: AboutData | null;
 }
-
 const About = ({ data }: AboutProps) => {
+    // Fungsi sanitasi lokal agar path gambar dari JSON benar
+    const cleanPath = (path: string | null | undefined) => {
+        if (!path) return "";
+        // Menghapus localhost jika ada
+        let clean = path.replace(/^(https?:\/\/)(localhost|127\.0\.0\.1)(:\d+)?/, "");
+        // Menghapus /public atau public/ jika ada
+        clean = clean.replace(/^\/?public\//, "/");
+        // Memastikan diawali dengan / jika bukan URL absolute
+        if (!clean.startsWith("/") && !clean.startsWith("http")) {
+            clean = "/" + clean;
+        }
+        return clean;
+    };
+
     const title = data?.title || "Rooted in Nature, <br />Driven by Excellence";
-    const aboutText = data?.description || "PT Sumber Niaga Alam Sejahtera started as a small initiative to bring high-quality Indonesian coconut products to the world. We believe that sustainability and industrial progress can go hand-in-hand.";
-    const image = data?.image || "https://images.unsplash.com/photo-1589139265243-78c773ee49fb?q=80&w=1200&auto=format&fit=crop";
-    const highlightValue = data?.highlight_value || "15+ Years";
-    const highlightText = data?.highlight_text || "Empowering more than 500 local farmers across the Indonesian archipelago.";
-    const buttonText = data?.button_text || "Discover Our Process";
-    const buttonLink = data?.button_link || "#process";
+    const aboutText = data?.description || "PT Sumber Niaga Alam Sejahtera...";
+    const buttonLink = data?.button_link || "#about";
 
+    // 1. Ambil dan Parse data dari column image (sekarang sebagai source gallery)
+    let dbGallery: string[] = [];
+    try {
+        if (typeof data?.image === 'string' && data.image.trim().startsWith('[')) {
+            dbGallery = JSON.parse(data.image);
+        } else if (Array.isArray(data?.image)) {
+            dbGallery = data.image;
+        } else if (data?.image) {
+            dbGallery = [data.image];
+        }
+    } catch (e) {
+        console.error("Gagal parse image gallery:", e);
+        if (data?.image) dbGallery = [data.image];
+    }
+
+    // 2. Sanitasi dan Hilangkan Duplikat
+    const finalImages = Array.from(new Set(dbGallery.map(img => cleanPath(img))));
+
+    // 3. Mapping ke variabel gallery
     const galleryImages = [
-        { url: "/semi_husked_sorting_1770259203229.png", alt: "Production Process" },
-        { url: "/charcoal_briquette_test_1770259238325.png", alt: "Quality Testing" },
-        { url: "/charcoal_briquette_test_1770259238325.png", alt: "Lab Analysis" },
+        { url: finalImages[0] || "/fallback-1.jpg", alt: "Production 1" },
+        { url: finalImages[1] || "/fallback-2.jpg", alt: "Production 2" },
+        { url: finalImages[2] || "/fallback-3.jpg", alt: "Production 3" },
     ];
-
     return (
         <section id="about" className="pt-32 pb-10 bg-coco-sandy relative overflow-hidden">
             <div className="absolute -right-24 top-0 w-96 h-96 bg-coco-gold/5 rounded-full blur-3xl"></div>
@@ -38,30 +65,32 @@ const About = ({ data }: AboutProps) => {
                         transition={{ duration: 0.8 }}
                         className="relative h-full"
                     >
-                        {/* Masonry-style Grid */}
                         <div className="grid grid-cols-2 gap-4 h-[400px] lg:h-full">
+                            {/* Gambar 1 */}
                             <div className="col-span-1 row-span-2 relative">
                                 <Image
                                     src={galleryImages[0].url}
-                                    alt={galleryImages[0].alt}
+                                    alt="About Image 1"
                                     fill
-                                    className="object-cover rounded-3xl shadow-lg transition-transform duration-500 hover:scale-105"
+                                    className="object-cover rounded-3xl shadow-lg"
                                 />
                             </div>
+                            {/* Gambar 2 */}
                             <div className="col-span-1 row-span-1 relative">
                                 <Image
                                     src={galleryImages[1].url}
-                                    alt={galleryImages[1].alt}
+                                    alt="About Image 2"
                                     fill
-                                    className="object-cover rounded-3xl shadow-lg transition-transform duration-500 hover:scale-105"
+                                    className="object-cover rounded-3xl shadow-lg"
                                 />
                             </div>
+                            {/* Gambar 3 */}
                             <div className="col-span-1 row-span-1 relative">
                                 <Image
                                     src={galleryImages[2].url}
-                                    alt={galleryImages[2].alt}
+                                    alt="About Image 3"
                                     fill
-                                    className="object-cover rounded-3xl shadow-lg transition-transform duration-500 hover:scale-105"
+                                    className="object-cover rounded-3xl shadow-lg"
                                 />
                             </div>
                         </div>
@@ -72,14 +101,15 @@ const About = ({ data }: AboutProps) => {
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
                     >
-
-                        <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold text-coco-gold mb-8 leading-tight" dangerouslySetInnerHTML={{ __html: title }} />
+                        <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold text-coco-gold mb-8 leading-tight"
+                            dangerouslySetInnerHTML={{ __html: title }}
+                        />
                         <p className="text-coco-forest/70 text-sm md:text-base mb-8 leading-relaxed">
                             {aboutText}
                         </p>
 
-                        <Link href="/about" className="inline-block bg-coco-forest text-coco-sandy px-10 py-4 rounded-full font-bold hover:bg-coco-leaf transition-all">
-                            Read More
+                        <Link href={buttonLink} className="inline-block bg-coco-forest text-coco-sandy px-10 py-4 rounded-full font-bold hover:bg-coco-leaf transition-all">
+                            {data?.button_text || "Read More"}
                         </Link>
                     </motion.div>
                 </div>
