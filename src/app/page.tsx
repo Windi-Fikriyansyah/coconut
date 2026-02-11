@@ -20,6 +20,7 @@ import {
   getShippingGallery,
   getShippingGallerySection,
   getWhyChooseUsData,
+  getWhyChooseUsMetadata,
   getContactData,
   getCertificates,
   getQualityCommitmentData,
@@ -38,6 +39,7 @@ export default async function Home() {
     shippingGalleryData,
     shippingGallerySection,
     whyChooseUsData,
+    whyChooseUsMetadata,
     contactData,
     certificatesData,
     qualityCommitmentData,
@@ -51,6 +53,7 @@ export default async function Home() {
     getShippingGallery(),
     getShippingGallerySection(),
     getWhyChooseUsData(),
+    getWhyChooseUsMetadata(),
     getContactData(),
     getCertificates(),
     getQualityCommitmentData(),
@@ -66,7 +69,12 @@ export default async function Home() {
       <QualityCommitment data={qualityCommitmentData} items={qualityCommitmentItems} />
       {/* <Process data={processSteps} /> */}
       <ShippingGallery data={shippingGalleryData} section={shippingGallerySection} />
-      <WhyChooseUs data={whyChooseUsData} />
+      <WhyChooseUs
+        data={whyChooseUsData}
+        title={whyChooseUsMetadata?.title}
+        subtitle={whyChooseUsMetadata?.subtitle}
+        image={whyChooseUsMetadata?.image}
+      />
       {/* <TrustSection data={trustData} /> */}
       <Certificates data={certificatesData} />
       <Contact data={contactData} />

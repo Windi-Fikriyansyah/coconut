@@ -56,6 +56,7 @@ interface WhyChooseUsProps {
   image2?: string;
   image3?: string;
   image4?: string;
+  image?: any;
 
   bgColor?: string;
 }
@@ -111,21 +112,47 @@ const defaultItems: WhyChooseUsItem[] = [
 
 const WhyChooseUs = ({
   data,
-
   title = "Why Global Partners <br />Trust Us",
-
   subtitle = "The Advantage",
-
   reversed = false,
-
-  mainImage = "/semi_husked_sorting_1770259203229.png",
-  image2 = "/charcoal_briquette_test_1770259238325.png",
-  image3 = "/semi_husked_sorting_1770259203229.png",
-  image4 = "/vco_lab_test_1770259220705.png",
-
+  image,
+  mainImage: propMainImage,
+  image2: propImage2,
+  image3: propImage3,
+  image4: propImage4,
   bgColor = "bg-coco-sandy"
 }: WhyChooseUsProps) => {
   const items = data && data.length > 0 ? data : defaultItems;
+
+  const cleanPath = (path: string | null | undefined) => {
+    if (!path) return "";
+    let clean = path.replace(/^(https?:\/\/)(localhost|127\.0\.0\.1)(:\d+)?/, "");
+    clean = clean.replace(/^\/?public\//, "/");
+    if (!clean.startsWith("/") && !clean.startsWith("http")) {
+      clean = "/" + clean;
+    }
+    return clean;
+  };
+
+  let images: string[] = [];
+  try {
+    if (typeof image === 'string' && image.trim().startsWith('[')) {
+      images = JSON.parse(image);
+    } else if (Array.isArray(image)) {
+      images = image;
+    } else if (image) {
+      images = [image];
+    }
+  } catch (e) {
+    console.error("Gagal parse images:", e);
+  }
+
+  const sanitizedImages = images.map(img => cleanPath(img));
+
+  const finalMainImage = sanitizedImages[0] || propMainImage || "/semi_husked_sorting_1770259203229.png";
+  const finalImage2 = sanitizedImages[1] || propImage2 || "/charcoal_briquette_test_1770259238325.png";
+  const finalImage3 = sanitizedImages[2] || propImage3 || "/semi_husked_sorting_1770259203229.png";
+  const finalImage4 = sanitizedImages[3] || propImage4 || "/vco_lab_test_1770259220705.png";
 
   return (
     <section className={`py-28 ${bgColor}`}>
@@ -153,7 +180,7 @@ const WhyChooseUs = ({
 
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[70%] h-[65%] rounded-3xl overflow-hidden shadow-2xl z-10 border-4 border-white">
                 <Image
-                  src={mainImage}
+                  src={finalMainImage}
                   alt="Warehouse storage"
                   fill
                   className="object-cover"
@@ -164,7 +191,7 @@ const WhyChooseUs = ({
 
               <div className={`absolute top-[4%] ${reversed ? 'left-[1%]' : 'right-[1%]'} w-[30%] h-[30%] rounded-2xl overflow-hidden border-4 border-coco-gold shadow-xl z-20`}>
                 <Image
-                  src={image2}
+                  src={finalImage2}
                   alt="Quality assurance"
                   fill
                   className="object-cover"
@@ -175,7 +202,7 @@ const WhyChooseUs = ({
 
               <div className={`absolute bottom-[-9%] ${reversed ? 'right-[2%]' : 'left-[2%]'} w-[45%] h-[35%] rounded-2xl overflow-hidden border-4 border-coco-gold shadow-xl z-20`}>
                 <Image
-                  src={image3}
+                  src={finalImage3}
                   alt="Product sorting"
                   fill
                   className="object-cover"
@@ -186,7 +213,7 @@ const WhyChooseUs = ({
 
               <div className={`absolute bottom-[1%] ${reversed ? 'left-[1%]' : 'right-[1%]'} w-[25%] h-[25%] rounded-2xl overflow-hidden border-4 border-coco-gold shadow-xl z-20`}>
                 <Image
-                  src={image4}
+                  src={finalImage4}
                   alt="Lab testing"
                   fill
                   className="object-cover"

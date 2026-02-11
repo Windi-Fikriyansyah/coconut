@@ -256,6 +256,26 @@ export async function getWhyChooseUsData(): Promise<WhyChooseUsItem[]> {
   return rows;
 }
 
+export interface WhyChooseUsMetadata {
+  id: number;
+  subtitle: string;
+  title: string;
+  image: any;
+}
+
+export async function getWhyChooseUsMetadata(): Promise<WhyChooseUsMetadata | null> {
+  try {
+    const [rows] = await pool.query<(WhyChooseUsMetadata & RowDataPacket)[]>(
+      "SELECT * FROM why_choose_us_metadata LIMIT 1",
+    );
+    if (rows.length === 0) return null;
+    return rows[0];
+  } catch (error) {
+    console.error("Error fetching why choose us metadata:", error);
+    return null;
+  }
+}
+
 export interface QualityCommitmentData {
   id: number;
   subtitle: string;
@@ -504,3 +524,50 @@ export const getProductRowDetails = cache(
     }
   },
 );
+
+export interface GalleryMetadata {
+  id: number;
+  subtitle: string;
+  title: string;
+  description: string;
+  background_image: string;
+}
+
+export interface GalleryImage {
+  id: number;
+  src: string;
+  title: string;
+  category: string;
+  display_order: number;
+}
+
+export async function getGalleryMetadata(): Promise<GalleryMetadata | null> {
+  try {
+    const [rows] = await pool.query<(GalleryMetadata & RowDataPacket)[]>(
+      "SELECT * FROM gallery_metadata LIMIT 1",
+    );
+    if (rows.length === 0) return null;
+    return {
+      ...rows[0],
+      background_image: sanitizeImageUrl(rows[0].background_image),
+    };
+  } catch (error) {
+    console.error("Error fetching gallery metadata:", error);
+    return null;
+  }
+}
+
+export async function getGalleryImages(): Promise<GalleryImage[]> {
+  try {
+    const [rows] = await pool.query<(GalleryImage & RowDataPacket)[]>(
+      "SELECT * FROM gallery_images ORDER BY display_order ASC",
+    );
+    return rows.map((img) => ({
+      ...img,
+      src: sanitizeImageUrl(img.src),
+    }));
+  } catch (error) {
+    console.error("Error fetching gallery images:", error);
+    return [];
+  }
+}
