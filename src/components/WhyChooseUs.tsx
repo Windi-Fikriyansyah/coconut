@@ -53,6 +53,9 @@ interface WhyChooseUsProps {
   reversed?: boolean;
 
   mainImage?: string;
+  image2?: string;
+  image3?: string;
+  image4?: string;
 
   bgColor?: string;
 }
@@ -116,6 +119,9 @@ const WhyChooseUs = ({
   reversed = false,
 
   mainImage = "/semi_husked_sorting_1770259203229.png",
+  image2 = "/charcoal_briquette_test_1770259238325.png",
+  image3 = "/semi_husked_sorting_1770259203229.png",
+  image4 = "/vco_lab_test_1770259220705.png",
 
   bgColor = "bg-coco-sandy"
 }: WhyChooseUsProps) => {
@@ -158,7 +164,7 @@ const WhyChooseUs = ({
 
               <div className={`absolute top-[4%] ${reversed ? 'left-[1%]' : 'right-[1%]'} w-[30%] h-[30%] rounded-2xl overflow-hidden border-4 border-coco-gold shadow-xl z-20`}>
                 <Image
-                  src="/charcoal_briquette_test_1770259238325.png"
+                  src={image2}
                   alt="Quality assurance"
                   fill
                   className="object-cover"
@@ -169,7 +175,7 @@ const WhyChooseUs = ({
 
               <div className={`absolute bottom-[-9%] ${reversed ? 'right-[2%]' : 'left-[2%]'} w-[45%] h-[35%] rounded-2xl overflow-hidden border-4 border-coco-gold shadow-xl z-20`}>
                 <Image
-                  src={mainImage}
+                  src={image3}
                   alt="Product sorting"
                   fill
                   className="object-cover"
@@ -180,7 +186,7 @@ const WhyChooseUs = ({
 
               <div className={`absolute bottom-[1%] ${reversed ? 'left-[1%]' : 'right-[1%]'} w-[25%] h-[25%] rounded-2xl overflow-hidden border-4 border-coco-gold shadow-xl z-20`}>
                 <Image
-                  src="/vco_lab_test_1770259220705.png"
+                  src={image4}
                   alt="Lab testing"
                   fill
                   className="object-cover"

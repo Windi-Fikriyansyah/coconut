@@ -224,6 +224,25 @@ export async function getShippingGallery(): Promise<ShippingGalleryItem[]> {
   }
 }
 
+export interface ShippingGallerySection {
+  id: number;
+  subtitle: string;
+  title: string;
+}
+
+export async function getShippingGallerySection(): Promise<ShippingGallerySection | null> {
+  try {
+    const [rows] = await pool.query<(ShippingGallerySection & RowDataPacket)[]>(
+      "SELECT * FROM shipping_gallery_section LIMIT 1",
+    );
+    if (rows.length === 0) return null;
+    return rows[0];
+  } catch (error) {
+    console.error("Error fetching shipping gallery section:", error);
+    return null;
+  }
+}
+
 export interface WhyChooseUsItem {
   icon: string;
   title: string;
@@ -235,6 +254,43 @@ export async function getWhyChooseUsData(): Promise<WhyChooseUsItem[]> {
     "SELECT icon, title, description FROM why_choose_us_section ORDER BY display_order ASC",
   );
   return rows;
+}
+
+export interface QualityCommitmentData {
+  id: number;
+  subtitle: string;
+  title: string;
+  image: any;
+}
+
+export interface QualityCommitmentItem {
+  icon: string;
+  title: string;
+  description: string;
+}
+
+export async function getQualityCommitmentData(): Promise<QualityCommitmentData | null> {
+  try {
+    const [rows] = await pool.query<(QualityCommitmentData & RowDataPacket)[]>(
+      "SELECT * FROM quality_commitment_section LIMIT 1",
+    );
+    return rows[0];
+  } catch (error) {
+    console.error("Error fetching quality commitment data:", error);
+    return null;
+  }
+}
+
+export async function getQualityCommitmentItems(): Promise<QualityCommitmentItem[]> {
+  try {
+    const [rows] = await pool.query<(QualityCommitmentItem & RowDataPacket)[]>(
+      "SELECT icon, title, description FROM quality_commitment_items ORDER BY display_order ASC",
+    );
+    return rows;
+  } catch (error) {
+    console.error("Error fetching quality commitment items:", error);
+    return [];
+  }
 }
 
 export interface ContactData extends RowDataPacket {

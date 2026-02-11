@@ -4,7 +4,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { Camera, CheckCircle2, ShieldCheck } from 'lucide-react';
-import { ShippingGalleryItem } from '@/lib/data';
+import { ShippingGalleryItem, ShippingGallerySection } from '@/lib/data';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -12,11 +12,15 @@ import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 
 interface ShippingGalleryProps {
     data?: ShippingGalleryItem[];
+    section?: ShippingGallerySection | null;
 }
 
-const ShippingGallery = ({ data }: ShippingGalleryProps) => {
+const ShippingGallery = ({ data, section }: ShippingGalleryProps) => {
     const items = data || [];
     const sliderRef = React.useRef<any>(null);
+
+    const title = section?.title || "Shipping & Logistics Gallery";
+    const subtitle = section?.subtitle || "Documented Process";
 
     const settings = {
         dots: false,
@@ -60,7 +64,7 @@ const ShippingGallery = ({ data }: ShippingGalleryProps) => {
                         viewport={{ once: true }}
                         className="text-coco-gold font-bold uppercase tracking-widest text-xs mb-4 block"
                     >
-                        Documented Process
+                        {subtitle}
                     </motion.span>
                     <motion.h2
                         initial={{ opacity: 0, y: 20 }}
@@ -69,7 +73,7 @@ const ShippingGallery = ({ data }: ShippingGalleryProps) => {
                         transition={{ delay: 0.1 }}
                         className="text-4xl md:text-5xl font-bold text-coco-forest mb-6"
                     >
-                        Shipping & Logistics Gallery
+                        {title}
                     </motion.h2>
                     <div className="w-20 h-1 bg-coco-gold mx-auto"></div>
                 </div>

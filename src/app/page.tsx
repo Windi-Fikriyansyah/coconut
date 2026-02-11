@@ -18,9 +18,12 @@ import {
   getAboutData,
   getTrustData,
   getShippingGallery,
+  getShippingGallerySection,
   getWhyChooseUsData,
   getContactData,
-  getCertificates
+  getCertificates,
+  getQualityCommitmentData,
+  getQualityCommitmentItems
 } from "@/lib/data";
 
 export const revalidate = 0;
@@ -33,9 +36,12 @@ export default async function Home() {
     aboutData,
     trustData,
     shippingGalleryData,
+    shippingGallerySection,
     whyChooseUsData,
     contactData,
-    certificatesData
+    certificatesData,
+    qualityCommitmentData,
+    qualityCommitmentItems
   ] = await Promise.all([
     getProcessSteps(),
     getProducts(),
@@ -43,9 +49,12 @@ export default async function Home() {
     getAboutData(),
     getTrustData(),
     getShippingGallery(),
+    getShippingGallerySection(),
     getWhyChooseUsData(),
     getContactData(),
-    getCertificates()
+    getCertificates(),
+    getQualityCommitmentData(),
+    getQualityCommitmentItems()
   ]);
 
   return (
@@ -54,9 +63,9 @@ export default async function Home() {
       <Hero data={heroData} />
       <About data={aboutData} />
       <ProductGrid data={products} />
-      <QualityCommitment />
+      <QualityCommitment data={qualityCommitmentData} items={qualityCommitmentItems} />
       {/* <Process data={processSteps} /> */}
-      <ShippingGallery data={shippingGalleryData} />
+      <ShippingGallery data={shippingGalleryData} section={shippingGallerySection} />
       <WhyChooseUs data={whyChooseUsData} />
       {/* <TrustSection data={trustData} /> */}
       <Certificates data={certificatesData} />
