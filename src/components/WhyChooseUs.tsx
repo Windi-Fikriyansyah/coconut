@@ -195,6 +195,7 @@ const WhyChooseUs = ({
                   src={finalImage2}
                   alt="Quality assurance"
                   fill
+                  unoptimized
                   className="object-cover"
                 />
               </div>
@@ -206,6 +207,7 @@ const WhyChooseUs = ({
                   src={finalImage3}
                   alt="Product sorting"
                   fill
+                  unoptimized
                   className="object-cover"
                 />
               </div>
@@ -217,6 +219,7 @@ const WhyChooseUs = ({
                   src={finalImage4}
                   alt="Lab testing"
                   fill
+                  unoptimized
                   className="object-cover"
                 />
               </div>
