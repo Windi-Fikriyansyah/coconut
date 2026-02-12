@@ -2,12 +2,6 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   images: {
-    localPatterns: [
-      {
-        pathname: '/**',
-        search: '', // Allow all query strings for local images
-      },
-    ],
     remotePatterns: [
       {
         protocol: 'https',
@@ -24,7 +18,6 @@ const nextConfig: NextConfig = {
         port: '3000',
       },
     ],
-    // unoptimized: true, // Uncomment if you still have issues with image loading in production
   },
 };
 
