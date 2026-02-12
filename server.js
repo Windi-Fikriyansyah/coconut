@@ -1,6 +1,8 @@
 const { createServer } = require('http');
 const { parse } = require('url');
 const next = require('next');
+const path = require('path');
+const fs = require('fs');
 require('dotenv').config(); // Load env vars immediately for shared hosting
 
 // Default to production if not explicitly 'development'
@@ -18,6 +20,40 @@ app.prepare().then(() => {
             // This tells it to parse the query portion of the URL.
             const parsedUrl = parse(req.url, true);
             const { pathname, query } = parsedUrl;
+
+            // Handle static file uploads directly to bypass Next.js build-time caching
+            if (pathname && (pathname.startsWith('/uploads/') || pathname.startsWith('/produk/'))) {
+                try {
+                    const decodedPath = decodeURIComponent(pathname);
+                    // Remove leading slash to join correctly with __dirname
+                    const filePath = path.join(__dirname, 'public', decodedPath.substring(1));
+
+                    if (fs.existsSync(filePath) && fs.statSync(filePath).isFile()) {
+                        const ext = path.extname(filePath).toLowerCase();
+                        const mimeTypes = {
+                            '.jpg': 'image/jpeg',
+                            '.jpeg': 'image/jpeg',
+                            '.png': 'image/png',
+                            '.webp': 'image/webp',
+                            '.svg': 'image/svg+xml',
+                            '.gif': 'image/gif',
+                            '.avif': 'image/avif',
+                            '.pdf': 'application/pdf'
+                        };
+                        const contentType = mimeTypes[ext] || 'application/octet-stream';
+
+                        res.setHeader('Content-Type', contentType);
+                        // Ensure clients always check for the latest version
+                        res.setHeader('Cache-Control', 'public, max-age=0, must-revalidate');
+
+                        const stream = fs.createReadStream(filePath);
+                        stream.pipe(res);
+                        return;
+                    }
+                } catch (err) {
+                    console.error('Error serving static file:', err);
+                }
+            }
 
             if (pathname === '/a') {
                 await app.render(req, res, '/a', query);
