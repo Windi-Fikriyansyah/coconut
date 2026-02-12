@@ -72,6 +72,7 @@ const About = ({ data }: AboutProps) => {
                                     src={galleryImages[0].url}
                                     alt="About Image 1"
                                     fill
+                                    unoptimized
                                     className="object-cover rounded-3xl shadow-lg"
                                 />
                             </div>

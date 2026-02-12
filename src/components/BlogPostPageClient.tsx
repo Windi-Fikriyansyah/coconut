@@ -25,6 +25,7 @@ const BlogPostPageClient = ({ post }: BlogPostPageClientProps) => {
                     <Image
                         src={post.image}
                         fill
+                        unoptimized
                         className="object-cover blur-sm"
                         alt=""
                         priority

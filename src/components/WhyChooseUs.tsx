@@ -183,6 +183,7 @@ const WhyChooseUs = ({
                   src={finalMainImage}
                   alt="Warehouse storage"
                   fill
+                  unoptimized
                   className="object-cover"
                 />
               </div>

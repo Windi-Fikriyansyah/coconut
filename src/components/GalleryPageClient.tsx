@@ -84,6 +84,7 @@ const GalleryPageClient = ({ images, metadata }: GalleryPageClientProps) => {
                                         src={image.src || ''}
                                         alt={image.title || 'Gallery Image'}
                                         fill
+                                        unoptimized
                                         className="object-cover transition-transform duration-700 group-hover:scale-110"
                                     />
                                     {/* Overlay */}
