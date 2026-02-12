@@ -2,7 +2,7 @@ import React from 'react';
 import ProductsPageClient from '@/components/ProductsPageClient';
 import { getProducts, getProductsPageData } from '@/lib/data';
 
-export const revalidate = false; // On-demand revalidation
+export const revalidate = 60; // Revalidate every 60 seconds
 
 export default async function ProductsPage() {
     const [products, data] = await Promise.all([

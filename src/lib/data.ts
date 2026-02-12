@@ -104,6 +104,25 @@ function sanitizeImageUrl(url: any, updatedAt?: Date): string {
   return cleanPath;
 }
 
+function extractFirstImage(url: any, updatedAt?: Date): string {
+  if (!url) return "";
+  if (typeof url === 'string' && (url.startsWith('[') || url.startsWith('{'))) {
+    try {
+      const parsed = JSON.parse(url);
+      if (Array.isArray(parsed) && parsed.length > 0) {
+        const first = parsed[0];
+        return sanitizeImageUrl(typeof first === 'string' ? first : first.url, updatedAt);
+      }
+      if (typeof parsed === 'object' && parsed.url) {
+        return sanitizeImageUrl(parsed.url, updatedAt);
+      }
+    } catch (e) {
+      // Not valid JSON, continue with normal sanitization
+    }
+  }
+  return sanitizeImageUrl(url, updatedAt);
+}
+
 export const getProducts = cache(async (): Promise<Product[]> => {
   try {
     const [rows] = await pool.query<Product[]>(
@@ -112,8 +131,8 @@ export const getProducts = cache(async (): Promise<Product[]> => {
     if (!Array.isArray(rows)) return [];
     return rows.map((row) => ({
       ...row,
-      image: sanitizeImageUrl(row.image, row.updated_at),
-      bts_image: sanitizeImageUrl(row.bts_image, row.updated_at),
+      image: extractFirstImage(row.image, row.updated_at),
+      bts_image: extractFirstImage(row.bts_image, row.updated_at),
     }));
   } catch (error) {
     console.error("Database connection failed in getProducts:", error);
@@ -132,8 +151,8 @@ export const getProductBySlug = cache(
     const product = rows[0];
     return {
       ...product,
-      image: sanitizeImageUrl(product.image, product.updated_at),
-      bts_image: sanitizeImageUrl(product.bts_image, product.updated_at),
+      image: extractFirstImage(product.image, product.updated_at),
+      bts_image: extractFirstImage(product.bts_image, product.updated_at),
     };
   },
 );
@@ -580,6 +599,7 @@ export interface ProductDetailRow extends RowDataPacket {
   description: string | null;
   image: string;
   display_order: number;
+  updated_at?: Date;
 }
 
 export const getProductRowDetails = cache(
