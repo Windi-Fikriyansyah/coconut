@@ -94,8 +94,13 @@ function sanitizeImageUrl(url: any, updatedAt?: Date): string {
     cleanPath = "/" + cleanPath;
   }
 
-  // JANGAN gunakan ?v=... agar tidak kena error 400 di Next.js Image Optimizer.
-  // Next.js akan tetap update gambar karena Laravel mengganti nama file setiap upload.
+  // Gunakan timestamp dari database sebagai versioning cache (aman di unoptimized mode)
+  if (updatedAt) {
+    const version = new Date(updatedAt).getTime();
+    const separator = cleanPath.includes("?") ? "&" : "?";
+    return `${cleanPath}${separator}v=${version}`;
+  }
+
   return cleanPath;
 }
 
