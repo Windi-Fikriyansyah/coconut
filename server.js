@@ -22,11 +22,16 @@ app.prepare().then(() => {
             const { pathname, query } = parsedUrl;
 
             // Handle static file uploads directly to bypass Next.js build-time caching
-            if (pathname && (pathname.startsWith('/uploads/') || pathname.startsWith('/produk/'))) {
+            if (pathname && (pathname.startsWith('/uploads/') || pathname.startsWith('/produk/') || pathname.startsWith('/storage/'))) {
                 try {
                     const decodedPath = decodeURIComponent(pathname);
+                    // Standardize path: remove /storage prefix if it exists
+                    let normalizedPath = decodedPath.startsWith('/storage/')
+                        ? decodedPath.substring(8) // remove /storage
+                        : decodedPath;
+
                     // Remove leading slash to join correctly with __dirname
-                    const filePath = path.join(__dirname, 'public', decodedPath.substring(1));
+                    const filePath = path.join(__dirname, 'public', normalizedPath.substring(1));
 
                     if (fs.existsSync(filePath) && fs.statSync(filePath).isFile()) {
                         const ext = path.extname(filePath).toLowerCase();

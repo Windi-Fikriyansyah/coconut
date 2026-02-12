@@ -57,24 +57,48 @@ export interface ProcessStep extends RowDataPacket {
 }
 
 function sanitizeImageUrl(url: any, updatedAt?: Date): string {
-  if (!url || typeof url !== "string") return "";
+  if (!url) return "";
 
-  let cleanPath = url.replace(/^(https?:\/\/)(localhost|127\.0\.0\.1)(:\d+)?/, "");
-
-  if (cleanPath.startsWith("/public/")) {
-    cleanPath = cleanPath.replace("/public/", "/");
-  } else if (cleanPath.startsWith("public/")) {
-    cleanPath = cleanPath.replace("public/", "/");
+  // If it is a JSON string (for product gallery), parse it and sanitize each URL
+  if (typeof url === 'string' && (url.startsWith('[') || url.startsWith('{'))) {
+    try {
+      const parsed = JSON.parse(url);
+      if (Array.isArray(parsed)) {
+        return JSON.stringify(parsed.map(img => ({
+          ...img,
+          url: sanitizeImageUrl(img.url, updatedAt)
+        })));
+      }
+      if (typeof parsed === 'object' && parsed.url) {
+        return JSON.stringify({
+          ...parsed,
+          url: sanitizeImageUrl(parsed.url, updatedAt)
+        });
+      }
+    } catch (e) {
+      // Not a valid JSON, continue with normal sanitization
+    }
   }
 
-  if (cleanPath && !cleanPath.startsWith("/") && !cleanPath.startsWith("http")) {
-    cleanPath = `/${cleanPath}`;
+  if (typeof url !== "string") return "";
+
+  // 1. Strip domain if it exists
+  let cleanPath = url.replace(/^(https?:\/\/[^\/]+)/, "");
+
+  // 2. Remove /public or /storage prefixes
+  cleanPath = cleanPath.replace(/^\/?public\//, "/");
+  cleanPath = cleanPath.replace(/^\/?storage\//, "/");
+
+  // 3. Ensure it starts with a single slash
+  if (!cleanPath.startsWith("/")) {
+    cleanPath = "/" + cleanPath;
   }
 
-  // Gunakan timestamp dari database sebagai versioning cache
+  // 4. Cache busting with versioning
   if (updatedAt) {
     const version = new Date(updatedAt).getTime();
-    return `${cleanPath}?v=${version}`;
+    const separator = cleanPath.includes("?") ? "&" : "?";
+    return `${cleanPath}${separator}v=${version}`;
   }
 
   return cleanPath;
