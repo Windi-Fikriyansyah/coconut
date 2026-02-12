@@ -154,7 +154,7 @@ export default function AboutPageClient({ data }: { data: AboutPageData }) {
                                 {/* BIG - Left Column */}
                                 <div className="col-span-1 row-span-2 relative rounded-3xl overflow-hidden shadow-lg group">
                                     <Image
-                                        src={data.journey_image}
+                                        src={data.journey_image?.[0] || '/placeholder.png'}
                                         alt="Our Journey"
                                         fill
                                         className="object-cover hover:scale-105 transition duration-500"
@@ -164,7 +164,7 @@ export default function AboutPageClient({ data }: { data: AboutPageData }) {
                                 {/* SMALL - Top Right */}
                                 <div className="relative rounded-3xl overflow-hidden shadow-lg group">
                                     <Image
-                                        src="/semi_husked_sorting_1770259203229.png"
+                                        src={data.journey_image?.[1] || data.journey_image?.[0] || '/placeholder.png'}
                                         alt="Production"
                                         fill
                                         className="object-cover hover:scale-105 transition duration-500"
@@ -174,7 +174,7 @@ export default function AboutPageClient({ data }: { data: AboutPageData }) {
                                 {/* SMALL - Bottom Right */}
                                 <div className="relative rounded-3xl overflow-hidden shadow-lg group">
                                     <Image
-                                        src="/charcoal_briquette_test_1770259238325.png"
+                                        src={data.journey_image?.[2] || data.journey_image?.[0] || '/placeholder.png'}
                                         alt="Testing"
                                         fill
                                         className="object-cover hover:scale-105 transition duration-500"
@@ -188,7 +188,105 @@ export default function AboutPageClient({ data }: { data: AboutPageData }) {
                 </div>
             </section>
 
+            {/* Commitment Section */}
+            {data.commitment_title && (
+                <section className="py-24 bg-white relative overflow-hidden">
+                    <div className="container mx-auto px-8 md:px-16">
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                            <motion.div
+                                initial={{ opacity: 0, x: -30 }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                viewport={{ once: true }}
+                                className="order-2 lg:order-1"
+                            >
+                                <div className="relative rounded-3xl overflow-hidden shadow-2xl">
+                                    <Image
+                                        src={data.commitment_image}
+                                        alt={data.commitment_title}
+                                        width={800}
+                                        height={600}
+                                        className="w-full h-auto object-cover"
+                                    />
+                                </div>
+                            </motion.div>
+                            <motion.div
+                                initial={{ opacity: 0, x: 30 }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                viewport={{ once: true }}
+                                className="order-1 lg:order-2"
+                            >
+                                <h2 className="text-3xl md:text-5xl font-bold text-coco-forest mb-8 leading-tight">{data.commitment_title}</h2>
+                                <p className="text-coco-forest/60 text-base md:text-lg leading-relaxed mb-6">
+                                    {data.commitment_description}
+                                </p>
+                            </motion.div>
+                        </div>
+                    </div>
+                </section>
+            )}
 
+            {/* Our Process Section */}
+            {data.process_title && (
+                <section className="pt-20 pb-32 bg-coco-sandy">
+                    <div className="container mx-auto px-8 md:px-16">
+                        <div className="text-center mb-20">
+                            <motion.span
+                                initial={{ opacity: 0, y: 10 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                className="text-coco-gold font-bold uppercase tracking-widest text-sm mb-4 block"
+                            >
+                                {data.process_subtitle || "Methodology"}
+                            </motion.span>
+                            <motion.h2
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: 0.1 }}
+                                className="text-4xl md:text-6xl font-bold text-coco-forest"
+                            >
+                                {data.process_title}
+                            </motion.h2>
+                        </div>
+
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                            {data.process_items && (Array.isArray(data.process_items) ? data.process_items : []).map((item: any, idx: number) => (
+                                <motion.div
+                                    key={idx}
+                                    initial={{ opacity: 0, y: 30 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ delay: idx * 0.1 }}
+                                    className="relative group aspect-[4/5] rounded-[2.5rem] overflow-hidden shadow-xl"
+                                >
+                                    <Image
+                                        src={item.image}
+                                        alt={item.title}
+                                        fill
+                                        className="object-cover transition-transform duration-700 group-hover:scale-110"
+                                    />
+                                    {/* Gradient Overlay */}
+                                    <div className="absolute inset-0 bg-gradient-to-t from-coco-forest via-coco-forest/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-500"></div>
+
+                                    <div className="absolute inset-0 p-8 flex flex-col justify-end">
+                                        <div className="transform transition-transform duration-500 group-hover:-translate-y-4">
+                                            <span className="text-coco-gold font-bold text-sm uppercase tracking-widest mb-2 block opacity-0 group-hover:opacity-100 transition-all duration-500 delay-100">
+                                                Step {idx + 1}
+                                            </span>
+                                            <h3 className="text-2xl md:text-3xl font-bold text-white mb-3">
+                                                {item.title}
+                                            </h3>
+                                            <p className="text-white/70 text-sm leading-relaxed max-h-0 group-hover:max-h-32 opacity-0 group-hover:opacity-100 overflow-hidden transition-all duration-500">
+                                                {item.description}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </motion.div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+            )}
             {/* Vision & Mission */}
             <section className="py-24 bg-coco-forest text-white">
                 <div className="container mx-auto px-6">

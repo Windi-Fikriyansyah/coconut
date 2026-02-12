@@ -413,12 +413,18 @@ export interface AboutPageData extends RowDataPacket {
   journey_title: string;
   journey_description_1: string;
   journey_description_2: string;
-  journey_image: string;
+  journey_image: any;
   vision_title: string;
   vision_description: string;
   mission_title: string;
   mission_points: any;
   values_data: any;
+  commitment_title: string;
+  commitment_description: string;
+  commitment_image: string;
+  process_title: string;
+  process_subtitle: string;
+  process_items: any;
 }
 
 export async function getAboutPageData(): Promise<AboutPageData | null> {
@@ -426,11 +432,34 @@ export async function getAboutPageData(): Promise<AboutPageData | null> {
     const [rows] = await pool.query<AboutPageData[]>(
       "SELECT * FROM about_page LIMIT 1",
     );
-    if (rows.length === 0) return null;
+    const row = rows[0];
+
+    // Helper to parse and sanitize image arrays or strings
+    const parseImages = (input: any) => {
+      if (!input) return [];
+      try {
+        const parsed = typeof input === 'string' && (input.startsWith('[') || input.startsWith('{'))
+          ? JSON.parse(input)
+          : input;
+
+        if (Array.isArray(parsed)) {
+          return parsed.map((img: any) => sanitizeImageUrl(typeof img === 'string' ? img : img.url));
+        }
+        return [sanitizeImageUrl(input)];
+      } catch (e) {
+        return [sanitizeImageUrl(input)];
+      }
+    };
+
     return {
-      ...rows[0],
-      hero_image: sanitizeImageUrl(rows[0].hero_image),
-      journey_image: sanitizeImageUrl(rows[0].journey_image),
+      ...row,
+      hero_image: sanitizeImageUrl(row.hero_image),
+      journey_image: parseImages(row.journey_image),
+      commitment_image: sanitizeImageUrl(row.commitment_image),
+      process_items: typeof row.process_items === 'string' ? JSON.parse(row.process_items).map((item: any) => ({
+        ...item,
+        image: sanitizeImageUrl(item.image)
+      })) : row.process_items,
     };
   } catch (error) {
     console.error("Error fetching about page data:", error);
