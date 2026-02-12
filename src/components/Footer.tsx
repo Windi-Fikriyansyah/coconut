@@ -10,9 +10,9 @@ import {
 import { FaTiktok } from "react-icons/fa6";
 import Link from "next/link";
 import Image from "next/image";
-import { Product } from "@/lib/data";
+import { Product, FooterSettings } from "@/lib/data";
 
-const Footer = ({ products }: { products?: Product[] }) => {
+const Footer = ({ products, data }: { products?: Product[]; data?: FooterSettings | null }) => {
   const displayProducts =
     products && products.length > 0
       ? products
@@ -38,16 +38,15 @@ const Footer = ({ products }: { products?: Product[] }) => {
               />
             </Link>
             <p className="text-coco-forest/60 text-sm leading-relaxed mb-8">
-              Supplying the world's finest coconut derivatives from sustainable
-              sources. Committed to quality, heritage, and global innovation.
+              {data?.description || "Supplying the world's finest coconut derivatives from sustainable sources. Committed to quality, heritage, and global innovation."}
             </p>
             <div className="flex gap-4">
               {[
-                { Icon: Linkedin, href: "#" },
-                { Icon: Instagram, href: "#" },
-                { Icon: Facebook, href: "#" },
-                { Icon: Youtube, href: "#" },
-                { Icon: FaTiktok, href: "#" },
+                { Icon: Linkedin, href: data?.linkedin_url || "#" },
+                { Icon: Instagram, href: data?.instagram_url || "#" },
+                { Icon: Facebook, href: data?.facebook_url || "#" },
+                { Icon: Youtube, href: data?.youtube_url || "#" },
+                { Icon: FaTiktok, href: data?.tiktok_url || "#" },
               ].map(({ Icon, href }, i) => (
                 <a
                   key={i}

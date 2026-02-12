@@ -344,6 +344,29 @@ export async function getContactData(): Promise<ContactData | null> {
   }
 }
 
+export interface FooterSettings extends RowDataPacket {
+  id: number;
+  description: string;
+  linkedin_url: string;
+  instagram_url: string;
+  facebook_url: string;
+  youtube_url: string;
+  tiktok_url: string;
+}
+
+export async function getFooterData(): Promise<FooterSettings | null> {
+  try {
+    const [rows] = await pool.query<FooterSettings[]>(
+      "SELECT * FROM footer_settings LIMIT 1",
+    );
+    if (rows.length === 0) return null;
+    return rows[0];
+  } catch (error) {
+    console.error("Error fetching footer data:", error);
+    return null;
+  }
+}
+
 export interface GlobalContent extends RowDataPacket {
   content_key: string;
   content_value: string;

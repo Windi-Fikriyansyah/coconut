@@ -36,7 +36,7 @@ export const metadata: Metadata = {
   },
 };
 
-import { getProducts, getContactData, getCertificates } from "@/lib/data";
+import { getProducts, getContactData, getCertificates, getFooterData } from "@/lib/data";
 import WhatsAppButton from "@/components/WhatsAppButton";
 
 
@@ -45,10 +45,11 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const [products, contact, certificates] = await Promise.all([
+  const [products, contact, certificates, footerData] = await Promise.all([
     getProducts(),
     getContactData(),
-    getCertificates()
+    getCertificates(),
+    getFooterData()
   ]);
 
 
@@ -74,7 +75,7 @@ export default async function RootLayout({
         <Contact data={contact} isGlobal={true} />
         <WhatsAppButton number={contact?.whatsapp} />
 
-        <Footer products={products} />
+        <Footer products={products} data={footerData} />
 
       </body>
     </html>
