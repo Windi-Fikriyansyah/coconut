@@ -2,7 +2,7 @@ import React from 'react';
 import ProductsPageClient from '@/components/ProductsPageClient';
 import { getProducts, getProductsPageData } from '@/lib/data';
 
-export const revalidate = 0;
+export const revalidate = 60;
 
 export default async function ProductsPage() {
     const [products, data] = await Promise.all([

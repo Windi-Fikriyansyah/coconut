@@ -16,6 +16,7 @@ export interface Product extends RowDataPacket {
   tags: any;
   meta_title: string | null;
   meta_description: string | null;
+  updated_at: Date;
 }
 
 // Tambahkan interface ini
@@ -55,29 +56,25 @@ export interface ProcessStep extends RowDataPacket {
   icon: string;
 }
 
-function sanitizeImageUrl(url: any): string {
+function sanitizeImageUrl(url: any, updatedAt?: Date): string {
   if (!url || typeof url !== "string") return "";
 
-  // Robustly strip localhost URLs to prevent mixed content/private IP errors in production
-  let cleanPath = url.replace(
-    /^(https?:\/\/)(localhost|127\.0\.0\.1)(:\d+)?/,
-    "",
-  );
+  let cleanPath = url.replace(/^(https?:\/\/)(localhost|127\.0\.0\.1)(:\d+)?/, "");
 
-  // Remove /public prefix if it exists (database might store as /public/...)
   if (cleanPath.startsWith("/public/")) {
     cleanPath = cleanPath.replace("/public/", "/");
   } else if (cleanPath.startsWith("public/")) {
     cleanPath = cleanPath.replace("public/", "/");
   }
 
-  // Ensure it starts with / if not empty and not http
-  if (
-    cleanPath &&
-    !cleanPath.startsWith("/") &&
-    !cleanPath.startsWith("http")
-  ) {
+  if (cleanPath && !cleanPath.startsWith("/") && !cleanPath.startsWith("http")) {
     cleanPath = `/${cleanPath}`;
+  }
+
+  // Gunakan timestamp dari database sebagai versioning cache
+  if (updatedAt) {
+    const version = new Date(updatedAt).getTime();
+    return `${cleanPath}?v=${version}`;
   }
 
   return cleanPath;
@@ -91,8 +88,8 @@ export const getProducts = cache(async (): Promise<Product[]> => {
     if (!Array.isArray(rows)) return [];
     return rows.map((row) => ({
       ...row,
-      image: sanitizeImageUrl(row.image),
-      bts_image: sanitizeImageUrl(row.bts_image),
+      image: sanitizeImageUrl(row.image, row.updated_at),
+      bts_image: sanitizeImageUrl(row.bts_image, row.updated_at),
     }));
   } catch (error) {
     console.error("Database connection failed in getProducts:", error);
