@@ -16,29 +16,30 @@ interface RelatedProductsSliderProps {
 const RelatedProductsSlider = ({ products }: RelatedProductsSliderProps) => {
     const sliderRef = React.useRef<any>(null);
 
+    const [slidesToShow, setSlidesToShow] = React.useState(1); // Default to 1 (safe for mobile)
+
+    React.useEffect(() => {
+        const updateSlides = () => {
+            if (window.innerWidth >= 1280) setSlidesToShow(3);
+            else if (window.innerWidth >= 768) setSlidesToShow(2);
+            else setSlidesToShow(1);
+        };
+
+        updateSlides();
+        window.addEventListener('resize', updateSlides);
+        return () => window.removeEventListener('resize', updateSlides);
+    }, []);
+
     const settings = {
         dots: false,
-        infinite: products.length > 3,
+        infinite: products.length > slidesToShow,
         speed: 500,
-        slidesToShow: 3,
+        slidesToShow: slidesToShow,
         slidesToScroll: 1,
         arrows: false,
-        responsive: [
-            {
-                breakpoint: 1024,
-                settings: {
-                    slidesToShow: 2,
-                    infinite: products.length > 2,
-                }
-            },
-            {
-                breakpoint: 640,
-                settings: {
-                    slidesToShow: 1,
-                    infinite: products.length > 1,
-                }
-            }
-        ]
+        autoplay: true,
+        autoplaySpeed: 4000,
+        pauseOnHover: true,
     };
 
     if (products.length === 0) return null;
