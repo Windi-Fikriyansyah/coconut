@@ -8,7 +8,7 @@ import Link from 'next/link';
 import ProductGallery from '@/components/ProductGallery';
 import RelatedProductsSlider from '@/components/RelatedProductsSlider';
 
-export const revalidate = 0;
+export const revalidate = false; // On-demand revalidation
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
     const { slug } = await params;

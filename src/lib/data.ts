@@ -108,8 +108,8 @@ export const getProductBySlug = cache(
     const product = rows[0];
     return {
       ...product,
-      image: sanitizeImageUrl(product.image),
-      bts_image: sanitizeImageUrl(product.bts_image),
+      image: sanitizeImageUrl(product.image, product.updated_at),
+      bts_image: sanitizeImageUrl(product.bts_image, product.updated_at),
     };
   },
 );
@@ -538,7 +538,7 @@ export const getProductRowDetails = cache(
       );
       return rows.map((row) => ({
         ...row,
-        image: sanitizeImageUrl(row.image),
+        image: sanitizeImageUrl(row.image, row.updated_at),
       }));
     } catch (error) {
       console.error("Error fetching product row details:", error);
