@@ -18,46 +18,43 @@ interface ShippingGalleryProps {
 const ShippingGallery = ({ data, section }: ShippingGalleryProps) => {
     const items = data || [];
     const sliderRef = React.useRef<any>(null);
+    const [slidesToShow, setSlidesToShow] = React.useState(1); // Default to 1 (safe for mobile)
 
     const title = section?.title || "Shipping & Logistics Gallery";
     const subtitle = section?.subtitle || "Documented Process";
 
+    React.useEffect(() => {
+        const updateSlides = () => {
+            if (window.innerWidth >= 1280) setSlidesToShow(4);
+            else if (window.innerWidth >= 1024) setSlidesToShow(3);
+            else if (window.innerWidth >= 768) setSlidesToShow(2);
+            else setSlidesToShow(1);
+        };
+
+        updateSlides();
+        window.addEventListener('resize', updateSlides);
+        return () => window.removeEventListener('resize', updateSlides);
+    }, []);
+
     const settings = {
         dots: false,
-        infinite: true,
+        infinite: items.length > slidesToShow,
         speed: 500,
-        slidesToShow: 4,
+        slidesToShow: slidesToShow,
         slidesToScroll: 1,
         arrows: false,
-        responsive: [
-            {
-                breakpoint: 1280,
-                settings: {
-                    slidesToShow: 3,
-                }
-            },
-            {
-                breakpoint: 1024,
-                settings: {
-                    slidesToShow: 2,
-                }
-            },
-            {
-                breakpoint: 640,
-                settings: {
-                    slidesToShow: 1,
-                }
-            }
-        ]
+        autoplay: true,
+        autoplaySpeed: 3000,
+        pauseOnHover: true,
     };
 
     if (items.length === 0) return null;
 
     return (
-        <section className="pt-10 pb-24 bg-white overflow-hidden" id="documentation">
-            <div className="container mx-auto px-8 md:px-16">
+        <section className="pt-10 pb-16 md:pb-24 bg-white overflow-hidden" id="documentation">
+            <div className="container mx-auto px-5 md:px-16">
                 {/* Header */}
-                <div className="text-center max-w-2xl mx-auto mb-16">
+                <div className="text-center max-w-2xl mx-auto mb-10 md:mb-16">
                     <motion.span
                         initial={{ opacity: 0, y: 10 }}
                         whileInView={{ opacity: 1, y: 0 }}
@@ -71,7 +68,7 @@ const ShippingGallery = ({ data, section }: ShippingGalleryProps) => {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.1 }}
-                        className="text-4xl md:text-5xl font-bold text-coco-forest mb-6"
+                        className="text-3xl md:text-4xl lg:text-5xl font-bold text-coco-forest mb-6"
                     >
                         {title}
                     </motion.h2>
@@ -80,18 +77,18 @@ const ShippingGallery = ({ data, section }: ShippingGalleryProps) => {
 
                 {/* Carousel */}
                 <div className="relative group/carousel">
-                    {/* Navigation Buttons */}
+                    {/* Navigation Buttons - Hidden on Mobile */}
                     <button
                         onClick={() => sliderRef.current?.slickPrev()}
-                        className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-10 w-12 h-12 bg-white rounded-full shadow-lg border border-coco-forest/10 flex items-center justify-center text-coco-forest hover:bg-coco-gold hover:text-white transition-all"
+                        className="absolute left-2 md:left-0 top-1/2 -translate-y-1/2 md:-translate-x-4 z-20 w-10 h-10 md:w-12 md:h-12 bg-white/90 md:bg-white rounded-full shadow-xl border border-coco-forest/10 flex items-center justify-center text-coco-forest hover:bg-coco-gold hover:text-white transition-all"
                     >
-                        <IoIosArrowBack size={24} />
+                        <IoIosArrowBack className="w-5 h-5 md:w-6 md:h-6" />
                     </button>
                     <button
                         onClick={() => sliderRef.current?.slickNext()}
-                        className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-10 w-12 h-12 bg-white rounded-full shadow-lg border border-coco-forest/10 flex items-center justify-center text-coco-forest hover:bg-coco-gold hover:text-white transition-all"
+                        className="absolute right-2 md:right-0 top-1/2 -translate-y-1/2 md:translate-x-4 z-20 w-10 h-10 md:w-12 md:h-12 bg-white/90 md:bg-white rounded-full shadow-xl border border-coco-forest/10 flex items-center justify-center text-coco-forest hover:bg-coco-gold hover:text-white transition-all"
                     >
-                        <IoIosArrowForward size={24} />
+                        <IoIosArrowForward className="w-5 h-5 md:w-6 md:h-6" />
                     </button>
 
                     <Slider ref={sliderRef} {...settings} className="shipping-carousel -mx-3">

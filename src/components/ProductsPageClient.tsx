@@ -34,7 +34,7 @@ const ProductsPageClient = ({ products, data }: ProductsPageClientProps) => {
                     <div className="absolute inset-0 bg-gradient-to-t from-coco-forest via-transparent to-transparent"></div>
                 </div>
 
-                <div className="container mx-auto px-6 relative z-10 pt-12">
+                <div className="container mx-auto px-5 relative z-10 pt-12">
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -43,10 +43,10 @@ const ProductsPageClient = ({ products, data }: ProductsPageClientProps) => {
                     >
 
                         <h1
-                            className="text-2xl sm:text-3xl md:text-5xl font-bold text-white leading-[1.1] mb-6 drop-shadow-lg max-w-4xl"
+                            className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-[1.2] mb-6 drop-shadow-lg max-w-4xl"
                             dangerouslySetInnerHTML={{ __html: data.hero_title }}
                         />
-                        <p className="text-sm md:text-base text-coco-sandy/90 mb-10 max-w-3xl mx-auto leading-relaxed drop-shadow-md">
+                        <p className="text-sm md:text-base text-coco-sandy/90 mb-8 md:mb-10 max-w-3xl mx-auto leading-relaxed drop-shadow-md">
                             {data.hero_description}
                         </p>
                     </motion.div>
@@ -59,19 +59,19 @@ const ProductsPageClient = ({ products, data }: ProductsPageClientProps) => {
             </div>
 
             {/* Sustainable Quality Section */}
-            <section className="py-24 bg-white border-t border-coco-forest/5">
-                <div className="container mx-auto px-8 md:px-16">
-                    <div className="bg-coco-forest p-12 rounded-[3rem] text-center relative overflow-hidden">
+            <section className="py-16 md:py-24 bg-white border-t border-coco-forest/5">
+                <div className="container mx-auto px-5 md:px-16">
+                    <div className="bg-coco-forest p-8 md:p-12 rounded-[2rem] md:rounded-[3rem] text-center relative overflow-hidden">
                         <div className="relative z-10 max-w-2xl mx-auto">
                             <h2 className="text-xl md:text-3xl font-bold text-white mb-6">
                                 {data.cta_title}
                             </h2>
-                            <p className="text-white/70 text-sm md:text-base mb-10">
+                            <p className="text-white/70 text-sm md:text-base mb-8 md:mb-10">
                                 {data.cta_description}
                             </p>
                             <a
                                 href="/contact"
-                                className="inline-block bg-coco-gold text-coco-forest px-10 py-4 rounded-full font-bold hover:bg-white transition-all transform hover:scale-105"
+                                className="inline-block bg-coco-gold text-coco-forest px-8 py-3 md:px-10 md:py-4 rounded-full font-bold text-sm md:text-base hover:bg-white transition-all transform hover:scale-105"
                             >
                                 {data.cta_button_text}
                             </a>

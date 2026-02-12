@@ -29,18 +29,18 @@ const ContactPageClient = ({ data }: { data: ContactData }) => {
                     <div className="absolute inset-0 bg-gradient-to-t from-coco-forest via-transparent to-transparent"></div>
                 </div>
 
-                <div className="container mx-auto px-6 relative z-10 text-center">
+                <div className="container mx-auto px-5 relative z-10 text-center">
                     <motion.span
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
-                        className="text-coco-gold font-bold uppercase tracking-widest text-sm mb-4 block"
+                        className="text-coco-gold font-bold uppercase tracking-widest text-xs md:text-sm mb-4 block"
                     >
                         {data.subtitle}
                     </motion.span>
                     <motion.h1
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        className="text-2xl sm:text-3xl md:text-5xl font-bold text-white mb-6"
+                        className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight"
                     >
                         Contact Us
                     </motion.h1>
@@ -48,7 +48,7 @@ const ContactPageClient = ({ data }: { data: ContactData }) => {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.1 }}
-                        className="text-sm md:text-base text-white/70 max-w-2xl mx-auto leading-relaxed"
+                        className="text-sm md:text-base text-white/70 max-w-2xl mx-auto leading-relaxed px-2 md:px-0"
                     >
                         {data.description}
                     </motion.p>
@@ -56,9 +56,9 @@ const ContactPageClient = ({ data }: { data: ContactData }) => {
             </section>
 
             {/* Contact Content */}
-            <section className="py-24">
-                <div className="container mx-auto px-8 md:px-16">
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+            <section className="py-16 md:py-24">
+                <div className="container mx-auto px-5 md:px-16">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
 
                         {/* Left: Info */}
                         <motion.div
@@ -69,9 +69,9 @@ const ContactPageClient = ({ data }: { data: ContactData }) => {
                             <h2 className="text-xl md:text-3xl font-bold text-coco-forest mb-10">Contact Information</h2>
 
                             <div className="space-y-10">
-                                <div className="flex gap-6 group">
-                                    <div className="w-14 h-14 bg-coco-forest/5 rounded-2xl flex items-center justify-center group-hover:bg-coco-forest group-hover:text-white transition-all">
-                                        <MapPin size={28} />
+                                <div className="flex gap-4 md:gap-6 group">
+                                    <div className="w-12 h-12 md:w-14 md:h-14 bg-coco-forest/5 rounded-xl md:rounded-2xl flex items-center justify-center group-hover:bg-coco-forest group-hover:text-white transition-all flex-shrink-0">
+                                        <MapPin size={24} className="md:w-7 md:h-7" />
                                     </div>
                                     <div>
                                         <h4 className="font-bold text-coco-forest text-base md:text-lg">Location</h4>
@@ -79,9 +79,9 @@ const ContactPageClient = ({ data }: { data: ContactData }) => {
                                     </div>
                                 </div>
 
-                                <div className="flex gap-6 group">
-                                    <div className="w-14 h-14 bg-coco-forest/5 rounded-2xl flex items-center justify-center group-hover:bg-coco-forest group-hover:text-white transition-all">
-                                        <Mail size={28} />
+                                <div className="flex gap-4 md:gap-6 group">
+                                    <div className="w-12 h-12 md:w-14 md:h-14 bg-coco-forest/5 rounded-xl md:rounded-2xl flex items-center justify-center group-hover:bg-coco-forest group-hover:text-white transition-all flex-shrink-0">
+                                        <Mail size={24} className="md:w-7 md:h-7" />
                                     </div>
                                     <div>
                                         <h4 className="font-bold text-coco-forest text-base md:text-lg">Email Inquiry</h4>
@@ -89,9 +89,9 @@ const ContactPageClient = ({ data }: { data: ContactData }) => {
                                     </div>
                                 </div>
 
-                                <div className="flex gap-6 group">
-                                    <div className="w-14 h-14 bg-coco-forest/5 rounded-2xl flex items-center justify-center group-hover:bg-coco-forest group-hover:text-white transition-all">
-                                        <Phone size={28} />
+                                <div className="flex gap-4 md:gap-6 group">
+                                    <div className="w-12 h-12 md:w-14 md:h-14 bg-coco-forest/5 rounded-xl md:rounded-2xl flex items-center justify-center group-hover:bg-coco-forest group-hover:text-white transition-all flex-shrink-0">
+                                        <Phone size={24} className="md:w-7 md:h-7" />
                                     </div>
                                     <div>
                                         <h4 className="font-bold text-coco-forest text-base md:text-lg">Phone & WhatsApp</h4>
@@ -108,7 +108,7 @@ const ContactPageClient = ({ data }: { data: ContactData }) => {
                                 </div>
                             </div>
 
-                            <div className="mt-10 p-8 bg-coco-forest rounded-[2rem] text-white">
+                            <div className="mt-10 p-7 md:p-8 bg-coco-forest rounded-2xl md:rounded-[2rem] text-white">
                                 <h4 className="text-xl font-bold mb-4 flex items-center gap-2">
                                     <MessageSquare className="text-coco-gold" />
                                     Support 24/7
@@ -136,9 +136,9 @@ const ContactPageClient = ({ data }: { data: ContactData }) => {
                             initial={{ opacity: 0, x: 20 }}
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
-                            className="bg-white p-10 md:p-12 rounded-[2.5rem] shadow-[0_20px_60px_rgba(0,0,0,0.05)] border border-coco-forest/5"
+                            className="bg-white p-7 md:p-12 rounded-2xl md:rounded-[2.5rem] shadow-[0_20px_60px_rgba(0,0,0,0.05)] border border-coco-forest/5"
                         >
-                            <h3 className="text-xl md:text-3xl font-bold text-coco-forest mb-8">Send a Message (Inquiry Form)</h3>
+                            <h3 className="text-xl md:text-3xl font-bold text-coco-forest mb-6 md:mb-8">Send a Message (Inquiry Form)</h3>
                             <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                     <div className="space-y-2">

@@ -55,7 +55,7 @@ const Hero = ({ data = [] }: HeroProps) => {
         }}
         loop
         pagination={{ clickable: true }}
-        className="h-screen"
+        className="h-[100dvh]"
       >
         {data.map((hero, index) => {
           const title = hero.title;
@@ -84,7 +84,7 @@ const Hero = ({ data = [] }: HeroProps) => {
                 </div>
 
                 {/* Content */}
-                <div className="container mx-auto px-8 md:px-16 relative z-10 text-center">
+                <div className="container mx-auto px-6 md:px-16 relative z-10 text-center">
                   <div className="max-w-4xl mx-auto">
                     <motion.div
                       initial={{ opacity: 0, y: 40 }}
@@ -92,11 +92,11 @@ const Hero = ({ data = [] }: HeroProps) => {
                       transition={{ duration: 0.8 }}
                     >
                       <h1
-                        className="text-2xl sm:text-3xl md:text-5xl font-bold text-white leading-[1.1] mb-6 drop-shadow-lg"
+                        className="text-2xl sm:text-3xl md:text-5xl font-bold text-white leading-[1.15] mb-4 md:mb-6 drop-shadow-lg"
                         dangerouslySetInnerHTML={{ __html: title }}
                       />
 
-                      <p className="text-sm md:text-base text-coco-sandy/90 mb-10 max-w-2xl mx-auto">
+                      <p className="text-sm md:text-base text-coco-sandy/90 mb-8 md:mb-10 max-w-2xl mx-auto">
                         {subtitle}
                       </p>
 
@@ -104,7 +104,7 @@ const Hero = ({ data = [] }: HeroProps) => {
                         href={ctaLink}
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
-                        className="bg-coco-gold text-coco-forest px-8 py-4 rounded-full font-bold inline-flex items-center gap-2"
+                        className="bg-coco-gold text-coco-forest px-6 py-3 md:px-8 md:py-4 rounded-full font-bold text-sm md:text-base inline-flex items-center gap-2"
                       >
                         {ctaText}
                         <ArrowRight className="w-5 h-5" />

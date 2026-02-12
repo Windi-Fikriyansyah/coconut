@@ -47,8 +47,8 @@ const TrustSection = ({ data, title = "Confidence at Scale: Your Strategic Suppl
     const items = data && data.length > 0 ? data : defaultItems;
 
     return (
-        <section className="py-24 bg-coco-sandy/50 border-t border-coco-forest/5">
-            <div className="container mx-auto px-8 md:px-16">
+        <section className="py-16 md:py-24 bg-coco-sandy/50 border-t border-coco-forest/5">
+            <div className="container mx-auto px-5 md:px-16">
                 <div className="max-w-4xl mx-auto">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
@@ -59,13 +59,13 @@ const TrustSection = ({ data, title = "Confidence at Scale: Your Strategic Suppl
                         <span className="text-coco-gold font-bold uppercase tracking-widest text-sm mb-4 block">
                             {subtitle}
                         </span>
-                        <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold text-coco-forest mb-6">
+                        <h2 className="text-3xl md:text-5xl font-bold text-coco-forest mb-6">
                             {title}
                         </h2>
                         <div className="w-24 h-1 bg-coco-gold mx-auto"></div>
                     </motion.div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
                         {items.map((item, index) => {
                             const IconComponent = iconMap[item.icon] || Factory;
                             return (

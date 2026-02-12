@@ -155,29 +155,43 @@ const WhyChooseUs = ({
   const finalImage4 = sanitizedImages[3] || propImage4 || "/vco_lab_test_1770259220705.png";
 
   return (
-    <section className={`py-28 ${bgColor}`}>
-      <div className="container mx-auto px-6 md:px-12">
+    <section className={`py-16 md:py-28 ${bgColor}`}>
+      <div className="container mx-auto px-5 md:px-12">
         {/* Judul untuk Mobile (Tampil di atas gambar) */}
 
         {/* Perubahan Penting: Menggunakan items-start agar kolom kanan bisa memanjang bebas */}
 
-        <div className="grid lg:grid-cols-2 gap-20 items-start relative">
+        <div className="grid lg:grid-cols-2 gap-10 lg:gap-20 relative">
           {/* IMAGE COLLAGE (STICKY) */}
 
-          <div className={`lg:sticky lg:top-32 h-fit hidden lg:block ${reversed ? 'lg:order-2' : 'lg:order-1'}`}>
+          <div className={`${reversed ? 'lg:order-2' : 'lg:order-1'}`}>
+            {/* Mobile Image Grid (Simplified) */}
+            <div className="lg:hidden grid grid-cols-2 gap-3 mb-8">
+              <div className="relative aspect-square rounded-2xl overflow-hidden border-2 border-coco-gold shadow-md">
+                <Image src={finalMainImage} alt="Main" fill unoptimized className="object-cover" />
+              </div>
+              <div className="grid grid-rows-2 gap-3">
+                <div className="relative rounded-2xl overflow-hidden border-2 border-coco-gold shadow-sm">
+                  <Image src={finalImage2} alt="Quality" fill unoptimized className="object-cover" />
+                </div>
+                <div className="relative rounded-2xl overflow-hidden border-2 border-coco-gold shadow-sm">
+                  <Image src={finalImage4} alt="Testing" fill unoptimized className="object-cover" />
+                </div>
+              </div>
+            </div>
+
+            {/* Desktop Image Collage (Sticky) */}
             <motion.div
               initial={{ opacity: 0, x: reversed ? 60 : -60 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
-              className="relative h-[600px] w-full"
+              className="relative h-[600px] w-full hidden lg:block lg:sticky lg:top-32"
             >
               {/* Main Frame */}
-
               <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[75%] border-[6px] border-coco-gold rounded-[40px] z-0`}></div>
 
               {/* 1. BIG CENTER IMAGE */}
-
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[70%] h-[65%] rounded-3xl overflow-hidden shadow-2xl z-10 border-4 border-white">
                 <Image
                   src={finalMainImage}
@@ -189,7 +203,6 @@ const WhyChooseUs = ({
               </div>
 
               {/* 2. TOP RIGHT/LEFT IMAGE */}
-
               <div className={`absolute top-[4%] ${reversed ? 'left-[1%]' : 'right-[1%]'} w-[30%] h-[30%] rounded-2xl overflow-hidden border-4 border-coco-gold shadow-xl z-20`}>
                 <Image
                   src={finalImage2}
@@ -201,7 +214,6 @@ const WhyChooseUs = ({
               </div>
 
               {/* 3. BOTTOM LEFT/RIGHT IMAGE */}
-
               <div className={`absolute bottom-[-9%] ${reversed ? 'right-[2%]' : 'left-[2%]'} w-[45%] h-[35%] rounded-2xl overflow-hidden border-4 border-coco-gold shadow-xl z-20`}>
                 <Image
                   src={finalImage3}
@@ -213,7 +225,6 @@ const WhyChooseUs = ({
               </div>
 
               {/* 4. BOTTOM RIGHT/LEFT IMAGE */}
-
               <div className={`absolute bottom-[1%] ${reversed ? 'left-[1%]' : 'right-[1%]'} w-[25%] h-[25%] rounded-2xl overflow-hidden border-4 border-coco-gold shadow-xl z-20`}>
                 <Image
                   src={finalImage4}
@@ -228,14 +239,14 @@ const WhyChooseUs = ({
 
           {/* CONTENT (SCROLLABLE LIST) */}
 
-          <div className={`flex flex-col min-h-screen ${reversed ? 'lg:order-1' : 'lg:order-2'}`}>
+          <div className={`flex flex-col lg:min-h-screen ${reversed ? 'lg:order-1' : 'lg:order-2'}`}>
             {/* Judul Teks */}
 
             {/* Judul untuk Desktop (Ikut terscroll ke atas bersama item) */}
 
             {/* List Items */}
 
-            <div className="space-y-6">
+            <div className="space-y-4 md:space-y-6">
               {items.map((item, index) => (
                 <motion.div
                   key={index}
@@ -243,18 +254,18 @@ const WhyChooseUs = ({
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-50px" }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="flex items-start gap-6 bg-white rounded-3xl p-7 shadow-sm hover:shadow-xl transition-all border border-transparent hover:border-coco-gold/20 group"
+                  className="flex items-start gap-4 md:gap-6 bg-white rounded-2xl md:rounded-3xl p-5 md:p-7 shadow-sm hover:shadow-xl transition-all border border-transparent hover:border-coco-gold/20 group"
                 >
                   {/* Icon Container */}
-                  <div className="min-w-[64px] h-16 rounded-2xl bg-coco-gold flex items-center justify-center group-hover:scale-110 transition-transform">
+                  <div className="min-w-[48px] h-12 md:min-w-[64px] md:h-16 rounded-xl md:rounded-2xl bg-coco-gold flex items-center justify-center group-hover:scale-110 transition-transform">
                     <DynamicIcon
                       name={item.icon}
-                      className="text-coco-forest w-8 h-8"
+                      className="text-coco-forest w-6 h-6 md:w-8 md:h-8"
                     />
                   </div>
 
                   <div>
-                    <h3 className="text-xl font-bold text-coco-forest mb-2">
+                    <h3 className="text-base md:text-xl font-bold text-coco-forest mb-1 md:mb-2">
                       {item.title}
                     </h3>
                     <p className="text-coco-forest/70 leading-relaxed text-sm md:text-base">
@@ -274,7 +285,7 @@ const WhyChooseUs = ({
             >
               <Link
                 href="/products"
-                className="inline-flex items-center gap-4 bg-coco-forest text-white px-10 py-5 rounded-full font-bold hover:bg-coco-gold hover:text-coco-forest transition-all shadow-xl group"
+                className="inline-flex items-center gap-3 md:gap-4 bg-coco-forest text-white px-8 py-4 md:px-10 md:py-5 rounded-full font-bold text-sm md:text-base hover:bg-coco-gold hover:text-coco-forest transition-all shadow-xl group"
               >
                 Explore Our Products
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />

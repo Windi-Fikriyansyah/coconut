@@ -30,12 +30,12 @@ const Contact = ({ data, isGlobal }: ContactProps) => {
   if (isGlobal && (pathname === "/" || pathname === "/gallery")) return null;
 
   return (
-    <section id="contact" className="py-24 bg-white">
-      <div className="container mx-auto px-6 md:px-16">
+    <section id="contact" className="py-16 md:py-24 bg-white">
+      <div className="container mx-auto px-5 md:px-16">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
           {/* LEFT COLUMN: INFORMATION CARD (#0f2922) */}
           <div className="lg:col-span-6">
-            <div className="h-full bg-[#0f2922] rounded-[3rem] p-8 md:p-14 text-white shadow-2xl relative overflow-hidden flex flex-col">
+            <div className="h-full bg-[#0f2922] rounded-[2rem] md:rounded-[3rem] p-8 md:p-14 text-white shadow-2xl relative overflow-hidden flex flex-col">
               <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -mr-20 -mt-20 blur-3xl" />
 
               <div className="relative z-10">
@@ -43,7 +43,7 @@ const Contact = ({ data, isGlobal }: ContactProps) => {
                   {subtitle}
                 </span>
                 <h2
-                  className="text-3xl md:text-5xl font-bold mb-8 leading-[1.2] tracking-tight"
+                  className="text-2xl md:text-3xl lg:text-5xl font-bold mb-6 md:mb-8 leading-[1.2] tracking-tight"
                   dangerouslySetInnerHTML={{ __html: title }}
                 />
                 <p className="text-white/70 text-base md:text-lg mb-12 max-w-md leading-relaxed">
@@ -61,7 +61,7 @@ const Contact = ({ data, isGlobal }: ContactProps) => {
                       <Mail className="text-coco-gold w-5 h-5" />
                     </div>
                     <div>
-                      <p className="text-[10px] font-bold uppercase tracking-widest text-white/40 mb-1">
+                      <p className="text-xs font-bold uppercase tracking-widest text-white/40 mb-1">
                         Email Address
                       </p>
                       <p className="text-base md:text-lg font-medium group-hover:text-coco-gold transition-colors">
@@ -81,7 +81,7 @@ const Contact = ({ data, isGlobal }: ContactProps) => {
                       <Phone className="text-coco-gold w-5 h-5" />
                     </div>
                     <div>
-                      <p className="text-[10px] font-bold uppercase tracking-widest text-white/40 mb-1">
+                      <p className="text-xs font-bold uppercase tracking-widest text-white/40 mb-1">
                         WhatsApp Support
                       </p>
                       <p className="text-base md:text-lg font-medium group-hover:text-coco-gold transition-colors">
@@ -96,7 +96,7 @@ const Contact = ({ data, isGlobal }: ContactProps) => {
                       <MapPin className="text-coco-gold w-5 h-5" />
                     </div>
                     <div>
-                      <p className="text-[10px] font-bold uppercase tracking-widest text-white/40 mb-1">
+                      <p className="text-xs font-bold uppercase tracking-widest text-white/40 mb-1">
                         Our Office
                       </p>
                       <p className="text-base md:text-lg font-medium">
@@ -124,12 +124,12 @@ const Contact = ({ data, isGlobal }: ContactProps) => {
               initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="h-full bg-[#fcf9f0] p-8 md:p-14 rounded-[3rem] border border-[#0f2922]/5 shadow-sm flex flex-col justify-center"
+              className="h-full bg-[#fcf9f0] p-8 md:p-14 rounded-[2rem] md:rounded-[3rem] border border-[#0f2922]/5 shadow-sm flex flex-col justify-center"
             >
               <form className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
-                    <label className="text-[10px] font-bold uppercase tracking-widest text-[#0f2922]/40 ml-1">
+                    <label className="text-xs font-bold uppercase tracking-widest text-[#0f2922]/40 ml-1">
                       Full Name
                     </label>
                     <input
@@ -139,7 +139,7 @@ const Contact = ({ data, isGlobal }: ContactProps) => {
                     />
                   </div>
                   <div className="space-y-2">
-                    <label className="text-[10px] font-bold uppercase tracking-widest text-[#0f2922]/40 ml-1">
+                    <label className="text-xs font-bold uppercase tracking-widest text-[#0f2922]/40 ml-1">
                       Email Address
                     </label>
                     <input
@@ -150,7 +150,7 @@ const Contact = ({ data, isGlobal }: ContactProps) => {
                   </div>
                 </div>
                 <div className="space-y-2">
-                  <label className="text-[10px] font-bold uppercase tracking-widest text-[#0f2922]/40 ml-1">
+                  <label className="text-xs font-bold uppercase tracking-widest text-[#0f2922]/40 ml-1">
                     Company
                   </label>
                   <input
@@ -160,7 +160,7 @@ const Contact = ({ data, isGlobal }: ContactProps) => {
                   />
                 </div>
                 <div className="space-y-2">
-                  <label className="text-[10px] font-bold uppercase tracking-widest text-[#0f2922]/40 ml-1">
+                  <label className="text-xs font-bold uppercase tracking-widest text-[#0f2922]/40 ml-1">
                     Message
                   </label>
                   <textarea

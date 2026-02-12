@@ -53,63 +53,74 @@ const About = ({ data }: AboutProps) => {
         { url: finalImages[2] || "/fallback-3.jpg", alt: "Premium Virgin Coconut Oil Processing" },
     ];
     return (
-        <section id="about" className="pt-32 pb-10 bg-coco-sandy relative overflow-hidden">
+        <section id="about" className="pt-16 md:pt-32 pb-10 bg-coco-sandy relative overflow-hidden">
             <div className="absolute -right-24 top-0 w-96 h-96 bg-coco-gold/5 rounded-full blur-3xl"></div>
 
-            <div className="container mx-auto px-8 md:px-16">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-stretch">
+            <div className="container mx-auto px-5 md:px-16">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-stretch">
+
+                    {/* IMAGE GRID */}
                     <motion.div
                         initial={{ opacity: 0, scale: 0.95 }}
                         whileInView={{ opacity: 1, scale: 1 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.8 }}
-                        className="relative h-full"
+                        className="relative"
                     >
-                        <div className="grid grid-cols-2 gap-4 h-[400px] lg:h-full">
-                            {/* Gambar 1 */}
-                            <div className="col-span-1 row-span-2 relative">
+                        <div className="grid grid-cols-2 gap-4 h-[350px] md:h-[500px] lg:h-full">
+                            {/* BIG - Left Column */}
+                            <div className="col-span-1 row-span-2 relative rounded-2xl md:rounded-3xl overflow-hidden shadow-lg group">
                                 <Image
-                                    src={galleryImages[0].url}
-                                    alt="About Image 1"
+                                    src={finalImages[0] || "/fallback-1.jpg"}
+                                    alt="PT Sumber Niaga Alam Sejahtera Coconut Production Facility"
                                     fill
-                                    unoptimized
-                                    className="object-cover rounded-3xl shadow-lg"
+                                    className="object-cover hover:scale-105 transition duration-500"
+                                    sizes="(max-width: 768px) 50vw, 25vw"
                                 />
                             </div>
-                            {/* Gambar 2 */}
-                            <div className="col-span-1 row-span-1 relative">
+
+                            {/* SMALL - Top Right */}
+                            <div className="relative rounded-2xl md:rounded-3xl overflow-hidden shadow-lg group">
                                 <Image
-                                    src={galleryImages[1].url}
-                                    alt="About Image 2"
+                                    src={finalImages[1] || "/fallback-2.jpg"}
+                                    alt="Quality Control of Coconut Briquettes"
                                     fill
-                                    className="object-cover rounded-3xl shadow-lg"
+                                    className="object-cover hover:scale-105 transition duration-500"
+                                    sizes="(max-width: 768px) 50vw, 25vw"
                                 />
                             </div>
-                            {/* Gambar 3 */}
-                            <div className="col-span-1 row-span-1 relative">
+
+                            {/* SMALL - Bottom Right */}
+                            <div className="relative rounded-2xl md:rounded-3xl overflow-hidden shadow-lg group">
                                 <Image
-                                    src={galleryImages[2].url}
-                                    alt="About Image 3"
+                                    src={finalImages[2] || "/fallback-3.jpg"}
+                                    alt="Premium Virgin Coconut Oil Processing"
                                     fill
-                                    className="object-cover rounded-3xl shadow-lg"
+                                    className="object-cover hover:scale-105 transition duration-500"
+                                    sizes="(max-width: 768px) 50vw, 25vw"
                                 />
                             </div>
                         </div>
                     </motion.div>
 
+                    {/* TEXT */}
                     <motion.div
-                        initial={{ opacity: 0, x: 50 }}
+                        initial={{ opacity: 0, x: 40 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
+                        className="flex flex-col justify-center"
                     >
-                        <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold text-coco-gold mb-8 leading-tight"
+                        <span className="text-coco-gold font-bold uppercase tracking-widest text-xs md:text-sm mb-4 block">
+                            Our Commitment to Excellence
+                        </span>
+
+                        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-coco-gold mb-8 leading-tight"
                             dangerouslySetInnerHTML={{ __html: title }}
                         />
                         <p className="text-coco-forest/70 text-sm md:text-base mb-8 leading-relaxed">
                             {aboutText}
                         </p>
-
-                        <Link href={buttonLink} className="inline-block bg-coco-forest text-coco-sandy px-10 py-4 rounded-full font-bold hover:bg-coco-leaf transition-all">
+                        <Link href={buttonLink} className="inline-block w-fit bg-coco-forest text-coco-sandy px-10 py-4 rounded-full font-bold hover:bg-coco-leaf transition-all">
                             {data?.button_text || "Read More"}
                         </Link>
                     </motion.div>

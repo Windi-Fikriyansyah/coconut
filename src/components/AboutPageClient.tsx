@@ -39,7 +39,7 @@ export default function AboutPageClient({ data }: { data: AboutPageData }) {
                     <div className="absolute inset-0 bg-gradient-to-t from-coco-forest via-transparent to-transparent"></div>
                 </div>
 
-                <div className="container mx-auto px-6 relative z-10 pt-12">
+                <div className="container mx-auto px-5 relative z-10 pt-12">
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -49,15 +49,15 @@ export default function AboutPageClient({ data }: { data: AboutPageData }) {
                         <motion.span
                             initial={{ opacity: 0, y: 10 }}
                             animate={{ opacity: 1, y: 0 }}
-                            className="text-coco-gold font-bold uppercase tracking-widest text-sm mb-4 block drop-shadow-md"
+                            className="text-coco-gold font-bold uppercase tracking-widest text-xs md:text-sm mb-4 block drop-shadow-md"
                         >
                             {data.hero_badge}
                         </motion.span>
                         <h1
-                            className="text-2xl sm:text-3xl md:text-5xl font-bold text-white leading-[1.1] mb-6 drop-shadow-lg max-w-4xl"
+                            className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-[1.2] mb-6 drop-shadow-lg max-w-4xl"
                             dangerouslySetInnerHTML={{ __html: data.hero_title }}
                         />
-                        <p className="text-sm md:text-base text-coco-sandy/90 mb-10 max-w-2xl mx-auto leading-relaxed drop-shadow-md">
+                        <p className="text-sm md:text-base text-coco-sandy/90 mb-8 md:mb-10 max-w-2xl mx-auto leading-relaxed drop-shadow-md">
                             {data.hero_description}
                         </p>
                     </motion.div>
@@ -101,13 +101,13 @@ export default function AboutPageClient({ data }: { data: AboutPageData }) {
             </section> */}
 
             {/* Our Journey */}
-            <section className="py-32 bg-coco-sandy relative overflow-hidden">
+            <section className="py-16 md:py-32 bg-coco-sandy relative overflow-hidden">
 
                 {/* glow effect */}
                 <div className="absolute -right-24 top-0 w-96 h-96 bg-coco-gold/5 rounded-full blur-3xl"></div>
 
-                <div className="container mx-auto px-8 md:px-16">
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-stretch">
+                <div className="container mx-auto px-5 md:px-16">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-stretch">
 
 
 
@@ -118,26 +118,26 @@ export default function AboutPageClient({ data }: { data: AboutPageData }) {
                             viewport={{ once: true }}
                         >
 
-                            <span className="text-coco-gold font-bold uppercase tracking-widest text-sm">
+                            <span className="text-coco-gold font-bold uppercase tracking-widest text-xs md:text-sm">
                                 Our Journey
                             </span>
 
-                            <h2 className="text-4xl md:text-5xl font-bold text-coco-forest mb-8 leading-tight mt-4">
+                            <h2 className="text-3xl md:text-5xl font-bold text-coco-forest mb-6 md:mb-8 leading-tight mt-4">
                                 {data.journey_title}
                             </h2>
 
-                            <p className="text-coco-forest/60 text-base leading-relaxed mb-6">
+                            <p className="text-coco-forest/60 text-sm md:text-base leading-relaxed mb-6">
                                 {data.journey_description_1}
                             </p>
 
-                            <p className="text-coco-forest/60 text-base leading-relaxed mb-10">
+                            <p className="text-coco-forest/60 text-sm md:text-base leading-relaxed mb-8 md:mb-10">
                                 {data.journey_description_2}
                             </p>
 
                             {/* OPTIONAL BUTTON */}
                             <Link
                                 href="/contact"
-                                className="inline-block bg-coco-forest text-coco-sandy px-10 py-4 rounded-full font-bold hover:bg-coco-leaf transition-all"
+                                className="inline-block w-fit bg-coco-forest text-coco-sandy px-8 py-3 md:px-10 md:py-4 rounded-full font-bold text-sm md:text-base hover:bg-coco-leaf transition-all"
                             >
                                 Contact Us
                             </Link>
@@ -151,12 +151,12 @@ export default function AboutPageClient({ data }: { data: AboutPageData }) {
                             whileInView={{ opacity: 1, scale: 1 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.8 }}
-                            className="relative h-full"
+                            className="relative"
                         >
-                            <div className="grid grid-cols-2 gap-4 h-full">
+                            <div className="grid grid-cols-2 gap-3 md:gap-4 h-[450px] md:h-[500px] lg:h-full">
 
                                 {/* BIG - Left Column */}
-                                <div className="col-span-1 row-span-2 relative rounded-3xl overflow-hidden shadow-lg group">
+                                <div className="col-span-1 row-span-2 relative rounded-2xl md:rounded-3xl overflow-hidden shadow-lg group">
                                     <Image
                                         src={data.journey_image?.[0] || '/placeholder.png'}
                                         alt="Our Journey"
@@ -166,7 +166,7 @@ export default function AboutPageClient({ data }: { data: AboutPageData }) {
                                 </div>
 
                                 {/* SMALL - Top Right */}
-                                <div className="relative rounded-3xl overflow-hidden shadow-lg group">
+                                <div className="relative rounded-2xl md:rounded-3xl overflow-hidden shadow-lg group">
                                     <Image
                                         src={data.journey_image?.[1] || data.journey_image?.[0] || '/placeholder.png'}
                                         alt="Production"
@@ -176,7 +176,7 @@ export default function AboutPageClient({ data }: { data: AboutPageData }) {
                                 </div>
 
                                 {/* SMALL - Bottom Right */}
-                                <div className="relative rounded-3xl overflow-hidden shadow-lg group">
+                                <div className="relative rounded-2xl md:rounded-3xl overflow-hidden shadow-lg group">
                                     <Image
                                         src={data.journey_image?.[2] || data.journey_image?.[0] || '/placeholder.png'}
                                         alt="Testing"
@@ -194,16 +194,16 @@ export default function AboutPageClient({ data }: { data: AboutPageData }) {
 
             {/* Commitment Section */}
             {data.commitment_title && (
-                <section className="py-24 bg-white relative overflow-hidden">
-                    <div className="container mx-auto px-8 md:px-16">
-                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <section className="py-16 md:py-24 bg-white relative overflow-hidden">
+                    <div className="container mx-auto px-5 md:px-16">
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
                             <motion.div
                                 initial={{ opacity: 0, x: -30 }}
                                 whileInView={{ opacity: 1, x: 0 }}
                                 viewport={{ once: true }}
                                 className="order-2 lg:order-1"
                             >
-                                <div className="relative rounded-3xl overflow-hidden shadow-2xl">
+                                <div className="relative rounded-2xl md:rounded-3xl overflow-hidden shadow-2xl">
                                     <Image
                                         src={data.commitment_image}
                                         alt={data.commitment_title}
@@ -219,8 +219,8 @@ export default function AboutPageClient({ data }: { data: AboutPageData }) {
                                 viewport={{ once: true }}
                                 className="order-1 lg:order-2"
                             >
-                                <h2 className="text-3xl md:text-5xl font-bold text-coco-forest mb-8 leading-tight">{data.commitment_title}</h2>
-                                <p className="text-coco-forest/60 text-base md:text-lg leading-relaxed mb-6">
+                                <h2 className="text-3xl md:text-5xl font-bold text-coco-forest mb-6 md:mb-8 leading-tight">{data.commitment_title}</h2>
+                                <p className="text-coco-forest/60 text-sm md:text-lg leading-relaxed mb-6">
                                     {data.commitment_description}
                                 </p>
                             </motion.div>
@@ -231,14 +231,14 @@ export default function AboutPageClient({ data }: { data: AboutPageData }) {
 
             {/* Our Process Section */}
             {data.process_title && (
-                <section className="pt-20 pb-32 bg-coco-sandy">
-                    <div className="container mx-auto px-8 md:px-16">
-                        <div className="text-center mb-20">
+                <section className="pt-16 md:pt-20 pb-20 md:pb-32 bg-coco-sandy">
+                    <div className="container mx-auto px-5 md:px-16">
+                        <div className="text-center mb-12 md:mb-20">
                             <motion.span
                                 initial={{ opacity: 0, y: 10 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
-                                className="text-coco-gold font-bold uppercase tracking-widest text-sm mb-4 block"
+                                className="text-coco-gold font-bold uppercase tracking-widest text-xs md:text-sm mb-4 block"
                             >
                                 {data.process_subtitle || "Methodology"}
                             </motion.span>
@@ -247,7 +247,7 @@ export default function AboutPageClient({ data }: { data: AboutPageData }) {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ delay: 0.1 }}
-                                className="text-4xl md:text-6xl font-bold text-coco-forest"
+                                className="text-3xl md:text-6xl font-bold text-coco-forest"
                             >
                                 {data.process_title}
                             </motion.h2>
@@ -261,7 +261,7 @@ export default function AboutPageClient({ data }: { data: AboutPageData }) {
                                     whileInView={{ opacity: 1, y: 0 }}
                                     viewport={{ once: true }}
                                     transition={{ delay: idx * 0.1 }}
-                                    className="relative group aspect-[4/5] rounded-[2.5rem] overflow-hidden shadow-xl"
+                                    className="relative group aspect-[4/5] rounded-[2rem] md:rounded-[2.5rem] overflow-hidden shadow-xl"
                                 >
                                     <Image
                                         src={item.image}
@@ -299,7 +299,7 @@ export default function AboutPageClient({ data }: { data: AboutPageData }) {
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            className="bg-white/5 backdrop-blur-md p-10 rounded-3xl border border-white/10"
+                            className="bg-white/5 backdrop-blur-md p-6 md:p-10 rounded-2xl md:rounded-3xl border border-white/10"
                         >
                             <div className="w-16 h-16 bg-coco-gold rounded-2xl flex items-center justify-center mb-6">
                                 <Eye className="text-coco-forest" size={32} />
@@ -315,7 +315,7 @@ export default function AboutPageClient({ data }: { data: AboutPageData }) {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: 0.1 }}
-                            className="bg-white/5 backdrop-blur-md p-10 rounded-3xl border border-white/10"
+                            className="bg-white/5 backdrop-blur-md p-6 md:p-10 rounded-2xl md:rounded-3xl border border-white/10"
                         >
                             <div className="w-16 h-16 bg-coco-gold rounded-2xl flex items-center justify-center mb-6">
                                 <Target className="text-coco-forest" size={32} />
@@ -337,7 +337,7 @@ export default function AboutPageClient({ data }: { data: AboutPageData }) {
             {/* Values Section */}
             <section className="py-24">
                 <div className="container mx-auto px-6">
-                    <div className="text-center mb-16">
+                    <div className="text-center mb-10 md:mb-16">
                         <h2 className="text-3xl md:text-4xl font-bold text-coco-forest mb-4">Core Values</h2>
                         <div className="w-20 h-1 bg-coco-gold mx-auto"></div>
                     </div>

@@ -44,7 +44,7 @@ const GalleryPageClient = ({ images, metadata }: GalleryPageClientProps) => {
                     <div className="absolute inset-0 bg-gradient-to-t from-coco-forest via-transparent to-transparent"></div>
                 </div>
 
-                <div className="container mx-auto px-6 relative z-10 pt-12">
+                <div className="container mx-auto px-5 relative z-10 pt-12">
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -54,16 +54,16 @@ const GalleryPageClient = ({ images, metadata }: GalleryPageClientProps) => {
                         <motion.span
                             initial={{ opacity: 0, y: 10 }}
                             animate={{ opacity: 1, y: 0 }}
-                            className="text-coco-gold font-bold uppercase tracking-widest text-sm mb-4 block drop-shadow-md"
+                            className="text-coco-gold font-bold uppercase tracking-widest text-xs md:text-sm mb-4 block drop-shadow-md"
                         >
                             {subtitle}
                         </motion.span>
                         <h1
-                            className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold text-white leading-[1.1] mb-6 drop-shadow-lg max-w-4xl"
+                            className="text-3xl md:text-5xl lg:text-6xl font-bold text-white leading-[1.2] mb-6 drop-shadow-lg max-w-4xl"
                         >
                             {title}
                         </h1>
-                        <p className="text-sm md:text-base text-coco-sandy/90 mb-10 max-w-2xl mx-auto leading-relaxed drop-shadow-md">
+                        <p className="text-sm md:text-base text-coco-sandy/90 mb-8 md:mb-10 max-w-2xl mx-auto leading-relaxed drop-shadow-md">
                             {description}
                         </p>
                     </motion.div>
@@ -71,9 +71,9 @@ const GalleryPageClient = ({ images, metadata }: GalleryPageClientProps) => {
             </section>
 
             {/* Gallery Grid */}
-            <section className="pt-24 pb-32 px-4">
-                <div className="container mx-auto px-4 md:px-8">
-                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4">
+            <section className="py-16 md:pt-24 md:pb-32 px-4">
+                <div className="container mx-auto px-5 md:px-8">
+                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-3 md:gap-4">
                         {displayImages.map((image, index) => (
                             <motion.div
                                 key={index}
@@ -81,7 +81,7 @@ const GalleryPageClient = ({ images, metadata }: GalleryPageClientProps) => {
                                 whileInView={{ opacity: 1, scale: 1 }}
                                 viewport={{ once: true }}
                                 transition={{ delay: index * 0.05 }}
-                                className="group relative rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 cursor-pointer"
+                                className="group relative rounded-2xl md:rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 cursor-pointer"
                             >
                                 <div className="aspect-square relative font-bold">
                                     <Image

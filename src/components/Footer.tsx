@@ -23,9 +23,9 @@ const Footer = ({ products, data }: { products?: Product[]; data?: FooterSetting
       ];
 
   return (
-    <footer className="bg-coco-sandy pt-24 pb-12 border-t border-coco-forest/10">
-      <div className="container mx-auto px-8 md:px-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 mb-20">
+    <footer className="bg-coco-sandy pt-16 md:pt-24 pb-8 md:pb-12 border-t border-coco-forest/10">
+      <div className="container mx-auto px-5 md:px-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 md:gap-16 mb-12 md:mb-20">
           {/* Brand Col */}
           <div className="lg:col-span-1">
             <Link href="/" className="inline-block mb-8">
@@ -136,7 +136,7 @@ const Footer = ({ products, data }: { products?: Product[]; data?: FooterSetting
           </div> */}
         </div>
 
-        <div className="pt-12 border-t border-coco-forest/10 flex flex-col md:flex-row justify-between items-center gap-6">
+        <div className="pt-8 md:pt-12 border-t border-coco-forest/10 flex flex-col md:flex-row justify-between items-center gap-6 text-center md:text-left">
           <div className="text-xs text-coco-forest/40 font-medium">
             © 2026 PT Sumber Niaga Alam Sejahtera. ALL RIGHTS RESERVED.
           </div>
