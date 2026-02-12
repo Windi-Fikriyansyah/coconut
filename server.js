@@ -21,44 +21,7 @@ app.prepare().then(() => {
             const parsedUrl = parse(req.url, true);
             const { pathname, query } = parsedUrl;
 
-            // Handle static file uploads directly to bypass Next.js build-time caching
-            if (pathname && (pathname.startsWith('/uploads/') || pathname.startsWith('/produk/') || pathname.startsWith('/storage/'))) {
-                try {
-                    const decodedPath = decodeURIComponent(pathname);
-                    // Standardize path: remove /storage prefix if it exists
-                    let normalizedPath = decodedPath.startsWith('/storage/')
-                        ? decodedPath.substring(8) // remove /storage
-                        : decodedPath;
-
-                    // Remove leading slash to join correctly with __dirname
-                    const filePath = path.join(__dirname, 'public', normalizedPath.substring(1));
-
-                    if (fs.existsSync(filePath) && fs.statSync(filePath).isFile()) {
-                        const ext = path.extname(filePath).toLowerCase();
-                        const mimeTypes = {
-                            '.jpg': 'image/jpeg',
-                            '.jpeg': 'image/jpeg',
-                            '.png': 'image/png',
-                            '.webp': 'image/webp',
-                            '.svg': 'image/svg+xml',
-                            '.gif': 'image/gif',
-                            '.avif': 'image/avif',
-                            '.pdf': 'application/pdf'
-                        };
-                        const contentType = mimeTypes[ext] || 'application/octet-stream';
-
-                        res.setHeader('Content-Type', contentType);
-                        // Ensure clients always check for the latest version
-                        res.setHeader('Cache-Control', 'public, max-age=0, must-revalidate');
-
-                        const stream = fs.createReadStream(filePath);
-                        stream.pipe(res);
-                        return;
-                    }
-                } catch (err) {
-                    console.error('Error serving static file:', err);
-                }
-            }
+            // Let Next.js handle all requests, including static files in /public
 
             if (pathname === '/a') {
                 await app.render(req, res, '/a', query);

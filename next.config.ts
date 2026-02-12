@@ -5,7 +5,11 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: '**',
+        hostname: 'indonesiacoco.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'globalcocoprime.com',
       },
       {
         protocol: 'http',
@@ -17,7 +21,12 @@ const nextConfig: NextConfig = {
         hostname: '127.0.0.1',
         port: '3000',
       },
+      {
+        protocol: 'https',
+        hostname: '**',
+      },
     ],
+    formats: ['image/webp'],
   },
 };
 
