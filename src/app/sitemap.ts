@@ -2,7 +2,7 @@ import { MetadataRoute } from 'next';
 import { getProducts, getBlogPosts } from '@/lib/data';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-    const baseUrl = 'https://coconiagaalam.com'; // Ganti dengan domain Anda jika perlu
+    const baseUrl = 'https://indonesiacoco.com'; // Ganti dengan domain Anda jika perlu
 
     const [products, blogPosts] = await Promise.all([
         getProducts(),

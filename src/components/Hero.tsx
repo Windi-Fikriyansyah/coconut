@@ -1,6 +1,8 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowRight, ArrowLeft } from "lucide-react";
 import { HeroData } from "@/lib/data";
@@ -66,13 +68,17 @@ const Hero = ({ data = [] }: HeroProps) => {
           return (
             <SwiperSlide key={index}>
               <div className="relative min-h-[100dvh] flex items-center justify-center">
-                {/* Background */}
-                <div
-                  className="absolute inset-0 bg-cover bg-center"
-                  style={{
-                    backgroundImage: `url("${backgroundImage}")`,
-                  }}
-                >
+                {/* Background Image with Next.js Optimization */}
+                <div className="absolute inset-0 z-0">
+                  <Image
+                    src={backgroundImage}
+                    alt={title.replace(/<[^>]*>?/gm, '')} // Strip HTML for alt text
+                    fill
+                    priority={index === 0} // High priority for the first slide
+                    className="object-cover"
+                    sizes="100vw"
+                    quality={90}
+                  />
                   <div className="absolute inset-0 bg-black/50"></div>
                   <div className="absolute inset-0 bg-gradient-to-t from-coco-forest via-transparent to-transparent"></div>
                 </div>

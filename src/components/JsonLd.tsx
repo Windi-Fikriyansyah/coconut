@@ -5,19 +5,29 @@ const JsonLd = () => {
         "@context": "https://schema.org",
         "@type": "Organization",
         "name": "PT Sumber Niaga Alam Sejahtera",
-        "url": "https://globalcocoprime.com",
-        "logo": "https://globalcocoprime.com/logo.png",
-        "description": "Premium Coconut Derivatives Exporter for the Global Market",
+        "url": "https://indonesiacoco.com",
+        "logo": "https://indonesiacoco.com/logo.png",
+        "description": "Global exporter of premium coconut derivatives from Indonesia: Charcoal Briquettes, VCO, Desiccated Coconut, and more.",
         "address": {
             "@type": "PostalAddress",
+            "streetAddress": "Grand Slipi Tower",
             "addressLocality": "Jakarta",
+            "addressRegion": "DKI Jakarta",
+            "postalCode": "11480",
             "addressCountry": "ID"
         },
         "contactPoint": {
             "@type": "ContactPoint",
             "telephone": "+62-812-3456-7890",
-            "contactType": "Sales"
-        }
+            "contactType": "Sales",
+            "areaServed": "Worldwide",
+            "availableLanguage": ["English", "Indonesian"]
+        },
+        "sameAs": [
+            "https://facebook.com/indonesiacoco",
+            "https://linkedin.com/company/indonesiacoco",
+            "https://instagram.com/indonesiacoco"
+        ]
     };
 
     const productSchema = {
@@ -28,13 +38,19 @@ const JsonLd = () => {
                 "@type": "ListItem",
                 "position": 1,
                 "name": "Coconut Charcoal Briquettes",
-                "description": "Grade A premium coconut charcoal long-burning."
+                "description": "Premium Grade A coconut charcoal briquettes for shisha and BBQ."
             },
             {
                 "@type": "ListItem",
                 "position": 2,
-                "name": "Virgin Coconut Oil",
-                "description": "Organic cold-pressed virgin coconut oil."
+                "name": "Virgin Coconut Oil (VCO)",
+                "description": "Extra virgin cold-pressed coconut oil, organic certified."
+            },
+            {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "Desiccated Coconut",
+                "description": "High-quality desiccated coconut for industrial food production."
             }
         ]
     };

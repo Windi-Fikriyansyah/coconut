@@ -5,6 +5,7 @@ import Navbar from '@/components/Navbar';
 import { motion } from 'framer-motion';
 import { Calendar, User, ArrowRight, Tag, ChevronLeft } from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { BlogPost } from '@/lib/data';
 
 interface BlogPageClientProps {
@@ -20,8 +21,15 @@ const BlogPageClient = ({ posts, currentPage, totalPages }: BlogPageClientProps)
 
             {/* Hero Header */}
             <section className="relative pt-32 pb-20 bg-coco-forest overflow-hidden text-center">
-                <div className="absolute inset-0 opacity-10">
-                    <img src="https://images.unsplash.com/photo-1591193510594-106bdcb12a76?q=80&w=1600&auto=format&fit=crop" className="w-full h-full object-cover" alt="" />
+                <div className="absolute inset-0 z-0">
+                    <Image
+                        src="https://images.unsplash.com/photo-1591193510594-106bdcb12a76?q=80&w=1600&auto=format&fit=crop"
+                        alt="Indonesia Coconut Industry Development"
+                        fill
+                        priority
+                        className="object-cover opacity-20"
+                        sizes="100vw"
+                    />
                 </div>
                 <div className="container mx-auto px-6 relative z-10">
                     <motion.h1

@@ -2,6 +2,16 @@ import React from 'react';
 import AboutPageClient from '@/components/AboutPageClient';
 import { getAboutPageData } from '@/lib/data';
 import { notFound } from 'next/navigation';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+    title: 'About Us | PT Sumber Niaga Alam Sejahtera',
+    description: 'Learn about our journey as Indonesia\'s leading coconut derivatives exporter. Committed to quality, sustainability, and global excellence since our establishment.',
+    openGraph: {
+        title: 'About PT Sumber Niaga Alam Sejahtera | Coconut Derivative Experts',
+        description: 'Discover our mission, vision, and the values that drive our commitment to supplying the world\'s finest coconut products.',
+    }
+};
 
 export const revalidate = 0;
 

@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Navbar from '@/components/Navbar';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin, Send, MessageSquare } from 'lucide-react';
 import { ContactData } from '@/lib/data';
@@ -14,12 +15,16 @@ const ContactPageClient = ({ data }: { data: ContactData }) => {
             {/* Hero Header */}
             <section className="relative min-h-[100dvh] flex items-center justify-center overflow-hidden">
                 {/* Background with overlay */}
-                <div
-                    className="absolute inset-0 bg-cover bg-center z-0"
-                    style={{
-                        backgroundImage: `url("${(data as any).hero_image || '/background_hero.webp'}")`,
-                    }}
-                >
+                <div className="absolute inset-0 z-0">
+                    <Image
+                        src={(data as any).hero_image || '/background_hero.webp'}
+                        alt="Contact Us - PT Sumber Niaga Alam Sejahtera"
+                        fill
+                        priority
+                        className="object-cover"
+                        sizes="100vw"
+                        quality={90}
+                    />
                     <div className="absolute inset-0 bg-black/60"></div>
                     <div className="absolute inset-0 bg-gradient-to-t from-coco-forest via-transparent to-transparent"></div>
                 </div>

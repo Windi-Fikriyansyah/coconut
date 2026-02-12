@@ -48,9 +48,9 @@ const About = ({ data }: AboutProps) => {
 
     // 3. Mapping ke variabel gallery
     const galleryImages = [
-        { url: finalImages[0] || "/fallback-1.jpg", alt: "Production 1" },
-        { url: finalImages[1] || "/fallback-2.jpg", alt: "Production 2" },
-        { url: finalImages[2] || "/fallback-3.jpg", alt: "Production 3" },
+        { url: finalImages[0] || "/fallback-1.jpg", alt: "PT Sumber Niaga Alam Sejahtera Coconut Production Facility" },
+        { url: finalImages[1] || "/fallback-2.jpg", alt: "Quality Control of Coconut Briquettes" },
+        { url: finalImages[2] || "/fallback-3.jpg", alt: "Premium Virgin Coconut Oil Processing" },
     ];
     return (
         <section id="about" className="pt-32 pb-10 bg-coco-sandy relative overflow-hidden">

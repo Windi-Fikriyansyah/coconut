@@ -18,16 +18,19 @@ export const metadata: Metadata = {
   title: "Indonesia Coconut Supplier | PT Sumber Niaga Alam Sejahtera",
   description: "Global exporter of premium coconut derivatives: Charcoal Briquettes, VCO, Desiccated Coconut, Cocopeat, and Organic Coconut Sugar. ISO Certified & Sustainable sourcing from Indonesia.",
   keywords: "Indonesia coconut exporter, coconut charcoal briquettes supplier, bulk virgin coconut oil, desiccated coconut factory, organic coconut sugar wholesale, cocopeat and cocofiber exporter, coconut milk distributor, copra supplier Indonesia",
+  alternates: {
+    canonical: '/',
+  },
   openGraph: {
     title: "Premium Coconut Derivatives Exporter | PT Sumber Niaga Alam Sejahtera",
     description: "Your trusted partner for high-quality coconut products from Indonesia. We supply Briquettes, VCO, Cocopeat, and more for global industrial needs.",
-    url: "https://indonesiacoco.com", // Ganti dengan domain Anda
+    url: "https://indonesiacoco.com",
     type: "website",
     locale: "en_US",
     siteName: "PT Sumber Niaga Alam Sejahtera",
     images: [
       {
-        url: "/og-image.webp", // Pastikan ada gambar menarik untuk share link
+        url: "/og-image.webp",
         width: 1200,
         height: 630,
         alt: "PT Sumber Niaga Alam Sejahtera Coconut Products",
@@ -54,8 +57,8 @@ export default async function RootLayout({
 
 
   return (
-    <html lang="en" className="scroll-smooth" suppressHydrationWarning>
-      <body className={`${inter.variable} font-sans antialiased`} suppressHydrationWarning>
+    <html lang="en" className="scroll-smooth">
+      <body className={`${inter.variable} font-sans antialiased`}>
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-RH8PHKT37C"
           strategy="afterInteractive"
