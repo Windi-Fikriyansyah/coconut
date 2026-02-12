@@ -79,10 +79,14 @@ const BlogPostPageClient = ({ post }: BlogPostPageClientProps) => {
                             className="bg-white p-10 md:p-16 rounded-[3rem] shadow-2xl shadow-coco-forest/5 border border-coco-forest/5"
                         >
                             <div
-                                className="prose prose-lg max-w-none text-coco-forest/70 leading-relaxed
+                                className="blog-content prose prose-lg max-w-none text-coco-forest/70 leading-relaxed
                                     prose-headings:text-coco-forest prose-headings:font-bold
                                     prose-p:mb-6 prose-strong:text-coco-forest
-                                    prose-img:rounded-3xl prose-img:shadow-xl prose-img:my-12"
+                                    prose-img:rounded-3xl prose-img:shadow-xl prose-img:my-8
+                                    prose-li:marker:text-coco-gold
+                                    prose-blockquote:border-l-4 prose-blockquote:border-coco-gold 
+                                    prose-blockquote:bg-coco-sandy/50 prose-blockquote:px-6 prose-blockquote:py-4 
+                                    prose-blockquote:not-italic prose-blockquote:rounded-r-lg"
                                 dangerouslySetInnerHTML={{ __html: post.content }}
                             />
                         </motion.div>

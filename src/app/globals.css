@@ -71,3 +71,21 @@ body {
   color: var(--color-coco-forest);
   font-weight: 700;
 }
+
+/* Blog Content Customizations */
+.blog-content img[style*="height"] {
+  margin-top: 0.5rem !important;
+  margin-bottom: 0.5rem !important;
+  display: inline-block;
+}
+
+.blog-content ul {
+  list-style-type: disc;
+  padding-left: 1.625rem;
+  margin-top: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
+.blog-content ul li::marker {
+  color: var(--color-coco-gold);
+}
