@@ -30,7 +30,7 @@ const Footer = ({ products, data }: { products?: Product[]; data?: FooterSetting
           <div className="lg:col-span-1">
             <Link href="/" className="inline-block mb-8">
               <Image
-                src="/logo.png"
+                src="/logo3.webp"
                 alt="PT Sumber Niaga Alam Sejahtera Logo"
                 width={160}
                 height={40}
