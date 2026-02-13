@@ -33,7 +33,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
     >
       <Link
         href={`/products/${slug}`}
-        className="relative h-36 md:h-48 overflow-hidden block"
+        className="relative h-64 md:h-48 overflow-hidden block"
       >
         <Image
           src={image}
@@ -53,7 +53,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
         {/* <p className="text-coco-forest/60 text-sm leading-relaxed mb-6 flex-1">
           {description}
         </p> */}
-        <div className="mt-auto flex flex-col items-start gap-2 sm:flex-row sm:items-center sm:justify-start sm:gap-3">
+        <div className="mt-auto flex flex-row items-center justify-between sm:justify-start gap-3">
           <Link
             href={`/products/${slug}`}
             className="flex items-center justify-center gap-1.5 md:gap-2 whitespace-nowrap text-coco-forest font-bold text-xs hover:text-coco-gold transition-colors"
