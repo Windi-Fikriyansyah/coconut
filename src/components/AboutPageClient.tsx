@@ -146,6 +146,7 @@ export default function AboutPageClient({ data }: { data: AboutPageData }) {
 
 
                         {/* IMAGE GRID */}
+                        {/* IMAGE GRID */}
                         <motion.div
                             initial={{ opacity: 0, scale: 0.95 }}
                             whileInView={{ opacity: 1, scale: 1 }}
@@ -153,36 +154,75 @@ export default function AboutPageClient({ data }: { data: AboutPageData }) {
                             transition={{ duration: 0.8 }}
                             className="relative"
                         >
-                            <div className="grid grid-cols-2 gap-3 md:gap-4 h-[450px] md:h-[500px] lg:h-full">
+                            {/* Grid container: di desktop h-full agar sama tinggi dengan teks, di mobile auto */}
+                            <div className="grid grid-cols-2 gap-3 md:gap-4 h-auto lg:h-full items-start">
 
                                 {/* BIG - Left Column */}
-                                <div className="col-span-1 row-span-2 relative rounded-2xl md:rounded-3xl overflow-hidden shadow-lg group">
-                                    <Image
-                                        src={data.journey_image?.[0] || '/placeholder.png'}
-                                        alt="Our Journey"
-                                        fill
-                                        className="object-cover hover:scale-105 transition duration-500"
-                                    />
+                                <div className="col-span-1 row-span-2 relative rounded-2xl md:rounded-3xl overflow-hidden shadow-lg group bg-white/5">
+                                    {/* Mobile: Tampil Full (h-auto) */}
+                                    <div className="block lg:hidden">
+                                        <Image
+                                            src={data.journey_image?.[0] || '/placeholder.png'}
+                                            alt="Our Journey"
+                                            width={500}
+                                            height={700}
+                                            className="w-full h-auto object-contain"
+                                        />
+                                    </div>
+                                    {/* Desktop: Tetap Fill Container agar layout konsisten */}
+                                    <div className="hidden lg:block absolute inset-0">
+                                        <Image
+                                            src={data.journey_image?.[0] || '/placeholder.png'}
+                                            alt="Our Journey"
+                                            fill
+                                            className="object-cover hover:scale-105 transition duration-500"
+                                            sizes="25vw"
+                                        />
+                                    </div>
                                 </div>
 
                                 {/* SMALL - Top Right */}
-                                <div className="relative rounded-2xl md:rounded-3xl overflow-hidden shadow-lg group">
-                                    <Image
-                                        src={data.journey_image?.[1] || data.journey_image?.[0] || '/placeholder.png'}
-                                        alt="Production"
-                                        fill
-                                        className="object-cover hover:scale-105 transition duration-500"
-                                    />
+                                <div className="relative rounded-2xl md:rounded-3xl overflow-hidden shadow-lg group bg-white/5">
+                                    <div className="block lg:hidden">
+                                        <Image
+                                            src={data.journey_image?.[1] || data.journey_image?.[0] || '/placeholder.png'}
+                                            alt="Production"
+                                            width={500}
+                                            height={350}
+                                            className="w-full h-auto object-contain"
+                                        />
+                                    </div>
+                                    <div className="hidden lg:block relative aspect-square lg:h-full lg:min-h-[150px]">
+                                        <Image
+                                            src={data.journey_image?.[1] || data.journey_image?.[0] || '/placeholder.png'}
+                                            alt="Production"
+                                            fill
+                                            className="object-cover hover:scale-105 transition duration-500"
+                                            sizes="25vw"
+                                        />
+                                    </div>
                                 </div>
 
                                 {/* SMALL - Bottom Right */}
-                                <div className="relative rounded-2xl md:rounded-3xl overflow-hidden shadow-lg group">
-                                    <Image
-                                        src={data.journey_image?.[2] || data.journey_image?.[0] || '/placeholder.png'}
-                                        alt="Testing"
-                                        fill
-                                        className="object-cover hover:scale-105 transition duration-500"
-                                    />
+                                <div className="relative rounded-2xl md:rounded-3xl overflow-hidden shadow-lg group bg-white/5">
+                                    <div className="block lg:hidden">
+                                        <Image
+                                            src={data.journey_image?.[2] || data.journey_image?.[0] || '/placeholder.png'}
+                                            alt="Testing"
+                                            width={500}
+                                            height={350}
+                                            className="w-full h-auto object-contain"
+                                        />
+                                    </div>
+                                    <div className="hidden lg:block relative aspect-square lg:h-full lg:min-h-[150px]">
+                                        <Image
+                                            src={data.journey_image?.[2] || data.journey_image?.[0] || '/placeholder.png'}
+                                            alt="Testing"
+                                            fill
+                                            className="object-cover hover:scale-105 transition duration-500"
+                                            sizes="25vw"
+                                        />
+                                    </div>
                                 </div>
 
                             </div>

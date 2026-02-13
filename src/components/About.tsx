@@ -60,6 +60,9 @@ const About = ({ data }: AboutProps) => {
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-stretch">
 
                     {/* IMAGE GRID */}
+                    {/* IMAGE GRID */}
+                    {/* IMAGE GRID */}
+                    {/* IMAGE GRID */}
                     <motion.div
                         initial={{ opacity: 0, scale: 0.95 }}
                         whileInView={{ opacity: 1, scale: 1 }}
@@ -67,38 +70,73 @@ const About = ({ data }: AboutProps) => {
                         transition={{ duration: 0.8 }}
                         className="relative"
                     >
-                        <div className="grid grid-cols-2 gap-4 h-[350px] md:h-[500px] lg:h-full">
+                        {/* Grid container: di desktop h-full agar sama tinggi dengan kolom teks */}
+                        <div className="grid grid-cols-2 gap-4 lg:h-full items-start lg:items-stretch">
+
                             {/* BIG - Left Column */}
-                            <div className="col-span-1 row-span-2 relative rounded-2xl md:rounded-3xl overflow-hidden shadow-lg group">
-                                <Image
-                                    src={finalImages[0] || "/fallback-1.jpg"}
-                                    alt="PT Sumber Niaga Alam Sejahtera Coconut Production Facility"
-                                    fill
-                                    className="object-cover hover:scale-105 transition duration-500"
-                                    sizes="(max-width: 768px) 50vw, 25vw"
-                                />
+                            <div className="col-span-1 row-span-2 relative rounded-2xl md:rounded-3xl overflow-hidden shadow-lg group bg-white/5">
+                                <div className="block lg:hidden"> {/* Tampilan Mobile: Mengikuti Rasio Gambar */}
+                                    <Image
+                                        src={finalImages[0] || "/fallback-1.jpg"}
+                                        alt="Production"
+                                        width={500}
+                                        height={700}
+                                        className="w-full h-auto object-contain"
+                                    />
+                                </div>
+                                <div className="hidden lg:block absolute inset-0"> {/* Tampilan Desktop: Mengikuti Tinggi Text */}
+                                    <Image
+                                        src={finalImages[0] || "/fallback-1.jpg"}
+                                        alt="Production"
+                                        fill
+                                        className="object-cover hover:scale-105 transition duration-500"
+                                        sizes="25vw"
+                                    />
+                                </div>
                             </div>
 
                             {/* SMALL - Top Right */}
-                            <div className="relative rounded-2xl md:rounded-3xl overflow-hidden shadow-lg group">
-                                <Image
-                                    src={finalImages[1] || "/fallback-2.jpg"}
-                                    alt="Quality Control of Coconut Briquettes"
-                                    fill
-                                    className="object-cover hover:scale-105 transition duration-500"
-                                    sizes="(max-width: 768px) 50vw, 25vw"
-                                />
+                            <div className="relative rounded-2xl md:rounded-3xl overflow-hidden shadow-lg group bg-white/5">
+                                <div className="block lg:hidden">
+                                    <Image
+                                        src={finalImages[1] || "/fallback-2.jpg"}
+                                        alt="QC"
+                                        width={500}
+                                        height={350}
+                                        className="w-full h-auto object-contain"
+                                    />
+                                </div>
+                                <div className="hidden lg:block relative h-full min-h-[150px]">
+                                    <Image
+                                        src={finalImages[1] || "/fallback-2.jpg"}
+                                        alt="QC"
+                                        fill
+                                        className="object-cover hover:scale-105 transition duration-500"
+                                        sizes="25vw"
+                                    />
+                                </div>
                             </div>
 
                             {/* SMALL - Bottom Right */}
-                            <div className="relative rounded-2xl md:rounded-3xl overflow-hidden shadow-lg group">
-                                <Image
-                                    src={finalImages[2] || "/fallback-3.jpg"}
-                                    alt="Premium Virgin Coconut Oil Processing"
-                                    fill
-                                    className="object-cover hover:scale-105 transition duration-500"
-                                    sizes="(max-width: 768px) 50vw, 25vw"
-                                />
+                            <div className="relative rounded-2xl md:rounded-3xl overflow-hidden shadow-lg group bg-white/5">
+                                <div className="block lg:hidden">
+                                    <Image
+                                        src={finalImages[2] || "/fallback-3.jpg"}
+                                        alt="VCO"
+                                        width={500}
+                                        height={350}
+                                        className="w-full h-auto object-contain"
+                                    />
+                                </div>
+                                <div className="hidden lg:block relative h-full min-h-[150px]">
+                                    <Image
+                                        src={finalImages[2] || "/fallback-3.jpg"}
+                                        alt="VCO"
+                                        fill
+                                        className="object-cover hover:scale-105 transition duration-500"
+                                        sizes="25vw"
+                                    />
+                                </div>
                             </div>
                         </div>
                     </motion.div>

@@ -164,23 +164,36 @@ const WhyChooseUs = ({
         <div className="grid lg:grid-cols-2 gap-10 lg:gap-20 relative">
           {/* IMAGE COLLAGE (STICKY) */}
 
+          {/* IMAGE COLLAGE (MOBILE & DESKTOP) */}
           <div className={`${reversed ? 'lg:order-2' : 'lg:order-1'}`}>
-            {/* Mobile Image Grid (Simplified) */}
-            <div className="lg:hidden grid grid-cols-2 gap-3 mb-8">
-              <div className="relative aspect-square rounded-2xl overflow-hidden border-2 border-coco-gold shadow-md">
+
+            {/* Mobile Image Collage (Sekarang sama stylenya dengan desktop, hanya ukuran lebih kecil) */}
+            <div className="lg:hidden relative h-[350px] w-full mb-12">
+              {/* Main Frame Mobile */}
+              <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[85%] h-[80%] border-[4px] border-coco-gold rounded-[30px] z-0`}></div>
+
+              {/* 1. BIG CENTER IMAGE */}
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[75%] h-[70%] rounded-2xl overflow-hidden shadow-xl z-10 border-2 border-white">
                 <Image src={finalMainImage} alt="Main" fill unoptimized className="object-cover" />
               </div>
-              <div className="grid grid-rows-2 gap-3">
-                <div className="relative rounded-2xl overflow-hidden border-2 border-coco-gold shadow-sm">
-                  <Image src={finalImage2} alt="Quality" fill unoptimized className="object-cover" />
-                </div>
-                <div className="relative rounded-2xl overflow-hidden border-2 border-coco-gold shadow-sm">
-                  <Image src={finalImage4} alt="Testing" fill unoptimized className="object-cover" />
-                </div>
+
+              {/* 2. TOP RIGHT/LEFT IMAGE */}
+              <div className={`absolute top-[5%] ${reversed ? 'left-[2%]' : 'right-[2%]'} w-[30%] h-[30%] rounded-xl overflow-hidden border-2 border-coco-gold shadow-lg z-20`}>
+                <Image src={finalImage2} alt="Quality" fill unoptimized className="object-cover" />
+              </div>
+
+              {/* 3. BOTTOM LEFT/RIGHT IMAGE */}
+              <div className={`absolute bottom-[2%] ${reversed ? 'right-[5%]' : 'left-[5%]'} w-[40%] h-[30%] rounded-xl overflow-hidden border-2 border-coco-gold shadow-lg z-20`}>
+                <Image src={finalImage3} alt="Sorting" fill unoptimized className="object-cover" />
+              </div>
+
+              {/* 4. BOTTOM RIGHT/LEFT IMAGE */}
+              <div className={`absolute bottom-[10%] ${reversed ? 'left-[5%]' : 'right-[5%]'} w-[25%] h-[25%] rounded-xl overflow-hidden border-2 border-coco-gold shadow-lg z-20`}>
+                <Image src={finalImage4} alt="Testing" fill unoptimized className="object-cover" />
               </div>
             </div>
 
-            {/* Desktop Image Collage (Sticky) */}
+            {/* Desktop Image Collage (Tetap sama, tidak berubah) */}
             <motion.div
               initial={{ opacity: 0, x: reversed ? 60 : -60 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -188,51 +201,19 @@ const WhyChooseUs = ({
               transition={{ duration: 0.8 }}
               className="relative h-[600px] w-full hidden lg:block lg:sticky lg:top-32"
             >
-              {/* Main Frame */}
+              {/* ... (Konten desktop Anda tetap di sini tanpa perubahan) ... */}
               <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[75%] border-[6px] border-coco-gold rounded-[40px] z-0`}></div>
-
-              {/* 1. BIG CENTER IMAGE */}
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[70%] h-[65%] rounded-3xl overflow-hidden shadow-2xl z-10 border-4 border-white">
-                <Image
-                  src={finalMainImage}
-                  alt="Warehouse storage"
-                  fill
-                  unoptimized
-                  className="object-cover"
-                />
+                <Image src={finalMainImage} alt="Main Desktop" fill unoptimized className="object-cover" />
               </div>
-
-              {/* 2. TOP RIGHT/LEFT IMAGE */}
               <div className={`absolute top-[4%] ${reversed ? 'left-[1%]' : 'right-[1%]'} w-[30%] h-[30%] rounded-2xl overflow-hidden border-4 border-coco-gold shadow-xl z-20`}>
-                <Image
-                  src={finalImage2}
-                  alt="Quality assurance"
-                  fill
-                  unoptimized
-                  className="object-cover"
-                />
+                <Image src={finalImage2} alt="Image 2" fill unoptimized className="object-cover" />
               </div>
-
-              {/* 3. BOTTOM LEFT/RIGHT IMAGE */}
               <div className={`absolute bottom-[-9%] ${reversed ? 'right-[2%]' : 'left-[2%]'} w-[45%] h-[35%] rounded-2xl overflow-hidden border-4 border-coco-gold shadow-xl z-20`}>
-                <Image
-                  src={finalImage3}
-                  alt="Product sorting"
-                  fill
-                  unoptimized
-                  className="object-cover"
-                />
+                <Image src={finalImage3} alt="Image 3" fill unoptimized className="object-cover" />
               </div>
-
-              {/* 4. BOTTOM RIGHT/LEFT IMAGE */}
               <div className={`absolute bottom-[1%] ${reversed ? 'left-[1%]' : 'right-[1%]'} w-[25%] h-[25%] rounded-2xl overflow-hidden border-4 border-coco-gold shadow-xl z-20`}>
-                <Image
-                  src={finalImage4}
-                  alt="Lab testing"
-                  fill
-                  unoptimized
-                  className="object-cover"
-                />
+                <Image src={finalImage4} alt="Image 4" fill unoptimized className="object-cover" />
               </div>
             </motion.div>
           </div>
