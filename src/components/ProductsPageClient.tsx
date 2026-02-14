@@ -61,12 +61,12 @@ const ProductsPageClient = ({ products, data }: ProductsPageClientProps) => {
             {/* Sustainable Quality Section */}
             <section className="py-16 md:py-24 bg-white border-t border-coco-forest/5">
                 <div className="container mx-auto px-5 md:px-16">
-                    <div className="bg-coco-forest p-8 md:p-12 rounded-[2rem] md:rounded-[3rem] text-center relative overflow-hidden">
+                    <div className="bg-[#eff6ff] p-8 md:p-12 rounded-[2rem] md:rounded-[3rem] text-center relative overflow-hidden">
                         <div className="relative z-10 max-w-2xl mx-auto">
-                            <h2 className="text-xl md:text-3xl font-bold text-white mb-6">
+                            <h2 className="text-xl md:text-3xl font-bold text-coco-forest mb-6">
                                 {data.cta_title}
                             </h2>
-                            <p className="text-white/70 text-sm md:text-base mb-8 md:mb-10">
+                            <p className="text-coco-forest/70 text-sm md:text-base mb-8 md:mb-10">
                                 {data.cta_description}
                             </p>
                             <div className="flex flex-wrap justify-center gap-4">
@@ -93,8 +93,8 @@ const ProductsPageClient = ({ products, data }: ProductsPageClientProps) => {
                             </div>
                         </div>
                         {/* Decoration */}
-                        <div className="absolute top-0 right-0 w-64 h-64 bg-coco-gold/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
-                        <div className="absolute bottom-0 left-0 w-64 h-64 bg-coco-gold/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2"></div>
+                        <div className="absolute top-0 right-0 w-64 h-64 bg-[#eff6ff]/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
+                        <div className="absolute bottom-0 left-0 w-64 h-64 bg-[#eff6ff]/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2"></div>
                     </div>
                 </div>
             </section>
