@@ -337,7 +337,7 @@ export default function AboutPageClient({ data }: { data: AboutPageData }) {
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            className="bg-white/5 backdrop-blur-md p-6 md:p-10 rounded-2xl md:rounded-3xl border border-white/10"
+                            className="bg-white backdrop-blur-md p-6 md:p-10 rounded-2xl md:rounded-3xl border border-white/10"
                         >
                             <div className="w-16 h-16 bg-coco-gold rounded-2xl flex items-center justify-center mb-6">
                                 <Eye className="text-coco-forest" size={32} />
@@ -353,7 +353,7 @@ export default function AboutPageClient({ data }: { data: AboutPageData }) {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: 0.1 }}
-                            className="bg-white/5 backdrop-blur-md p-6 md:p-10 rounded-2xl md:rounded-3xl border border-white/10"
+                            className="bg-white backdrop-blur-md p-6 md:p-10 rounded-2xl md:rounded-3xl border border-white/10"
                         >
                             <div className="w-16 h-16 bg-coco-gold rounded-2xl flex items-center justify-center mb-6">
                                 <Target className="text-coco-forest" size={32} />
