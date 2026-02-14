@@ -4,7 +4,6 @@ import "./globals.css";
 import JsonLd from "@/components/JsonLd";
 import Footer from "@/components/Footer";
 import Script from "next/script";
-import { GoogleAnalytics } from '@next/third-parties/google';
 import Certificates from "@/components/Certificates";
 import Contact from "@/components/Contact";
 
@@ -64,7 +63,19 @@ export default async function RootLayout({
         <link rel="dns-prefetch" href="https://ik.imagekit.io" />
       </head>
       <body className={`${inter.variable} font-sans antialiased`}>
-        <GoogleAnalytics gaId="G-RH8PHKT37C" />
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-RH8PHKT37C"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-RH8PHKT37C');
+          `}
+        </Script>
         <JsonLd />
         {children}
         <Certificates data={certificates} isGlobal={true} />

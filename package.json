@@ -9,7 +9,6 @@
     "lint": "eslint"
   },
   "dependencies": {
-    "@next/third-parties": "^16.1.6",
     "@prisma/client": "^7.3.0",
     "dotenv": "^17.2.3",
     "framer-motion": "^12.31.0",
@@ -19,7 +18,6 @@
     "react-dom": "19.2.3",
     "react-icons": "^5.5.0",
     "react-slick": "^0.31.0",
-    "sharp": "^0.34.5",
     "simple-icons": "^16.8.0",
     "slick-carousel": "^1.8.1",
     "swiper": "^12.1.0"
@@ -36,11 +34,5 @@
     "prisma": "^7.3.0",
     "tailwindcss": "^4",
     "typescript": "^5"
-  },
-  "browserslist": [
-    "last 2 versions",
-    "not dead",
-    "> 0.5%",
-    "not ie 11"
-  ]
+  }
 }

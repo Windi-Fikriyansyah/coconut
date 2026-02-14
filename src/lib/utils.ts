@@ -17,21 +17,3 @@ export function getOptimizedImage(url: string, width?: number, height?: number, 
     const separator = url.includes('?') ? '&' : '?';
     return `${url}${separator}tr=${params.join(',')}`;
 }
-
-/**
- * Next.js Image Loader for ImageKit
- */
-export const imageKitLoader = ({ src, width, quality }: { src: string; width: number; quality?: number }) => {
-    if (!src.includes('ik.imagekit.io')) return src;
-
-    // Remove existing tr params if any to avoid conflicts
-    const cleanSrc = src.split('?tr=')[0].split('&tr=')[0];
-
-    const params = [`w-${width}`];
-    if (quality) params.push(`q-${quality}`);
-    params.push('f-auto');
-
-    const separator = cleanSrc.includes('?') ? '&' : '?';
-    return `${cleanSrc}${separator}tr=${params.join(',')}`;
-};
-

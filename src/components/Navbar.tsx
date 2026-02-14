@@ -44,7 +44,6 @@ const Navbar = ({ solid = false }: { solid?: boolean }) => {
               height={48}
               className="h-10 md:h-12 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
               priority
-              sizes="(max-width: 768px) 150px, 180px"
             />
           </Link>
         </div>

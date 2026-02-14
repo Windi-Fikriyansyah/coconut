@@ -6,7 +6,7 @@ import { MoveRight } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 
-import { getOptimizedImage, imageKitLoader } from "@/lib/utils";
+import { getOptimizedImage } from "@/lib/utils";
 
 interface ProductCardProps {
   slug: string;
@@ -38,10 +38,10 @@ const ProductCard: React.FC<ProductCardProps> = ({
         className="relative h-64 md:h-48 overflow-hidden block"
       >
         <Image
-          loader={imageKitLoader}
-          src={image}
+          src={getOptimizedImage(image, 600)}
           alt={title}
           fill
+          unoptimized
           className="object-cover group-hover:scale-110 transition-transform duration-700"
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         />
