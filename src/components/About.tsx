@@ -101,8 +101,6 @@ const About = ({ data }: AboutProps) => {
                                         width={400}
                                         height={560}
                                         className="w-full h-auto object-contain"
-                                        sizes="(max-width: 768px) 320px, 400px"
-                                        priority
                                     />
                                 </div>
                                 <div className="hidden lg:block absolute inset-0"> {/* Tampilan Desktop: Mengikuti Tinggi Text */}
@@ -127,7 +125,6 @@ const About = ({ data }: AboutProps) => {
                                         width={400}
                                         height={280}
                                         className="w-full h-auto object-contain"
-                                        sizes="(max-width: 768px) 320px, 400px"
                                     />
                                 </div>
                                 <div className="hidden lg:block relative h-full min-h-[150px]">
@@ -152,7 +149,6 @@ const About = ({ data }: AboutProps) => {
                                         width={400}
                                         height={280}
                                         className="w-full h-auto object-contain"
-                                        sizes="(max-width: 768px) 320px, 400px"
                                     />
                                 </div>
                                 <div className="hidden lg:block relative h-full min-h-[150px]">

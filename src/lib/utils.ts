@@ -2,7 +2,7 @@
  * Optimizes ImageKit URLs with width, height, and quality transformations.
  * This is a client-safe utility function.
  */
-export function getOptimizedImage(url: string, width?: number, height?: number, quality: number = 75): string {
+export function getOptimizedImage(url: string, width?: number, height?: number, quality: number = 80): string {
     if (!url || typeof url !== 'string' || !url.includes('ik.imagekit.io')) return url;
 
     // Skip if it already has transformations
@@ -27,7 +27,9 @@ export const imageKitLoader = ({ src, width, quality }: { src: string; width: nu
     // Remove existing tr params if any to avoid conflicts
     const cleanSrc = src.split('?tr=')[0].split('&tr=')[0];
 
-    const params = [`w-${width}`, `q-${quality || 75}`, 'f-auto'];
+    const params = [`w-${width}`];
+    if (quality) params.push(`q-${quality}`);
+    params.push('f-auto');
 
     const separator = cleanSrc.includes('?') ? '&' : '?';
     return `${cleanSrc}${separator}tr=${params.join(',')}`;
