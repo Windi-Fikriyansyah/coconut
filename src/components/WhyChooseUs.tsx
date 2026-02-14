@@ -10,7 +10,7 @@ import Link from "next/link";
 
 import * as LucideIcons from "lucide-react";
 import { ArrowRight, Leaf } from "lucide-react";
-import { WhyChooseUsItem } from "@/lib/data";
+import { WhyChooseUsItem, getOptimizedImage } from "@/lib/data";
 
 // const iconMap: { [key: string]: LucideIcon } = {
 
@@ -194,22 +194,22 @@ const WhyChooseUs = ({
 
               {/* 1. BIG CENTER IMAGE */}
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[75%] h-[70%] rounded-2xl overflow-hidden shadow-xl z-10 border-2 border-white">
-                <Image src={finalMainImage} alt="Main" fill unoptimized className="object-cover" />
+                <Image src={getOptimizedImage(finalMainImage, 600)} alt="Main" fill unoptimized className="object-cover" />
               </div>
 
               {/* 2. TOP RIGHT/LEFT IMAGE */}
               <div className={`absolute top-[5%] ${reversed ? 'left-[2%]' : 'right-[2%]'} w-[30%] h-[30%] rounded-xl overflow-hidden border-2 border-coco-gold shadow-lg z-20`}>
-                <Image src={finalImage2} alt="Quality" fill unoptimized className="object-cover" />
+                <Image src={getOptimizedImage(finalImage2, 300)} alt="Quality" fill unoptimized className="object-cover" />
               </div>
 
               {/* 3. BOTTOM LEFT/RIGHT IMAGE */}
               <div className={`absolute bottom-[2%] ${reversed ? 'right-[5%]' : 'left-[5%]'} w-[40%] h-[30%] rounded-xl overflow-hidden border-2 border-coco-gold shadow-lg z-20`}>
-                <Image src={finalImage3} alt="Sorting" fill unoptimized className="object-cover" />
+                <Image src={getOptimizedImage(finalImage3, 400)} alt="Sorting" fill unoptimized className="object-cover" />
               </div>
 
               {/* 4. BOTTOM RIGHT/LEFT IMAGE */}
               <div className={`absolute bottom-[10%] ${reversed ? 'left-[5%]' : 'right-[5%]'} w-[25%] h-[25%] rounded-xl overflow-hidden border-2 border-coco-gold shadow-lg z-20`}>
-                <Image src={finalImage4} alt="Testing" fill unoptimized className="object-cover" />
+                <Image src={getOptimizedImage(finalImage4, 250)} alt="Testing" fill unoptimized className="object-cover" />
               </div>
             </div>
 
@@ -224,16 +224,16 @@ const WhyChooseUs = ({
               {/* ... (Konten desktop Anda tetap di sini tanpa perubahan) ... */}
               <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[75%] border-[6px] border-coco-gold rounded-[40px] z-0`}></div>
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[70%] h-[65%] rounded-3xl overflow-hidden shadow-2xl z-10 border-4 border-white">
-                <Image src={finalMainImage} alt="Main Desktop" fill unoptimized className="object-cover" />
+                <Image src={getOptimizedImage(finalMainImage, 800)} alt="Main Desktop" fill unoptimized className="object-cover" />
               </div>
               <div className={`absolute top-[4%] ${reversed ? 'left-[1%]' : 'right-[1%]'} w-[30%] h-[30%] rounded-2xl overflow-hidden border-4 border-coco-gold shadow-xl z-20`}>
-                <Image src={finalImage2} alt="Image 2" fill unoptimized className="object-cover" />
+                <Image src={getOptimizedImage(finalImage2, 400)} alt="Image 2" fill unoptimized className="object-cover" />
               </div>
               <div className={`absolute bottom-[-9%] ${reversed ? 'right-[2%]' : 'left-[2%]'} w-[45%] h-[35%] rounded-2xl overflow-hidden border-4 border-coco-gold shadow-xl z-20`}>
-                <Image src={finalImage3} alt="Image 3" fill unoptimized className="object-cover" />
+                <Image src={getOptimizedImage(finalImage3, 600)} alt="Image 3" fill unoptimized className="object-cover" />
               </div>
               <div className={`absolute bottom-[1%] ${reversed ? 'left-[1%]' : 'right-[1%]'} w-[25%] h-[25%] rounded-2xl overflow-hidden border-4 border-coco-gold shadow-xl z-20`}>
-                <Image src={finalImage4} alt="Image 4" fill unoptimized className="object-cover" />
+                <Image src={getOptimizedImage(finalImage4, 300)} alt="Image 4" fill unoptimized className="object-cover" />
               </div>
             </motion.div>
           </div>

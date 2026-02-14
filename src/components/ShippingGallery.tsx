@@ -4,7 +4,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { Camera, CheckCircle2, ShieldCheck } from 'lucide-react';
-import { GalleryImage, GalleryMetadata } from '@/lib/data';
+import { GalleryImage, GalleryMetadata, getOptimizedImage } from '@/lib/data';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -81,12 +81,14 @@ const ShippingGallery = ({ data, section }: ShippingGalleryProps) => {
                     <button
                         onClick={() => sliderRef.current?.slickPrev()}
                         className="absolute left-2 md:left-0 top-1/2 -translate-y-1/2 md:-translate-x-4 z-20 w-10 h-10 md:w-12 md:h-12 bg-white/90 md:bg-white rounded-full shadow-xl border border-coco-forest/10 flex items-center justify-center text-coco-forest hover:bg-coco-gold hover:text-white transition-all"
+                        aria-label="View Previous Image"
                     >
                         <IoIosArrowBack className="w-5 h-5 md:w-6 md:h-6" />
                     </button>
                     <button
                         onClick={() => sliderRef.current?.slickNext()}
                         className="absolute right-2 md:right-0 top-1/2 -translate-y-1/2 md:translate-x-4 z-20 w-10 h-10 md:w-12 md:h-12 bg-white/90 md:bg-white rounded-full shadow-xl border border-coco-forest/10 flex items-center justify-center text-coco-forest hover:bg-coco-gold hover:text-white transition-all"
+                        aria-label="View Next Image"
                     >
                         <IoIosArrowForward className="w-5 h-5 md:w-6 md:h-6" />
                     </button>
@@ -102,7 +104,7 @@ const ShippingGallery = ({ data, section }: ShippingGalleryProps) => {
                                     className="group relative h-64 rounded-3xl overflow-hidden shadow-lg border border-coco-forest/5"
                                 >
                                     <Image
-                                        src={item.src || ''}
+                                        src={getOptimizedImage(item.src || '', 500)}
                                         alt={item.title || 'Shipping Documentation'}
                                         fill
                                         unoptimized

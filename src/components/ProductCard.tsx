@@ -6,6 +6,8 @@ import { MoveRight } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 
+import { getOptimizedImage } from "@/lib/data";
+
 interface ProductCardProps {
   slug: string;
   title: string;
@@ -36,7 +38,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
         className="relative h-64 md:h-48 overflow-hidden block"
       >
         <Image
-          src={image}
+          src={getOptimizedImage(image, 600)}
           alt={title}
           fill
           unoptimized

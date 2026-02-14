@@ -94,6 +94,7 @@ const Navbar = ({ solid = false }: { solid?: boolean }) => {
           <button
             className="md:hidden text-coco-forest p-1"
             onClick={() => setIsOpen(!isOpen)}
+            aria-label="Toggle Navigation Menu"
           >
             {isOpen ? <X size={28} /> : <Menu size={28} />}
           </button>

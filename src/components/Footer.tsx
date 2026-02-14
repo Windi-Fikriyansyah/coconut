@@ -37,23 +37,24 @@ const Footer = ({ products, data }: { products?: Product[]; data?: FooterSetting
                 className="h-10 w-auto object-contain brightness-110"
               />
             </Link>
-            <p className="text-coco-forest/60 text-sm leading-relaxed mb-8">
+            <p className="text-coco-forest/75 text-sm leading-relaxed mb-8">
               {data?.description || "Supplying the world's finest coconut derivatives from sustainable sources. Committed to quality, heritage, and global innovation."}
             </p>
             <div className="flex gap-4">
               {[
-                { Icon: Linkedin, href: data?.linkedin_url || "#" },
-                { Icon: Instagram, href: data?.instagram_url || "#" },
-                { Icon: Facebook, href: data?.facebook_url || "#" },
-                { Icon: Youtube, href: data?.youtube_url || "#" },
-                { Icon: FaTiktok, href: data?.tiktok_url || "#" },
-              ].map(({ Icon, href }, i) => (
+                { Icon: Linkedin, href: data?.linkedin_url || "#", label: "LinkedIn" },
+                { Icon: Instagram, href: data?.instagram_url || "#", label: "Instagram" },
+                { Icon: Facebook, href: data?.facebook_url || "#", label: "Facebook" },
+                { Icon: Youtube, href: data?.youtube_url || "#", label: "YouTube" },
+                { Icon: FaTiktok, href: data?.tiktok_url || "#", label: "TikTok" },
+              ].map(({ Icon, href, label }, i) => (
                 <a
                   key={i}
                   href={href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-full border border-coco-forest/10 flex items-center justify-center hover:bg-coco-forest hover:text-coco-sandy transition-all"
+                  aria-label={label}
+                  className="w-10 h-10 rounded-full border border-coco-forest/20 flex items-center justify-center hover:bg-coco-forest hover:text-coco-sandy transition-all"
                 >
                   <Icon size={18} />
                 </a>
@@ -63,9 +64,9 @@ const Footer = ({ products, data }: { products?: Product[]; data?: FooterSetting
 
           {/* Sitemaps */}
           <div>
-            <h4 className="text-sm font-bold uppercase tracking-widest text-coco-forest mb-8">
+            <h3 className="text-sm font-bold uppercase tracking-widest text-coco-forest mb-8">
               Navigation
-            </h4>
+            </h3>
             <ul className="space-y-4">
               {[
                 { name: "Home", href: "/" },
@@ -78,7 +79,7 @@ const Footer = ({ products, data }: { products?: Product[]; data?: FooterSetting
                 <li key={i}>
                   <Link
                     href={item.href}
-                    className="text-coco-forest/60 hover:text-coco-gold text-sm font-medium transition-colors flex items-center gap-2 group"
+                    className="text-coco-forest/70 hover:text-coco-gold text-sm font-medium transition-colors flex items-center gap-2 group"
                   >
                     {item.name}
                     <ArrowUpRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -89,9 +90,9 @@ const Footer = ({ products, data }: { products?: Product[]; data?: FooterSetting
           </div>
 
           <div className="lg:col-span-2">
-            <h4 className="text-sm font-bold uppercase tracking-widest text-coco-forest mb-8">
+            <h3 className="text-sm font-bold uppercase tracking-widest text-coco-forest mb-8">
               Products
-            </h4>
+            </h3>
             {/* Gunakan grid-cols-2 untuk membagi list menjadi 2 kolom. 
                            gap-x-8 memberikan jarak horizontal antar kolom.
                         */}
@@ -100,7 +101,7 @@ const Footer = ({ products, data }: { products?: Product[]; data?: FooterSetting
                 <li key={i}>
                   <Link
                     href={`/products/${item.slug}`}
-                    className="text-coco-forest/60 hover:text-coco-gold text-sm font-medium transition-colors flex items-center gap-2 group whitespace-nowrap"
+                    className="text-coco-forest/70 hover:text-coco-gold text-sm font-medium transition-colors flex items-center gap-2 group whitespace-nowrap"
                   >
                     <span className="truncate">{item.title}</span>
                     <ArrowUpRight className="w-3 h-3 flex-shrink-0 opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -137,10 +138,10 @@ const Footer = ({ products, data }: { products?: Product[]; data?: FooterSetting
         </div>
 
         <div className="pt-8 md:pt-12 border-t border-coco-forest/10 flex flex-col md:flex-row justify-between items-center gap-6 text-center md:text-left">
-          <div className="text-xs text-coco-forest/40 font-medium">
+          <div className="text-xs text-coco-forest/60 font-medium">
             © 2026 PT Sumber Niaga Alam Sejahtera. ALL RIGHTS RESERVED.
           </div>
-          <div className="flex gap-8 text-xs font-bold text-coco-forest/40 uppercase tracking-widest">
+          <div className="flex gap-8 text-xs font-bold text-coco-forest/60 uppercase tracking-widest">
             <a href="#" className="hover:text-coco-forest transition-colors">
               Privacy
             </a>

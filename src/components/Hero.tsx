@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowRight, ArrowLeft } from "lucide-react";
-import { HeroData } from "@/lib/data";
+import { HeroData, getOptimizedImage } from "@/lib/data";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination, EffectFade, Navigation } from "swiper/modules";
@@ -29,6 +29,7 @@ const Hero = ({ data = [] }: HeroProps) => {
   w-14 h-14 items-center justify-center rounded-full
   bg-black/40 backdrop-blur-md border border-white/20
   cursor-pointer transition-all duration-300 hover:bg-black/60 hover:scale-110"
+        aria-label="Previous Slide"
       >
         <ArrowLeft className="w-7 h-7 text-white" />
       </div>
@@ -39,6 +40,7 @@ const Hero = ({ data = [] }: HeroProps) => {
   w-14 h-14 items-center justify-center rounded-full
   bg-black/40 backdrop-blur-md border border-white/20
   cursor-pointer transition-all duration-300 hover:bg-black/60 hover:scale-110"
+        aria-label="Next Slide"
       >
         <ArrowRight className="w-7 h-7 text-white" />
       </div>
@@ -71,8 +73,8 @@ const Hero = ({ data = [] }: HeroProps) => {
                 {/* Background Image with Next.js Optimization */}
                 <div className="absolute inset-0 z-0">
                   <Image
-                    src={backgroundImage}
-                    alt={title.replace(/<[^>]*>?/gm, '')} // Strip HTML for alt text
+                    src={getOptimizedImage(backgroundImage, 1600)}
+                    alt={title.replace(/<[^>]*>?/gm, "")} // Strip HTML for alt text
                     fill
                     priority={index === 0} // High priority for the first slide
                     className="object-cover"
