@@ -2,13 +2,11 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import JsonLd from "@/components/JsonLd";
-import dynamic from "next/dynamic";
+import Footer from "@/components/Footer";
 import Script from "next/script";
-
-const Footer = dynamic(() => import("@/components/Footer"));
-const Certificates = dynamic(() => import("@/components/Certificates"));
-const Contact = dynamic(() => import("@/components/Contact"));
-const WhatsAppButton = dynamic(() => import("@/components/WhatsAppButton"));
+import { GoogleAnalytics } from '@next/third-parties/google';
+import Certificates from "@/components/Certificates";
+import Contact from "@/components/Contact";
 
 
 const inter = Inter({
@@ -43,6 +41,7 @@ export const metadata: Metadata = {
 };
 
 import { getProducts, getContactData, getCertificates, getFooterData } from "@/lib/data";
+import WhatsAppButton from "@/components/WhatsAppButton";
 
 
 export default async function RootLayout({
@@ -61,23 +60,19 @@ export default async function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <head>
-        <link rel="preconnect" href="https://ik.imagekit.io" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://ik.imagekit.io" />
         <link rel="dns-prefetch" href="https://ik.imagekit.io" />
       </head>
-      <body className={`${inter.variable} font-sans antialiased text-coco-forest`}>
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-RH8PHKT37C"
-          strategy="lazyOnload"
-        />
-        <Script id="gtag-init" strategy="lazyOnload">
-          {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-RH8PHKT37C');`}
-        </Script>
+      <body className={`${inter.variable} font-sans antialiased`}>
+        <GoogleAnalytics gaId="G-RH8PHKT37C" />
         <JsonLd />
         {children}
         <Certificates data={certificates} isGlobal={true} />
         <Contact data={contact} isGlobal={true} />
         <WhatsAppButton number={contact?.whatsapp} />
+
         <Footer products={products} data={footerData} />
+
       </body>
     </html>
   );

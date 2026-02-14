@@ -101,7 +101,7 @@ const About = ({ data }: AboutProps) => {
                                         width={400}
                                         height={560}
                                         className="w-full h-auto object-contain"
-                                        sizes="(max-width: 768px) 280px, 400px"
+                                        sizes="(max-width: 768px) 320px, 400px"
                                         priority
                                     />
                                 </div>
@@ -112,7 +112,7 @@ const About = ({ data }: AboutProps) => {
                                         alt="Production"
                                         fill
                                         className="object-cover hover:scale-105 transition duration-500"
-                                        sizes="350px"
+                                        sizes="(max-width: 1024px) 100vw, 25vw"
                                     />
                                 </div>
                             </div>
@@ -127,7 +127,7 @@ const About = ({ data }: AboutProps) => {
                                         width={400}
                                         height={280}
                                         className="w-full h-auto object-contain"
-                                        sizes="(max-width: 768px) 280px, 400px"
+                                        sizes="(max-width: 768px) 320px, 400px"
                                     />
                                 </div>
                                 <div className="hidden lg:block relative h-full min-h-[150px]">
@@ -137,7 +137,7 @@ const About = ({ data }: AboutProps) => {
                                         alt="QC"
                                         fill
                                         className="object-cover hover:scale-105 transition duration-500"
-                                        sizes="300px"
+                                        sizes="(max-width: 1024px) 50vw, 25vw"
                                     />
                                 </div>
                             </div>
@@ -152,7 +152,7 @@ const About = ({ data }: AboutProps) => {
                                         width={400}
                                         height={280}
                                         className="w-full h-auto object-contain"
-                                        sizes="(max-width: 768px) 280px, 400px"
+                                        sizes="(max-width: 768px) 320px, 400px"
                                     />
                                 </div>
                                 <div className="hidden lg:block relative h-full min-h-[150px]">
@@ -162,7 +162,7 @@ const About = ({ data }: AboutProps) => {
                                         alt="VCO"
                                         fill
                                         className="object-cover hover:scale-105 transition duration-500"
-                                        sizes="300px"
+                                        sizes="(max-width: 1024px) 50vw, 25vw"
                                     />
                                 </div>
                             </div>

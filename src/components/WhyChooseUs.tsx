@@ -195,22 +195,22 @@ const WhyChooseUs = ({
 
               {/* 1. BIG CENTER IMAGE */}
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[75%] h-[70%] rounded-2xl overflow-hidden shadow-xl z-10 border-2 border-white">
-                <Image loader={imageKitLoader} src={finalMainImage} alt="Main" fill className="object-cover" sizes="250px" />
+                <Image loader={imageKitLoader} src={finalMainImage} alt="Main" fill className="object-cover" sizes="(max-width: 1024px) 75vw, 40vw" />
               </div>
 
               {/* 2. TOP RIGHT/LEFT IMAGE */}
               <div className={`absolute top-[5%] ${reversed ? 'left-[2%]' : 'right-[2%]'} w-[30%] h-[30%] rounded-xl overflow-hidden border-2 border-coco-gold shadow-lg z-20`}>
-                <Image loader={imageKitLoader} src={finalImage2} alt="Quality" fill className="object-cover" sizes="120px" />
+                <Image loader={imageKitLoader} src={finalImage2} alt="Quality" fill className="object-cover" sizes="(max-width: 1024px) 30vw, 15vw" />
               </div>
 
               {/* 3. BOTTOM LEFT/RIGHT IMAGE */}
               <div className={`absolute bottom-[2%] ${reversed ? 'right-[5%]' : 'left-[5%]'} w-[40%] h-[30%] rounded-xl overflow-hidden border-2 border-coco-gold shadow-lg z-20`}>
-                <Image loader={imageKitLoader} src={finalImage3} alt="Sorting" fill className="object-cover" sizes="150px" />
+                <Image loader={imageKitLoader} src={finalImage3} alt="Sorting" fill className="object-cover" sizes="(max-width: 1024px) 40vw, 20vw" />
               </div>
 
               {/* 4. BOTTOM RIGHT/LEFT IMAGE */}
               <div className={`absolute bottom-[10%] ${reversed ? 'left-[5%]' : 'right-[5%]'} w-[25%] h-[25%] rounded-xl overflow-hidden border-2 border-coco-gold shadow-lg z-20`}>
-                <Image loader={imageKitLoader} src={finalImage4} alt="Testing" fill className="object-cover" sizes="100px" />
+                <Image loader={imageKitLoader} src={finalImage4} alt="Testing" fill className="object-cover" sizes="(max-width: 1024px) 25vw, 10vw" />
               </div>
             </div>
 
@@ -225,16 +225,16 @@ const WhyChooseUs = ({
               {/* ... (Konten desktop Anda tetap di sini tanpa perubahan) ... */}
               <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[75%] border-[6px] border-coco-gold rounded-[40px] z-0`}></div>
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[70%] h-[65%] rounded-3xl overflow-hidden shadow-2xl z-10 border-4 border-white">
-                <Image loader={imageKitLoader} src={finalMainImage} alt="Main Desktop" fill className="object-cover" sizes="400px" />
+                <Image loader={imageKitLoader} src={finalMainImage} alt="Main Desktop" fill className="object-cover" sizes="(max-width: 1024px) 75vw, 40vw" />
               </div>
               <div className={`absolute top-[4%] ${reversed ? 'left-[1%]' : 'right-[1%]'} w-[30%] h-[30%] rounded-2xl overflow-hidden border-4 border-coco-gold shadow-xl z-20`}>
-                <Image loader={imageKitLoader} src={finalImage2} alt="Image 2" fill className="object-cover" sizes="180px" />
+                <Image loader={imageKitLoader} src={finalImage2} alt="Image 2" fill className="object-cover" sizes="(max-width: 1024px) 30vw, 15vw" />
               </div>
               <div className={`absolute bottom-[-9%] ${reversed ? 'right-[2%]' : 'left-[2%]'} w-[45%] h-[35%] rounded-2xl overflow-hidden border-4 border-coco-gold shadow-xl z-20`}>
-                <Image loader={imageKitLoader} src={finalImage3} alt="Image 3" fill className="object-cover" sizes="260px" />
+                <Image loader={imageKitLoader} src={finalImage3} alt="Image 3" fill className="object-cover" sizes="(max-width: 1024px) 45vw, 25vw" />
               </div>
               <div className={`absolute bottom-[1%] ${reversed ? 'left-[1%]' : 'right-[1%]'} w-[25%] h-[25%] rounded-2xl overflow-hidden border-4 border-coco-gold shadow-xl z-20`}>
-                <Image loader={imageKitLoader} src={finalImage4} alt="Image 4" fill className="object-cover" sizes="150px" />
+                <Image loader={imageKitLoader} src={finalImage4} alt="Image 4" fill className="object-cover" sizes="(max-width: 1024px) 25vw, 15vw" />
               </div>
             </motion.div>
           </div>
