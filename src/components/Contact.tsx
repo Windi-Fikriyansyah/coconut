@@ -35,7 +35,7 @@ const Contact = ({ data, isGlobal }: ContactProps) => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
           {/* LEFT COLUMN: INFORMATION CARD (#0f2922) */}
           <div className="lg:col-span-6">
-            <div className="h-full bg-[#0f2922] rounded-[2rem] md:rounded-[3rem] p-8 md:p-14 text-white shadow-2xl relative overflow-hidden flex flex-col">
+            <div className="h-full bg-[#eff6ff] rounded-[2rem] md:rounded-[3rem] p-8 md:p-14 text-white shadow-2xl relative overflow-hidden flex flex-col">
               <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -mr-20 -mt-20 blur-3xl" />
 
               <div className="relative z-10">
@@ -43,10 +43,10 @@ const Contact = ({ data, isGlobal }: ContactProps) => {
                   {subtitle}
                 </span>
                 <h2
-                  className="text-2xl md:text-3xl lg:text-5xl font-bold mb-6 md:mb-8 leading-[1.2] tracking-tight"
+                  className="text-2xl md:text-3xl lg:text-5xl font-bold mb-6 md:mb-8 leading-[1.2] tracking-tight text-coco-forest/60"
                   dangerouslySetInnerHTML={{ __html: title }}
                 />
-                <p className="text-white/70 text-base md:text-lg mb-12 max-w-md leading-relaxed">
+                <p className="text-coco-forest/60 text-base md:text-lg mb-12 max-w-md leading-relaxed">
                   {description}
                 </p>
 
@@ -61,10 +61,10 @@ const Contact = ({ data, isGlobal }: ContactProps) => {
                       <Mail className="text-coco-gold w-5 h-5" />
                     </div>
                     <div>
-                      <p className="text-xs font-bold uppercase tracking-widest text-white/60 mb-1">
+                      <p className="text-xs font-bold uppercase tracking-widest text-coco-forest/60 mb-1">
                         Email Address
                       </p>
-                      <p className="text-base md:text-lg font-medium group-hover:text-coco-gold transition-colors">
+                      <p className="text-base text-coco-forest/60 md:text-lg font-medium group-hover:text-coco-gold transition-colors">
                         {email}
                       </p>
                     </div>
@@ -81,10 +81,10 @@ const Contact = ({ data, isGlobal }: ContactProps) => {
                       <Phone className="text-coco-gold w-5 h-5" />
                     </div>
                     <div>
-                      <p className="text-xs font-bold uppercase tracking-widest text-white/60 mb-1">
+                      <p className="text-xs font-bold uppercase tracking-widest text-coco-forest/60 mb-1">
                         WhatsApp Support
                       </p>
-                      <p className="text-base md:text-lg font-medium group-hover:text-coco-gold transition-colors">
+                      <p className="text-base text-coco-forest/60 md:text-lg font-medium group-hover:text-coco-gold transition-colors">
                         {phone}
                       </p>
                     </div>
@@ -96,10 +96,10 @@ const Contact = ({ data, isGlobal }: ContactProps) => {
                       <MapPin className="text-coco-gold w-5 h-5" />
                     </div>
                     <div>
-                      <p className="text-xs font-bold uppercase tracking-widest text-white/60 mb-1">
+                      <p className="text-xs font-bold uppercase tracking-widest text-coco-forest/60 mb-1">
                         Our Office
                       </p>
-                      <p className="text-base md:text-lg font-medium">
+                      <p className="text-base text-coco-forest/60 md:text-lg font-medium">
                         {address}
                       </p>
                     </div>
@@ -108,9 +108,9 @@ const Contact = ({ data, isGlobal }: ContactProps) => {
               </div>
 
               <div className="relative z-10 mt-auto pt-12">
-                <div className="inline-flex items-center gap-3 px-4 py-2 bg-white/5 rounded-full border border-white/10">
+                <div className="inline-flex items-center gap-3 px-4 py-2 bg-coco-forest/5 rounded-full border border-coco-forest/10">
                   <span className="w-2 h-2 bg-coco-gold rounded-full animate-pulse" />
-                  <p className="text-xs italic text-white/60">
+                  <p className="text-xs italic text-coco-forest/60">
                     Click to connect with our team.
                   </p>
                 </div>
@@ -124,7 +124,7 @@ const Contact = ({ data, isGlobal }: ContactProps) => {
               initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="h-full bg-[#fcf9f0] p-8 md:p-14 rounded-[2rem] md:rounded-[3rem] border border-[#0f2922]/5 shadow-sm flex flex-col justify-center"
+              className="h-full bg-[#eff6ff] p-8 md:p-14 rounded-[2rem] md:rounded-[3rem] border border-[#0f2922]/5 shadow-sm flex flex-col justify-center"
             >
               <form
                 className="space-y-6"

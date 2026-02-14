@@ -23,7 +23,7 @@ const Footer = ({ products, data }: { products?: Product[]; data?: FooterSetting
       ];
 
   return (
-    <footer className="bg-coco-sandy pt-16 md:pt-24 pb-8 md:pb-12 border-t border-coco-forest/10">
+    <footer className="bg-[#eff6ff] pt-16 md:pt-24 pb-8 md:pb-12 border-t border-coco-forest/10">
       <div className="container mx-auto px-5 md:px-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 md:gap-16 mb-12 md:mb-20">
           {/* Brand Col */}

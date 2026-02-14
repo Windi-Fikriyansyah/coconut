@@ -71,8 +71,8 @@ const About = ({ data }: AboutProps) => {
         { url: finalImages[2] || "/fallback-3.jpg", alt: "Premium Virgin Coconut Oil Processing" },
     ];
     return (
-        <section id="about" className="pt-16 md:pt-32 pb-10 bg-coco-sandy relative overflow-hidden">
-            <div className="absolute -right-24 top-0 w-96 h-96 bg-coco-gold/5 rounded-full blur-3xl"></div>
+        <section id="about" className="pt-16 md:pt-32 pb-10 bg-[#ffffff] relative overflow-hidden">
+            <div className="absolute -right-24 top-0 w-96 h-96 rounded-full blur-3xl"></div>
 
             <div className="container mx-auto px-5 md:px-16">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-stretch">

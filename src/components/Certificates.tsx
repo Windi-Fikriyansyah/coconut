@@ -48,10 +48,10 @@ const Certificates = ({ data, isGlobal }: { data?: CertificateData[], isGlobal?:
   const marqueeData = [...displayData, ...displayData];
 
   return (
-    <section id="legality" className="py-8 bg-coco-forest text-coco-sandy relative overflow-hidden">
+    <section id="legality" className="py-8 bg-[#eff6ff] text-coco-sandy relative overflow-hidden">
 
       {/* decorative blur */}
-      <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 w-96 h-96 bg-coco-gold/10 rounded-full blur-3xl"></div>
+      <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 w-96 h-96 bg-[#eff6ff]/10 rounded-full blur-3xl"></div>
       <div className="absolute bottom-0 left-0 translate-y-1/2 -translate-x-1/2 w-96 h-96 bg-white/5 rounded-full blur-3xl"></div>
 
       <div className="relative w-screen left-1/2 -translate-x-1/2 overflow-hidden z-10">
@@ -92,7 +92,7 @@ const Certificates = ({ data, isGlobal }: { data?: CertificateData[], isGlobal?:
                   )}
                 </div>
 
-                <h3 className="text-xs font-bold text-white/60 uppercase tracking-wider mt-3 text-center">
+                <h3 className="text-xs font-bold text-coco-forest/60 uppercase tracking-wider mt-3 text-center">
                   {cert.title}
                 </h3>
               </div>
