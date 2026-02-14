@@ -12,11 +12,14 @@ import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 
 interface TestimonialsProps {
     data?: Testimonial[];
+    title?: string;
+    subtitle?: string;
 }
 
-const Testimonials = ({ data }: TestimonialsProps) => {
+const Testimonials = ({ data, title, subtitle }: TestimonialsProps) => {
     const items = data || [];
     const sliderRef = React.useRef<any>(null);
+
     const [slidesToShow, setSlidesToShow] = React.useState(1);
 
     React.useEffect(() => {
@@ -57,7 +60,7 @@ const Testimonials = ({ data }: TestimonialsProps) => {
                         viewport={{ once: true }}
                         className="text-coco-gold font-bold uppercase tracking-widest text-xs mb-4 block"
                     >
-                        Success Stories
+                        {subtitle || "Success Stories"}
                     </motion.span>
                     <motion.h2
                         initial={{ opacity: 0, y: 20 }}
@@ -66,8 +69,9 @@ const Testimonials = ({ data }: TestimonialsProps) => {
                         transition={{ delay: 0.1 }}
                         className="text-3xl md:text-4xl lg:text-5xl font-bold text-coco-forest mb-6"
                     >
-                        What Our Partners Say
+                        {title || "What Our Partners Say"}
                     </motion.h2>
+
                     <div className="w-20 h-1 bg-coco-gold mx-auto"></div>
                 </div>
 

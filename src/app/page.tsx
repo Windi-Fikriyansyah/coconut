@@ -28,7 +28,9 @@ import {
   getGalleryMetadata,
   getGalleryImages,
   getTestimonials,
-  getTeamMembers
+  getTestimonialsMetadata,
+  getTeamMembers,
+  getTeamMetadata
 } from "@/lib/data";
 
 export const revalidate = 0;
@@ -49,7 +51,9 @@ export default async function Home() {
     galleryMetadata,
     galleryImages,
     testimonialsData,
-    teamData
+    testimonialsMetadata,
+    teamData,
+    teamMetadata
   ] = await Promise.all([
     getProcessSteps(),
     getProducts(),
@@ -65,7 +69,9 @@ export default async function Home() {
     getGalleryMetadata(),
     getGalleryImages(),
     getTestimonials(),
-    getTeamMembers()
+    getTestimonialsMetadata(),
+    getTeamMembers(),
+    getTeamMetadata()
   ]);
 
   return (
@@ -84,13 +90,22 @@ export default async function Home() {
         image={whyChooseUsMetadata?.image}
       />
       {/* <TrustSection data={trustData} /> */}
-      <OurTeam data={teamData} />
+      <OurTeam
+        data={teamData}
+        title={teamMetadata?.title}
+        subtitle={teamMetadata?.subtitle}
+      />
       <Certificates data={certificatesData} />
-      <Testimonials data={testimonialsData} />
+      <Testimonials
+        data={testimonialsData}
+        title={testimonialsMetadata?.title}
+        subtitle={testimonialsMetadata?.subtitle}
+      />
       <Contact data={contactData} />
     </main>
   );
 }
+
 
 
 

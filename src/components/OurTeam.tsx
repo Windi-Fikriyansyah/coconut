@@ -8,10 +8,13 @@ import { TeamMember } from '@/lib/data';
 
 interface OurTeamProps {
     data?: TeamMember[];
+    title?: string;
+    subtitle?: string;
 }
 
-const OurTeam = ({ data }: OurTeamProps) => {
+const OurTeam = ({ data, title, subtitle }: OurTeamProps) => {
     const members = data || [];
+
 
     if (members.length === 0) return null;
 
@@ -26,7 +29,7 @@ const OurTeam = ({ data }: OurTeamProps) => {
                         viewport={{ once: true }}
                         className="text-coco-gold font-bold uppercase tracking-widest text-xs mb-4 block"
                     >
-                        Masterminds
+                        {subtitle || "Masterminds"}
                     </motion.span>
                     <motion.h2
                         initial={{ opacity: 0, y: 20 }}
@@ -35,8 +38,9 @@ const OurTeam = ({ data }: OurTeamProps) => {
                         transition={{ delay: 0.1 }}
                         className="text-3xl md:text-4xl lg:text-5xl font-bold text-coco-forest mb-6"
                     >
-                        Meet Our Experts
+                        {title || "Meet Our Experts"}
                     </motion.h2>
+
                     <div className="w-20 h-1 bg-coco-gold mx-auto"></div>
                 </div>
 

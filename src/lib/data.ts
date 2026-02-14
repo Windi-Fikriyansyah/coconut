@@ -689,6 +689,12 @@ export interface Testimonial extends RowDataPacket {
   rating: number;
 }
 
+export interface TestimonialsMetadata extends RowDataPacket {
+  id: number;
+  subtitle: string;
+  title: string;
+}
+
 export async function getTestimonials(): Promise<Testimonial[]> {
   try {
     const [rows] = await pool.query<Testimonial[]>(
@@ -704,6 +710,19 @@ export async function getTestimonials(): Promise<Testimonial[]> {
   }
 }
 
+export async function getTestimonialsMetadata(): Promise<TestimonialsMetadata | null> {
+  try {
+    const [rows] = await pool.query<(TestimonialsMetadata & RowDataPacket)[]>(
+      "SELECT * FROM testimonials_metadata LIMIT 1"
+    );
+    if (rows.length === 0) return null;
+    return rows[0];
+  } catch (error) {
+    console.error("Error fetching testimonials metadata:", error);
+    return null;
+  }
+}
+
 export interface TeamMember extends RowDataPacket {
   id: number;
   name: string;
@@ -712,6 +731,12 @@ export interface TeamMember extends RowDataPacket {
   linkedin_url: string | null;
   instagram_url: string | null;
   display_order: number;
+}
+
+export interface TeamMetadata extends RowDataPacket {
+  id: number;
+  subtitle: string;
+  title: string;
 }
 
 export async function getTeamMembers(): Promise<TeamMember[]> {
@@ -728,6 +753,20 @@ export async function getTeamMembers(): Promise<TeamMember[]> {
     return [];
   }
 }
+
+export async function getTeamMetadata(): Promise<TeamMetadata | null> {
+  try {
+    const [rows] = await pool.query<(TeamMetadata & RowDataPacket)[]>(
+      "SELECT * FROM team_metadata LIMIT 1"
+    );
+    if (rows.length === 0) return null;
+    return rows[0];
+  } catch (error) {
+    console.error("Error fetching team metadata:", error);
+    return null;
+  }
+}
+
 
 
 
