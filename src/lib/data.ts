@@ -66,7 +66,7 @@ function sanitizeImageUrl(url: any, updatedAt?: Date): string {
       if (Array.isArray(parsed)) {
         return JSON.stringify(parsed.map(img => ({
           ...img,
-          url: sanitizeImageUrl(img.url, updatedAt)
+          url: sanitizeImageUrl(typeof img === 'string' ? img : img.url, updatedAt)
         })));
       }
       if (typeof parsed === 'object' && parsed.url) {
@@ -80,21 +80,34 @@ function sanitizeImageUrl(url: any, updatedAt?: Date): string {
     }
   }
 
-  if (typeof url !== "string") return "";
+  // Handle if url is an object (common from DB queries)
+  let strUrl = "";
+  if (typeof url === 'string') {
+    strUrl = url;
+  } else if (typeof url === 'object' && url !== null) {
+    strUrl = url.url || url.src || "";
+  }
 
-  // 1. Strip domain if it exists
-  let cleanPath = url.replace(/^(https?:\/\/[^\/]+)/, "");
+  if (!strUrl || typeof strUrl !== "string") return "";
 
-  // 2. Remove /public or /storage prefixes
+  // 1. Preserve absolute URLs for CDNs like ImageKit, unless it's localhost
+  if (strUrl.startsWith("http") && !strUrl.match(/^(https?:\/\/)(localhost|127\.0\.0\.1)(:\d+)?/)) {
+    return strUrl;
+  }
+
+  // 2. Strip domain if it exists (for localhost)
+  let cleanPath = strUrl.replace(/^(https?:\/\/)(localhost|127\.0\.0\.1)(:\d+)?/, "");
+
+  // 3. Remove /public or /storage prefixes
   cleanPath = cleanPath.replace(/^\/?public\//, "/");
   cleanPath = cleanPath.replace(/^\/?storage\//, "/");
 
-  // 3. Ensure it starts with a single slash
-  if (!cleanPath.startsWith("/")) {
+  // 4. Ensure it starts with a single slash
+  if (!cleanPath.startsWith("/") && !cleanPath.startsWith("http")) {
     cleanPath = "/" + cleanPath;
   }
 
-  // Gunakan timestamp dari database sebagai versioning cache (aman di unoptimized mode)
+  // Use timestamp as versioning for browser cache
   if (updatedAt) {
     const version = new Date(updatedAt).getTime();
     const separator = cleanPath.includes("?") ? "&" : "?";

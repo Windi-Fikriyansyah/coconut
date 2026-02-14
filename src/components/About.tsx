@@ -11,13 +11,30 @@ interface AboutProps {
 }
 const About = ({ data }: AboutProps) => {
     // Fungsi sanitasi lokal agar path gambar dari JSON benar
-    const cleanPath = (path: string | null | undefined) => {
+    const cleanPath = (path: any) => {
         if (!path) return "";
-        // Menghapus localhost jika ada
-        let clean = path.replace(/^(https?:\/\/)(localhost|127\.0\.0\.1)(:\d+)?/, "");
-        // Menghapus /public atau public/ jika ada
+
+        // Handle if path is an object from JSON
+        let strPath = "";
+        if (typeof path === 'string') {
+            strPath = path;
+        } else if (typeof path === 'object' && path !== null) {
+            strPath = path.url || path.src || "";
+        }
+
+        if (!strPath || typeof strPath !== 'string') return "";
+
+        // Handle ImageKit or other CDN URLs
+        // If it's an absolute URL and not localhost, keep it as is
+        if (strPath.startsWith('http') && !strPath.match(/^(https?:\/\/)(localhost|127\.0\.0\.1)(:\d+)?/)) {
+            return strPath;
+        }
+
+        // Remove localhost if present
+        let clean = strPath.replace(/^(https?:\/\/)(localhost|127\.0\.0\.1)(:\d+)?/, "");
+        // Remove /public or public/ if present
         clean = clean.replace(/^\/?public\//, "/");
-        // Memastikan diawali dengan / jika bukan URL absolute
+        // Ensure it starts with / if not an absolute URL
         if (!clean.startsWith("/") && !clean.startsWith("http")) {
             clean = "/" + clean;
         }
