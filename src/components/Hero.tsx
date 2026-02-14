@@ -6,7 +6,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowRight, ArrowLeft } from "lucide-react";
 import { HeroData } from "@/lib/data";
-import { getOptimizedImage } from "@/lib/utils";
+import { getOptimizedImage, imageKitLoader } from "@/lib/utils";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination, EffectFade, Navigation } from "swiper/modules";
@@ -74,13 +74,14 @@ const Hero = ({ data = [] }: HeroProps) => {
                 {/* Background Image with Next.js Optimization */}
                 <div className="absolute inset-0 z-0">
                   <Image
-                    src={getOptimizedImage(backgroundImage, 1600)}
-                    alt={title.replace(/<[^>]*>?/gm, "")} // Strip HTML for alt text
+                    loader={imageKitLoader}
+                    src={backgroundImage}
+                    alt={title.replace(/<[^>]*>?/gm, "")}
                     fill
-                    priority={index === 0} // High priority for the first slide
+                    priority={index === 0}
                     className="object-cover"
                     sizes="100vw"
-                    quality={90}
+                    quality={85}
                   />
                   <div className="absolute inset-0 bg-black/50"></div>
                   <div className="absolute inset-0 bg-gradient-to-t from-coco-forest via-transparent to-transparent"></div>

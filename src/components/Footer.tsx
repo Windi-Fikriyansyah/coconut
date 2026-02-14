@@ -35,6 +35,7 @@ const Footer = ({ products, data }: { products?: Product[]; data?: FooterSetting
                 width={160}
                 height={40}
                 className="h-10 w-auto object-contain brightness-110"
+                sizes="160px"
               />
             </Link>
             <p className="text-coco-forest/75 text-sm leading-relaxed mb-8">

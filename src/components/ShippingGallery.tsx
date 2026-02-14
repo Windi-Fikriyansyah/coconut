@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { Camera, CheckCircle2, ShieldCheck } from 'lucide-react';
 import { GalleryImage, GalleryMetadata } from '@/lib/data';
-import { getOptimizedImage } from '@/lib/utils';
+import { getOptimizedImage, imageKitLoader } from '@/lib/utils';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -105,10 +105,10 @@ const ShippingGallery = ({ data, section }: ShippingGalleryProps) => {
                                     className="group relative h-64 rounded-3xl overflow-hidden shadow-lg border border-coco-forest/5"
                                 >
                                     <Image
-                                        src={getOptimizedImage(item.src || '', 500)}
+                                        loader={imageKitLoader}
+                                        src={item.src || ''}
                                         alt={item.title || 'Shipping Documentation'}
                                         fill
-                                        unoptimized
                                         className="object-cover transition-transform duration-700 group-hover:scale-110"
                                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
                                     />

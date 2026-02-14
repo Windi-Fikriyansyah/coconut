@@ -5,7 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { AboutData } from '@/lib/data';
-import { getOptimizedImage } from '@/lib/utils';
+import { getOptimizedImage, imageKitLoader } from '@/lib/utils';
 
 interface AboutProps {
     data?: AboutData | null;
@@ -95,16 +95,18 @@ const About = ({ data }: AboutProps) => {
                             <div className="col-span-1 row-span-2 relative rounded-2xl md:rounded-3xl overflow-hidden shadow-lg group bg-white/5">
                                 <div className="block lg:hidden"> {/* Tampilan Mobile: Mengikuti Rasio Gambar */}
                                     <Image
-                                        src={getOptimizedImage(finalImages[0] || "/fallback-1.jpg", 500, 700)}
+                                        loader={imageKitLoader}
+                                        src={finalImages[0] || "/fallback-1.jpg"}
                                         alt="Production"
-                                        width={500}
-                                        height={700}
+                                        width={400}
+                                        height={560}
                                         className="w-full h-auto object-contain"
                                     />
                                 </div>
                                 <div className="hidden lg:block absolute inset-0"> {/* Tampilan Desktop: Mengikuti Tinggi Text */}
                                     <Image
-                                        src={getOptimizedImage(finalImages[0] || "/fallback-1.jpg", 800)}
+                                        loader={imageKitLoader}
+                                        src={finalImages[0] || "/fallback-1.jpg"}
                                         alt="Production"
                                         fill
                                         className="object-cover hover:scale-105 transition duration-500"
@@ -117,16 +119,18 @@ const About = ({ data }: AboutProps) => {
                             <div className="relative rounded-2xl md:rounded-3xl overflow-hidden shadow-lg group bg-white/5">
                                 <div className="block lg:hidden">
                                     <Image
-                                        src={getOptimizedImage(finalImages[1] || "/fallback-2.jpg", 500, 350)}
+                                        loader={imageKitLoader}
+                                        src={finalImages[1] || "/fallback-2.jpg"}
                                         alt="QC"
-                                        width={500}
-                                        height={350}
+                                        width={400}
+                                        height={280}
                                         className="w-full h-auto object-contain"
                                     />
                                 </div>
                                 <div className="hidden lg:block relative h-full min-h-[150px]">
                                     <Image
-                                        src={getOptimizedImage(finalImages[1] || "/fallback-2.jpg", 400)}
+                                        loader={imageKitLoader}
+                                        src={finalImages[1] || "/fallback-2.jpg"}
                                         alt="QC"
                                         fill
                                         className="object-cover hover:scale-105 transition duration-500"
@@ -139,16 +143,18 @@ const About = ({ data }: AboutProps) => {
                             <div className="relative rounded-2xl md:rounded-3xl overflow-hidden shadow-lg group bg-white/5">
                                 <div className="block lg:hidden">
                                     <Image
-                                        src={getOptimizedImage(finalImages[2] || "/fallback-3.jpg", 500, 350)}
+                                        loader={imageKitLoader}
+                                        src={finalImages[2] || "/fallback-3.jpg"}
                                         alt="VCO"
-                                        width={500}
-                                        height={350}
+                                        width={400}
+                                        height={280}
                                         className="w-full h-auto object-contain"
                                     />
                                 </div>
                                 <div className="hidden lg:block relative h-full min-h-[150px]">
                                     <Image
-                                        src={getOptimizedImage(finalImages[2] || "/fallback-3.jpg", 400)}
+                                        loader={imageKitLoader}
+                                        src={finalImages[2] || "/fallback-3.jpg"}
                                         alt="VCO"
                                         fill
                                         className="object-cover hover:scale-105 transition duration-500"
