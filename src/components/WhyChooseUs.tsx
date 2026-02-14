@@ -10,7 +10,8 @@ import Link from "next/link";
 
 import * as LucideIcons from "lucide-react";
 import { ArrowRight, Leaf } from "lucide-react";
-import { WhyChooseUsItem, getOptimizedImage } from "@/lib/data";
+import { WhyChooseUsItem } from "@/lib/data";
+import { getOptimizedImage } from "@/lib/utils";
 
 // const iconMap: { [key: string]: LucideIcon } = {
 

@@ -6,7 +6,7 @@ import { MoveRight } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 
-import { getOptimizedImage } from "@/lib/data";
+import { getOptimizedImage } from "@/lib/utils";
 
 interface ProductCardProps {
   slug: string;

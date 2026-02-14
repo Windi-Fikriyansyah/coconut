@@ -5,7 +5,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowRight, ArrowLeft } from "lucide-react";
-import { HeroData, getOptimizedImage } from "@/lib/data";
+import { HeroData } from "@/lib/data";
+import { getOptimizedImage } from "@/lib/utils";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination, EffectFade, Navigation } from "swiper/modules";
