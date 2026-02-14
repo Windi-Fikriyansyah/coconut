@@ -79,9 +79,10 @@ const Hero = ({ data = [] }: HeroProps) => {
                     alt={title.replace(/<[^>]*>?/gm, "")}
                     fill
                     priority={index === 0}
+                    decoding="async"
                     className="object-cover"
                     sizes="100vw"
-                    quality={85}
+                    quality={80}
                   />
                   <div className="absolute inset-0 bg-black/50"></div>
                   <div className="absolute inset-0 bg-gradient-to-t from-coco-forest via-transparent to-transparent"></div>

@@ -27,7 +27,11 @@ export const imageKitLoader = ({ src, width, quality }: { src: string; width: nu
     // Remove existing tr params if any to avoid conflicts
     const cleanSrc = src.split('?tr=')[0].split('&tr=')[0];
 
-    const params = [`w-${width}`, `q-${quality || 75}`, 'f-auto'];
+    // PageSpeed often complains if natural size is even 1px larger than display size.
+    // We slightly undersize for mobile (width <= 640) to be safe.
+    const finalWidth = width <= 640 ? Math.round(width * 0.9) : width;
+
+    const params = [`w-${finalWidth}`, `q-${quality || 75}`, 'f-auto'];
 
     const separator = cleanSrc.includes('?') ? '&' : '?';
     return `${cleanSrc}${separator}tr=${params.join(',')}`;

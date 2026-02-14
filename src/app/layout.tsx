@@ -4,7 +4,7 @@ import "./globals.css";
 import JsonLd from "@/components/JsonLd";
 import Footer from "@/components/Footer";
 import Script from "next/script";
-import { GoogleAnalytics } from '@next/third-parties/google';
+import { GoogleAnalytics, GoogleTagManager } from '@next/third-parties/google';
 import Certificates from "@/components/Certificates";
 import Contact from "@/components/Contact";
 
@@ -60,10 +60,11 @@ export default async function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <head>
-        <link rel="preconnect" href="https://ik.imagekit.io" />
+        <link rel="preconnect" href="https://ik.imagekit.io" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://ik.imagekit.io" />
       </head>
       <body className={`${inter.variable} font-sans antialiased`}>
+        <GoogleTagManager gtmId="G-RH8PHKT37C" />
         <GoogleAnalytics gaId="G-RH8PHKT37C" />
         <JsonLd />
         {children}

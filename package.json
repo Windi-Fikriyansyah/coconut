@@ -38,10 +38,10 @@
     "typescript": "^5"
   },
   "browserslist": [
-    "last 2 versions",
-    "not dead",
-    "not ie 11",
-    "not op_mini all",
-    "supports es6-module"
+    "chrome >= 100",
+    "safari >= 15",
+    "firefox >= 100",
+    "ios >= 15",
+    "not dead"
   ]
 }
