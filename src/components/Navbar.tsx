@@ -3,12 +3,14 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Search, FileText, Package } from "lucide-react";
 
 const Navbar = ({ solid = false }: { solid?: boolean }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -50,16 +52,21 @@ const Navbar = ({ solid = false }: { solid?: boolean }) => {
 
         {/* Center: Desktop Links */}
         <div className="hidden lg:flex flex-1 justify-center items-center space-x-6">
-          {navLinks.map((link) => (
-            <Link
-              key={link.name}
-              href={link.href}
-              className="text-sm font-semibold transition-colors relative group text-coco-forest/90 hover:text-coco-gold whitespace-nowrap"
-            >
-              {link.name}
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-coco-gold transition-all group-hover:w-full"></span>
-            </Link>
-          ))}
+          {navLinks.map((link) => {
+            const isActive = pathname === link.href || (link.href !== '/' && pathname.startsWith(link.href));
+            return (
+              <Link
+                key={link.name}
+                href={link.href}
+                className={`text-sm font-semibold transition-colors relative group whitespace-nowrap ${isActive ? "text-coco-gold" : "text-coco-forest/90 hover:text-coco-gold"
+                  }`}
+              >
+                {link.name}
+                <span className={`absolute -bottom-1 left-0 h-0.5 bg-coco-gold transition-all duration-300 ${isActive ? "w-full" : "w-0 group-hover:w-full"
+                  }`}></span>
+              </Link>
+            );
+          })}
         </div>
 
         {/* Right: Actions */}
@@ -111,16 +118,19 @@ const Navbar = ({ solid = false }: { solid?: boolean }) => {
             className="absolute top-full left-0 w-full bg-white shadow-xl md:hidden border-t"
           >
             <div className="flex flex-col p-6 space-y-4">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.name}
-                  href={link.href}
-                  onClick={() => setIsOpen(false)}
-                  className="text-lg font-medium text-coco-forest"
-                >
-                  {link.name}
-                </Link>
-              ))}
+              {navLinks.map((link) => {
+                const isActive = pathname === link.href || (link.href !== '/' && pathname.startsWith(link.href));
+                return (
+                  <Link
+                    key={link.name}
+                    href={link.href}
+                    onClick={() => setIsOpen(false)}
+                    className={`text-lg font-medium ${isActive ? "text-coco-gold" : "text-coco-forest"}`}
+                  >
+                    {link.name}
+                  </Link>
+                );
+              })}
               <hr />
               {/* Tombol Mobile tetap rapi dalam grid */}
               <div className="grid grid-cols-2 gap-3">

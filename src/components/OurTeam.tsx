@@ -45,7 +45,7 @@ const OurTeam = ({ data, title, subtitle }: OurTeamProps) => {
                 </div>
 
                 {/* Team Grid */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10">
+                <div className="flex flex-wrap justify-center gap-8 md:gap-10">
                     {members.map((member, index) => (
                         <motion.div
                             key={member.id}
@@ -53,7 +53,8 @@ const OurTeam = ({ data, title, subtitle }: OurTeamProps) => {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: index * 0.1 }}
-                            className="group"
+
+                            className="group w-full sm:w-64 lg:w-72"
                         >
                             <div className="relative aspect-[4/5] rounded-[2rem] overflow-hidden mb-6 shadow-lg border border-coco-forest/5">
                                 <Image
