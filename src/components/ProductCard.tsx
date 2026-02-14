@@ -58,15 +58,14 @@ const ProductCard: React.FC<ProductCardProps> = ({
         <div className="mt-auto flex flex-row items-center justify-between sm:justify-start gap-3">
           <Link
             href={`/products/${slug}`}
-            className="flex items-center justify-center gap-1.5 md:gap-2 whitespace-nowrap text-coco-forest font-bold text-xs hover:text-coco-gold transition-colors"
+            className="flex items-center justify-center gap-1.5 md:gap-2 whitespace-nowrap bg-[#eff6ff] text-coco-forest px-3 py-1.5 md:px-4 md:py-2 rounded-full font-bold text-xs hover:bg-coco-forest hover:text-white transition-all"
           >
             View Detail
-            <MoveRight className="w-4 h-4" />
           </Link>
 
           <a
             href={`mailto:${emailTo}?subject=${emailSubject}`}
-            className="flex items-center justify-center bg-coco-gold/10 text-coco-gold px-3 py-1.5 md:px-4 md:py-2 rounded-full font-bold text-xs hover:bg-coco-gold hover:text-coco-forest transition-all"
+            className="flex items-center justify-center whitespace-nowrap bg-coco-gold/10 text-coco-gold px-3 py-1.5 md:px-4 md:py-2 rounded-full font-bold text-xs hover:bg-coco-gold hover:text-coco-forest transition-all"
           >
             Get Quote
           </a>
