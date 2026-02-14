@@ -73,7 +73,7 @@ const GalleryPageClient = ({ images, metadata }: GalleryPageClientProps) => {
             {/* Gallery Grid */}
             <section className="py-16 md:pt-24 md:pb-32 px-4">
                 <div className="container mx-auto px-5 md:px-8">
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div className="flex flex-wrap justify-center gap-8">
                         {displayImages.map((image, index) => (
                             <motion.div
                                 key={index}
@@ -81,7 +81,7 @@ const GalleryPageClient = ({ images, metadata }: GalleryPageClientProps) => {
                                 whileInView={{ opacity: 1, scale: 1 }}
                                 viewport={{ once: true }}
                                 transition={{ delay: index * 0.05 }}
-                                className="group relative rounded-2xl md:rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 cursor-pointer"
+                                className="w-full md:w-[calc(50%-2rem)] lg:w-[calc(33.333%-2rem)] group relative rounded-2xl md:rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 cursor-pointer"
                             >
                                 <div className="aspect-square relative font-bold">
                                     <Image
