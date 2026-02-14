@@ -139,23 +139,7 @@ const BlogPageClient = ({ posts, currentPage, totalPages }: BlogPageClientProps)
             </section>
 
             {/* Subscription CTA */}
-            <section className="py-24 bg-coco-forest text-white overflow-hidden relative">
-                <div className="container mx-auto px-6 relative z-10">
-                    <div className="max-w-4xl mx-auto text-center">
-                        <h2 className="text-xl md:text-3xl font-bold mb-6">Get Industry Insights Delivered Straight to Your Inbox</h2>
-                        <p className="text-white/60 text-sm md:text-base mb-10">Subscribe to our newsletter for monthly stock updates and the latest export market trends.</p>
-                        <form className="flex flex-col sm:flex-row gap-4 max-w-lg mx-auto" onSubmit={(e) => e.preventDefault()}>
-                            <input type="email" className="flex-1 bg-white/5 border border-white/10 p-4 rounded-xl focus:outline-none focus:border-coco-gold transition-colors text-white" placeholder="email@company.com" />
-                            <button className="bg-coco-gold text-coco-forest px-8 py-4 rounded-xl font-bold hover:bg-white transition-all">Subscribe</button>
-                        </form>
-                    </div>
-                </div>
-                {/* Background Pattern */}
-                <div className="absolute top-0 left-0 w-full h-full opacity-5 pointer-events-none">
-                    <div className="absolute -top-24 -left-24 w-96 h-96 bg-coco-gold rounded-full blur-[100px]"></div>
-                    <div className="absolute -bottom-24 -right-24 w-96 h-96 bg-coco-gold rounded-full blur-[100px]"></div>
-                </div>
-            </section>
+
         </main>
     );
 };
