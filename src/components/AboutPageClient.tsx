@@ -137,7 +137,7 @@ export default function AboutPageClient({ data }: { data: AboutPageData }) {
                             {/* OPTIONAL BUTTON */}
                             <Link
                                 href="/contact"
-                                className="inline-block w-fit bg-coco-forest text-coco-sandy px-8 py-3 md:px-10 md:py-4 rounded-full font-bold text-sm md:text-base hover:bg-coco-leaf transition-all"
+                                className="inline-block w-fit bg-coco-gold text-coco-forest px-8 py-3 md:px-10 md:py-4 rounded-full font-bold text-sm md:text-base hover:bg-coco-gold/80 transition-all"
                             >
                                 Contact Us
                             </Link>

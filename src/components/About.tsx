@@ -176,7 +176,7 @@ const About = ({ data }: AboutProps) => {
                         <p className="text-coco-forest/70 text-sm md:text-base mb-8 leading-relaxed">
                             {aboutText}
                         </p>
-                        <Link href={buttonLink} className="inline-block w-fit bg-coco-forest text-coco-sandy px-10 py-4 rounded-full font-bold hover:bg-coco-leaf transition-all">
+                        <Link href={buttonLink} className="inline-block w-fit bg-coco-gold text-coco-forest px-10 py-4 rounded-full font-bold hover:bg-coco-gold/80 transition-all">
                             {data?.button_text || "Read More"}
                         </Link>
                     </motion.div>

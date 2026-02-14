@@ -218,7 +218,7 @@ const ContactPageClient = ({ data }: { data: ContactData }) => {
 
                                 <button
                                     type="submit"
-                                    className="w-full bg-coco-forest text-white py-5 rounded-2xl font-bold flex items-center justify-center gap-3 hover:bg-coco-gold transition-all hover:shadow-xl transform hover:-translate-y-1"
+                                    className="w-full bg-coco-gold text-coco-forest py-5 rounded-2xl font-bold flex items-center justify-center gap-3 hover:bg-coco-gold transition-all hover:shadow-xl transform hover:-translate-y-1"
                                 >
                                     Send Inquiry Now
                                     <Send size={18} />

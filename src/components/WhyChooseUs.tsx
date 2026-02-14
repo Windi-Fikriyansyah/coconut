@@ -287,7 +287,7 @@ const WhyChooseUs = ({
             >
               <Link
                 href="/products"
-                className="inline-flex items-center gap-3 md:gap-4 bg-coco-forest text-white px-8 py-4 md:px-10 md:py-5 rounded-full font-bold text-sm md:text-base hover:bg-coco-gold hover:text-coco-forest transition-all shadow-xl group"
+                className="inline-flex items-center gap-3 md:gap-4 bg-coco-gold text-coco-forest px-8 py-4 md:px-10 md:py-5 rounded-full font-bold text-sm md:text-base hover:bg-coco-gold hover:text-coco-forest transition-all shadow-xl group"
               >
                 Explore Our Products
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />

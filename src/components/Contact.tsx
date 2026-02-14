@@ -208,10 +208,10 @@ const Contact = ({ data, isGlobal }: ContactProps) => {
                 </div>
                 <button
                   type="submit"
-                  className="w-full bg-[#0f2922] text-white py-5 rounded-2xl font-bold flex items-center justify-center gap-3 hover:bg-[#1a3d34] transition-all shadow-xl shadow-[#0f2922]/10 active:scale-[0.98]"
+                  className="w-full bg-coco-gold text-coco-forest py-5 rounded-2xl font-bold flex items-center justify-center gap-3 hover:bg-coco-gold/80 transition-all shadow-xl shadow-[#0f2922]/10 active:scale-[0.98]"
                 >
                   Send Inquiry
-                  <Send className="w-5 h-5 text-coco-gold" />
+                  <Send className="w-5 h-5 text-coco-forest" />
                 </button>
               </form>
             </motion.div>
