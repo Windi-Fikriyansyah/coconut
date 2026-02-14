@@ -330,7 +330,7 @@ export default function AboutPageClient({ data }: { data: AboutPageData }) {
                 </section>
             )}
             {/* Vision & Mission */}
-            <section className="py-24 bg-coco-forest text-white">
+            <section className="py-24 bg-[#eff6ff] text-coco-forest">
                 <div className="container mx-auto px-6">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
                         <motion.div
@@ -343,7 +343,7 @@ export default function AboutPageClient({ data }: { data: AboutPageData }) {
                                 <Eye className="text-coco-forest" size={32} />
                             </div>
                             <h3 className="text-xl md:text-2xl font-bold mb-4">{data.vision_title}</h3>
-                            <p className="text-white/70 text-sm md:text-base leading-relaxed">
+                            <p className="text-coco-forest/70 text-sm md:text-base leading-relaxed">
                                 {data.vision_description}
                             </p>
                         </motion.div>
@@ -359,7 +359,7 @@ export default function AboutPageClient({ data }: { data: AboutPageData }) {
                                 <Target className="text-coco-forest" size={32} />
                             </div>
                             <h3 className="text-xl md:text-2xl font-bold mb-4">{data.mission_title}</h3>
-                            <ul className="space-y-4 text-white/70 text-sm md:text-base">
+                            <ul className="space-y-4 text-coco-forest/70 text-sm md:text-base">
                                 {missionPoints.map((point: string, i: number) => (
                                     <li key={i} className="flex gap-3">
                                         <div className="mt-1.5 w-1.5 h-1.5 bg-coco-gold rounded-full flex-shrink-0"></div>
