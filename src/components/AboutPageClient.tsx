@@ -154,12 +154,11 @@ export default function AboutPageClient({ data }: { data: AboutPageData }) {
                             transition={{ duration: 0.8 }}
                             className="relative"
                         >
-                            {/* Grid container: di desktop h-full agar sama tinggi dengan teks, di mobile auto */}
-                            <div className="grid grid-cols-2 gap-3 md:gap-4 h-auto lg:h-full items-start">
+                            {/* Grid container: di desktop h-full agar sama tinggi dengan kolom teks */}
+                            <div className="grid grid-cols-2 gap-4 lg:h-full items-start lg:items-stretch">
 
                                 {/* BIG - Left Column */}
                                 <div className="col-span-1 row-span-2 relative rounded-2xl md:rounded-3xl overflow-hidden shadow-lg group bg-white/5">
-                                    {/* Mobile: Tampil Full (h-auto) */}
                                     <div className="block lg:hidden">
                                         <Image
                                             src={data.journey_image?.[0] || '/placeholder.png'}
@@ -169,14 +168,13 @@ export default function AboutPageClient({ data }: { data: AboutPageData }) {
                                             className="w-full h-auto object-contain"
                                         />
                                     </div>
-                                    {/* Desktop: Tetap Fill Container agar layout konsisten */}
                                     <div className="hidden lg:block absolute inset-0">
                                         <Image
                                             src={data.journey_image?.[0] || '/placeholder.png'}
                                             alt="Our Journey"
                                             fill
                                             className="object-cover hover:scale-105 transition duration-500"
-                                            sizes="25vw"
+                                            sizes="(max-width: 1024px) 100vw, 25vw"
                                         />
                                     </div>
                                 </div>
@@ -192,13 +190,13 @@ export default function AboutPageClient({ data }: { data: AboutPageData }) {
                                             className="w-full h-auto object-contain"
                                         />
                                     </div>
-                                    <div className="hidden lg:block relative aspect-square lg:h-full lg:min-h-[150px]">
+                                    <div className="hidden lg:block relative h-full min-h-[150px]">
                                         <Image
                                             src={data.journey_image?.[1] || data.journey_image?.[0] || '/placeholder.png'}
                                             alt="Production"
                                             fill
                                             className="object-cover hover:scale-105 transition duration-500"
-                                            sizes="25vw"
+                                            sizes="(max-width: 1024px) 50vw, 25vw"
                                         />
                                     </div>
                                 </div>
@@ -214,13 +212,13 @@ export default function AboutPageClient({ data }: { data: AboutPageData }) {
                                             className="w-full h-auto object-contain"
                                         />
                                     </div>
-                                    <div className="hidden lg:block relative aspect-square lg:h-full lg:min-h-[150px]">
+                                    <div className="hidden lg:block relative h-full min-h-[150px]">
                                         <Image
                                             src={data.journey_image?.[2] || data.journey_image?.[0] || '/placeholder.png'}
                                             alt="Testing"
                                             fill
                                             className="object-cover hover:scale-105 transition duration-500"
-                                            sizes="25vw"
+                                            sizes="(max-width: 1024px) 50vw, 25vw"
                                         />
                                     </div>
                                 </div>
