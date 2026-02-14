@@ -108,12 +108,12 @@ const ContactPageClient = ({ data }: { data: ContactData }) => {
                                 </div>
                             </div>
 
-                            <div className="mt-10 p-7 md:p-8 bg-coco-forest rounded-2xl md:rounded-[2rem] text-white">
+                            <div className="mt-10 p-7 md:p-8 bg-[#eff6ff] rounded-2xl md:rounded-[2rem] text-coco-forest">
                                 <h4 className="text-xl font-bold mb-4 flex items-center gap-2">
                                     <MessageSquare className="text-coco-gold" />
                                     Support 24/7
                                 </h4>
-                                <p className="text-white/60 text-sm leading-relaxed mb-8">
+                                <p className="text-coco-forest/60 text-sm leading-relaxed mb-8">
                                     Our team in Indonesia is ready to respond to your inquiries regardless of international time zone differences.
                                 </p>
 
@@ -136,7 +136,7 @@ const ContactPageClient = ({ data }: { data: ContactData }) => {
                             initial={{ opacity: 0, x: 20 }}
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
-                            className="bg-white p-7 md:p-12 rounded-2xl md:rounded-[2.5rem] shadow-[0_20px_60px_rgba(0,0,0,0.05)] border border-coco-forest/5"
+                            className="bg-[#eff6ff] p-7 md:p-12 rounded-2xl md:rounded-[2.5rem] shadow-[0_20px_60px_rgba(0,0,0,0.05)] border border-coco-forest/5"
                         >
                             <h3 className="text-xl md:text-3xl font-bold text-coco-forest mb-6 md:mb-8">Send a Message (Inquiry Form)</h3>
                             <form
