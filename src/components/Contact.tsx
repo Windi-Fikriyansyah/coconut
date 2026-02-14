@@ -126,14 +126,46 @@ const Contact = ({ data, isGlobal }: ContactProps) => {
               viewport={{ once: true }}
               className="h-full bg-[#fcf9f0] p-8 md:p-14 rounded-[2rem] md:rounded-[3rem] border border-[#0f2922]/5 shadow-sm flex flex-col justify-center"
             >
-              <form className="space-y-6">
+              <form
+                className="space-y-6"
+                onSubmit={async (e) => {
+                  e.preventDefault();
+                  const formData = new FormData(e.currentTarget);
+                  const data = {
+                    name: formData.get('name'),
+                    email: formData.get('email'),
+                    company: formData.get('company'),
+                    message: formData.get('message'),
+                  };
+
+                  try {
+                    const response = await fetch('/api/contact', {
+                      method: 'POST',
+                      headers: { 'Content-Type': 'application/json' },
+                      body: JSON.stringify(data),
+                    });
+
+                    if (response.ok) {
+                      alert('Message sent successfully!');
+                      (e.target as HTMLFormElement).reset();
+                    } else {
+                      alert('Failed to send message. Please try again.');
+                    }
+                  } catch (error) {
+                    console.error('Error submitting form:', error);
+                    alert('An error occurred. Please try again.');
+                  }
+                }}
+              >
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <label className="text-xs font-bold uppercase tracking-widest text-[#0f2922]/60 ml-1">
                       Full Name
                     </label>
                     <input
+                      name="name"
                       type="text"
+                      required
                       className="w-full bg-white border border-[#0f2922]/5 rounded-2xl px-6 py-4 focus:ring-2 focus:ring-coco-gold/20 outline-none transition-all shadow-sm text-[#0f2922]"
                       placeholder="John Doe"
                     />
@@ -143,7 +175,9 @@ const Contact = ({ data, isGlobal }: ContactProps) => {
                       Email Address
                     </label>
                     <input
+                      name="email"
                       type="email"
+                      required
                       className="w-full bg-white border border-[#0f2922]/5 rounded-2xl px-6 py-4 focus:ring-2 focus:ring-coco-gold/20 outline-none transition-all shadow-sm text-[#0f2922]"
                       placeholder="john@company.com"
                     />
@@ -154,6 +188,7 @@ const Contact = ({ data, isGlobal }: ContactProps) => {
                     Company
                   </label>
                   <input
+                    name="company"
                     type="text"
                     className="w-full bg-white border border-[#0f2922]/5 rounded-2xl px-6 py-4 focus:ring-2 focus:ring-coco-gold/20 outline-none transition-all shadow-sm text-[#0f2922]"
                     placeholder="Your Company Name"
@@ -164,13 +199,15 @@ const Contact = ({ data, isGlobal }: ContactProps) => {
                     Message
                   </label>
                   <textarea
+                    name="message"
+                    required
                     rows={6}
                     className="w-full bg-white border border-[#0f2922]/5 rounded-2xl px-6 py-4 focus:ring-2 focus:ring-coco-gold/20 outline-none transition-all shadow-sm text-[#0f2922]"
                     placeholder="How can we help you?"
                   ></textarea>
                 </div>
                 <button
-                  type="button"
+                  type="submit"
                   className="w-full bg-[#0f2922] text-white py-5 rounded-2xl font-bold flex items-center justify-center gap-3 hover:bg-[#1a3d34] transition-all shadow-xl shadow-[#0f2922]/10 active:scale-[0.98]"
                 >
                   Send Inquiry

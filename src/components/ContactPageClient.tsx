@@ -139,39 +139,87 @@ const ContactPageClient = ({ data }: { data: ContactData }) => {
                             className="bg-white p-7 md:p-12 rounded-2xl md:rounded-[2.5rem] shadow-[0_20px_60px_rgba(0,0,0,0.05)] border border-coco-forest/5"
                         >
                             <h3 className="text-xl md:text-3xl font-bold text-coco-forest mb-6 md:mb-8">Send a Message (Inquiry Form)</h3>
-                            <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
+                            <form
+                                className="space-y-6"
+                                onSubmit={async (e) => {
+                                    e.preventDefault();
+                                    const formData = new FormData(e.currentTarget);
+                                    const data = {
+                                        name: formData.get('name'),
+                                        email: formData.get('email'),
+                                        company: formData.get('company'),
+                                        message: formData.get('message'),
+                                    };
+
+                                    try {
+                                        const response = await fetch('/api/contact', {
+                                            method: 'POST',
+                                            headers: { 'Content-Type': 'application/json' },
+                                            body: JSON.stringify(data),
+                                        });
+
+                                        if (response.ok) {
+                                            alert('Message sent successfully!');
+                                            (e.target as HTMLFormElement).reset();
+                                        } else {
+                                            alert('Failed to send message. Please try again.');
+                                        }
+                                    } catch (error) {
+                                        console.error('Error submitting form:', error);
+                                        alert('An error occurred. Please try again.');
+                                    }
+                                }}
+                            >
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                     <div className="space-y-2">
                                         <label className="text-xs font-bold uppercase tracking-widest text-coco-forest/40">Full Name</label>
-                                        <input type="text" className="w-full bg-coco-sandy/50 border border-coco-forest/10 p-4 rounded-xl focus:outline-none focus:border-coco-gold transition-colors" placeholder="John Doe" />
+                                        <input
+                                            name="name"
+                                            type="text"
+                                            required
+                                            className="w-full bg-coco-sandy/50 border border-coco-forest/10 p-4 rounded-xl focus:outline-none focus:border-coco-gold transition-colors"
+                                            placeholder="John Doe"
+                                        />
                                     </div>
                                     <div className="space-y-2">
                                         <label className="text-xs font-bold uppercase tracking-widest text-coco-forest/40">Email Address</label>
-                                        <input type="email" className="w-full bg-coco-sandy/50 border border-coco-forest/10 p-4 rounded-xl focus:outline-none focus:border-coco-gold transition-colors" placeholder="john@company.com" />
+                                        <input
+                                            name="email"
+                                            type="email"
+                                            required
+                                            className="w-full bg-coco-sandy/50 border border-coco-forest/10 p-4 rounded-xl focus:outline-none focus:border-coco-gold transition-colors"
+                                            placeholder="john@company.com"
+                                        />
                                     </div>
                                 </div>
 
                                 <div className="space-y-2">
                                     <label className="text-xs font-bold uppercase tracking-widest text-coco-forest/40">Company & Country</label>
-                                    <input type="text" className="w-full bg-coco-sandy/50 border border-coco-forest/10 p-4 rounded-xl focus:outline-none focus:border-coco-gold transition-colors" placeholder="Example Corp, USA" />
+                                    <input
+                                        name="company"
+                                        type="text"
+                                        className="w-full bg-coco-sandy/50 border border-coco-forest/10 p-4 rounded-xl focus:outline-none focus:border-coco-gold transition-colors"
+                                        placeholder="Example Corp, USA"
+                                    />
                                 </div>
 
-                                <div className="space-y-2">
-                                    <label className="text-xs font-bold uppercase tracking-widest text-coco-forest/40">Product of Interest</label>
-                                    <select className="w-full bg-coco-sandy/50 border border-coco-forest/10 p-4 rounded-xl focus:outline-none focus:border-coco-gold transition-colors appearance-none">
-                                        <option>Semi Husked Coconut</option>
-                                        <option>Virgin Coconut Oil (VCO)</option>
-                                        <option>BBQ Coconut Charcoal</option>
-                                        <option>Other</option>
-                                    </select>
-                                </div>
+
 
                                 <div className="space-y-2">
                                     <label className="text-xs font-bold uppercase tracking-widest text-coco-forest/40">Message Detail / Inquiry</label>
-                                    <textarea rows={4} className="w-full bg-coco-sandy/50 border border-coco-forest/10 p-4 rounded-xl focus:outline-none focus:border-coco-gold transition-colors" placeholder="Explain your export volume requirements..."></textarea>
+                                    <textarea
+                                        name="message"
+                                        required
+                                        rows={4}
+                                        className="w-full bg-coco-sandy/50 border border-coco-forest/10 p-4 rounded-xl focus:outline-none focus:border-coco-gold transition-colors"
+                                        placeholder="Explain your export volume requirements..."
+                                    ></textarea>
                                 </div>
 
-                                <button className="w-full bg-coco-forest text-white py-5 rounded-2xl font-bold flex items-center justify-center gap-3 hover:bg-coco-gold transition-all hover:shadow-xl transform hover:-translate-y-1">
+                                <button
+                                    type="submit"
+                                    className="w-full bg-coco-forest text-white py-5 rounded-2xl font-bold flex items-center justify-center gap-3 hover:bg-coco-gold transition-all hover:shadow-xl transform hover:-translate-y-1"
+                                >
                                     Send Inquiry Now
                                     <Send size={18} />
                                 </button>
