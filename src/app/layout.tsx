@@ -3,7 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import JsonLd from "@/components/JsonLd";
 import dynamic from "next/dynamic";
-import { GoogleTagManager } from '@next/third-parties/google';
+import Script from "next/script";
 
 const Footer = dynamic(() => import("@/components/Footer"));
 const Certificates = dynamic(() => import("@/components/Certificates"));
@@ -65,7 +65,13 @@ export default async function RootLayout({
         <link rel="dns-prefetch" href="https://ik.imagekit.io" />
       </head>
       <body className={`${inter.variable} font-sans antialiased text-coco-forest`}>
-        <GoogleTagManager gtmId="G-RH8PHKT37C" />
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-RH8PHKT37C"
+          strategy="lazyOnload"
+        />
+        <Script id="gtag-init" strategy="lazyOnload">
+          {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-RH8PHKT37C');`}
+        </Script>
         <JsonLd />
         {children}
         <Certificates data={certificates} isGlobal={true} />

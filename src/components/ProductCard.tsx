@@ -43,7 +43,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
           alt={title}
           fill
           className="object-cover group-hover:scale-110 transition-transform duration-700"
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          sizes="(max-width: 768px) 280px, (max-width: 1200px) 340px, 300px"
         />
       </Link>
       <div className="p-4 md:p-6 lg:p-8 flex-1 flex flex-col">

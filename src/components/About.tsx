@@ -112,7 +112,7 @@ const About = ({ data }: AboutProps) => {
                                         alt="Production"
                                         fill
                                         className="object-cover hover:scale-105 transition duration-500"
-                                        sizes="(max-width: 1024px) 100vw, 25vw"
+                                        sizes="350px"
                                     />
                                 </div>
                             </div>
@@ -137,7 +137,7 @@ const About = ({ data }: AboutProps) => {
                                         alt="QC"
                                         fill
                                         className="object-cover hover:scale-105 transition duration-500"
-                                        sizes="(max-width: 1024px) 50vw, 25vw"
+                                        sizes="300px"
                                     />
                                 </div>
                             </div>
@@ -162,7 +162,7 @@ const About = ({ data }: AboutProps) => {
                                         alt="VCO"
                                         fill
                                         className="object-cover hover:scale-105 transition duration-500"
-                                        sizes="(max-width: 1024px) 50vw, 25vw"
+                                        sizes="300px"
                                     />
                                 </div>
                             </div>
