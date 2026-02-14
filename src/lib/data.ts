@@ -679,3 +679,55 @@ export async function getGalleryImages(): Promise<GalleryImage[]> {
     return [];
   }
 }
+
+export interface Testimonial extends RowDataPacket {
+  id: number;
+  name: string;
+  role: string;
+  content: string;
+  image: string;
+  rating: number;
+}
+
+export async function getTestimonials(): Promise<Testimonial[]> {
+  try {
+    const [rows] = await pool.query<Testimonial[]>(
+      "SELECT * FROM testimonials ORDER BY display_order ASC, created_at DESC"
+    );
+    return rows.map((row) => ({
+      ...row,
+      image: sanitizeImageUrl(row.image),
+    }));
+  } catch (error) {
+    console.error("Error fetching testimonials:", error);
+    return [];
+  }
+}
+
+export interface TeamMember extends RowDataPacket {
+  id: number;
+  name: string;
+  role: string;
+  image: string;
+  linkedin_url: string | null;
+  instagram_url: string | null;
+  display_order: number;
+}
+
+export async function getTeamMembers(): Promise<TeamMember[]> {
+  try {
+    const [rows] = await pool.query<TeamMember[]>(
+      "SELECT * FROM team_members ORDER BY display_order ASC"
+    );
+    return rows.map((row) => ({
+      ...row,
+      image: sanitizeImageUrl(row.image),
+    }));
+  } catch (error) {
+    console.error("Error fetching team members:", error);
+    return [];
+  }
+}
+
+
+

@@ -8,6 +8,8 @@ import WhyChooseUs from "@/components/WhyChooseUs";
 import ShippingGallery from "@/components/ShippingGallery";
 import Certificates from "@/components/Certificates";
 import Contact from "@/components/Contact";
+import Testimonials from "@/components/Testimonials";
+import OurTeam from "@/components/OurTeam";
 
 import QualityCommitment from "@/components/QualityCommitment";
 
@@ -24,7 +26,9 @@ import {
   getQualityCommitmentData,
   getQualityCommitmentItems,
   getGalleryMetadata,
-  getGalleryImages
+  getGalleryImages,
+  getTestimonials,
+  getTeamMembers
 } from "@/lib/data";
 
 export const revalidate = 0;
@@ -43,7 +47,9 @@ export default async function Home() {
     qualityCommitmentData,
     qualityCommitmentItems,
     galleryMetadata,
-    galleryImages
+    galleryImages,
+    testimonialsData,
+    teamData
   ] = await Promise.all([
     getProcessSteps(),
     getProducts(),
@@ -57,7 +63,9 @@ export default async function Home() {
     getQualityCommitmentData(),
     getQualityCommitmentItems(),
     getGalleryMetadata(),
-    getGalleryImages()
+    getGalleryImages(),
+    getTestimonials(),
+    getTeamMembers()
   ]);
 
   return (
@@ -76,9 +84,13 @@ export default async function Home() {
         image={whyChooseUsMetadata?.image}
       />
       {/* <TrustSection data={trustData} /> */}
+      <OurTeam data={teamData} />
       <Certificates data={certificatesData} />
+      <Testimonials data={testimonialsData} />
       <Contact data={contactData} />
     </main>
   );
 }
+
+
 

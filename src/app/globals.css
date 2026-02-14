@@ -89,3 +89,19 @@ body {
 .blog-content ul li::marker {
   color: var(--color-coco-gold);
 }
+
+/* Slick Carousel Dots */
+.custom-dots {
+  bottom: -40px !important;
+}
+
+.custom-dots li button:before {
+  font-size: 12px !important;
+  color: var(--color-coco-gold) !important;
+  opacity: 0.3 !important;
+}
+
+.custom-dots li.slick-active button:before {
+  color: var(--color-coco-forest) !important;
+  opacity: 1 !important;
+}
