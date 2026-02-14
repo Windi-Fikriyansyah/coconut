@@ -586,6 +586,10 @@ export interface ProductsPageData extends RowDataPacket {
   cta_title: string;
   cta_description: string;
   cta_button_text: string;
+  cta_whatsapp: string | null;
+  cta_email: string | null;
+  cta_whatsapp_label: string | null;
+  cta_email_label: string | null;
 }
 
 export const getProductsPageData = cache(
