@@ -14,9 +14,12 @@ const ProductGrid = ({ data }: { data?: any[] }) => {
 
                 </div>
 
-                <div className="flex flex-wrap justify-center gap-6 md:gap-8">
+                <div className="flex flex-wrap justify-center gap-8">
                     {products.map((product, index) => (
-                        <div key={index} className="w-full md:w-[calc(50%-1rem)] lg:w-[calc(25%-1.5rem)]">
+                        <div
+                            key={index}
+                            className="w-full md:w-[calc(50%-2rem)] lg:w-[calc(33.333%-2rem)] max-w-[400px] md:max-w-none"
+                        >
                             <ProductCard
                                 slug={product.slug}
                                 title={product.title}

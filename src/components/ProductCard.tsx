@@ -48,24 +48,24 @@ const ProductCard: React.FC<ProductCardProps> = ({
       </Link>
       <div className="p-4 md:p-6 lg:p-8 flex-1 flex flex-col">
         <Link href={`/products/${slug}`}>
-          <h3 className="text-base md:text-xl font-bold text-coco-forest mb-2 md:mb-3 group-hover:text-coco-gold transition-colors line-clamp-2">
+          <h3 className="text-xs md:text-base font-semibold text-coco-forest mb-4 group-hover:text-coco-gold transition-colors line-clamp-2 leading-tight tracking-tight">
             {title}
           </h3>
         </Link>
         {/* <p className="text-coco-forest/60 text-sm leading-relaxed mb-6 flex-1">
           {description}
         </p> */}
-        <div className="mt-auto flex flex-row items-center justify-between sm:justify-start gap-3">
+        <div className="mt-auto flex flex-col gap-3 w-full items-center">
           <Link
             href={`/products/${slug}`}
-            className="flex items-center justify-center gap-1.5 md:gap-2 whitespace-nowrap bg-[#eff6ff] text-coco-forest px-3 py-1.5 md:px-4 md:py-2 rounded-full font-bold text-xs hover:bg-coco-forest hover:text-white transition-all"
+            className="flex items-center justify-center w-full text-center bg-[#eff6ff] text-coco-forest px-4 py-2.5 rounded-full font-bold text-xs md:text-sm hover:bg-coco-forest hover:text-white transition-all"
           >
             View Detail
           </Link>
 
           <a
             href={`mailto:${emailTo}?subject=${emailSubject}`}
-            className="flex items-center justify-center whitespace-nowrap bg-coco-gold/10 text-coco-gold px-3 py-1.5 md:px-4 md:py-2 rounded-full font-bold text-xs hover:bg-coco-gold hover:text-coco-forest transition-all"
+            className="flex items-center justify-center w-full text-center bg-coco-gold/10 text-coco-gold px-4 py-2.5 rounded-full font-bold text-xs md:text-sm hover:bg-coco-gold hover:text-coco-forest transition-all"
           >
             Get Quote
           </a>

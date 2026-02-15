@@ -110,7 +110,7 @@ const Hero = ({ data = [] }: HeroProps) => {
                         className="bg-coco-gold text-coco-forest px-6 py-3 md:px-8 md:py-4 rounded-full font-bold text-sm md:text-base inline-flex items-center gap-2"
                       >
                         {ctaText}
-                        <ArrowRight className="w-5 h-5" />
+
                       </motion.a>
                     </motion.div>
                   </div>
