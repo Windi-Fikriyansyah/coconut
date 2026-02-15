@@ -63,7 +63,7 @@ const RelatedProductsSlider = ({ products }: RelatedProductsSliderProps) => {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: 0.1 }}
-                            className="text-4xl md:text-5xl font-bold text-coco-forest"
+                            className="text-4xl md:text-5xl font-bold text-coco-gold"
                         >
                             Other Premium Products
                         </motion.h2>

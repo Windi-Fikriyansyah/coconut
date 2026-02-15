@@ -83,7 +83,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
                 <div className="container mx-auto px-5 md:px-16 relative z-10">
                     <div className="flex flex-col items-start pt-12">
                         <div className="max-w-4xl text-left">
-                            <h1 className="text-3xl md:text-5xl font-bold text-white leading-[1.2] mb-6 drop-shadow-lg">
+                            <h1 className="text-2xl md:text-4xl font-bold text-white leading-[1.2] mb-6 drop-shadow-lg">
                                 {product.title}
                             </h1>
                             <p className="text-sm md:text-base text-coco-sandy/90 max-w-3xl leading-relaxed drop-shadow-md">
@@ -125,7 +125,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
 
                                     {/* Text Container - Biarkan konten menentukan tinggi baris ini */}
                                     <div className="flex-1 min-w-0 flex flex-col justify-center">
-                                        <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-coco-forest mb-4 md:mb-3 mt-4 md:mt-0">
+                                        <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-coco-gold mb-4 md:mb-3 mt-4 md:mt-0">
                                             {detail.title}
                                         </h2>
                                         <div
@@ -154,7 +154,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
             <section className="py-16 md:py-20 bg-white">
                 <div className="container mx-auto px-5 md:px-16">
                     <div className="max-w-4xl mx-auto">
-                        <h2 className="text-2xl md:text-3xl font-bold text-coco-forest mb-10 md:mb-12 text-center">Why Choose Our {product.title}?</h2>
+                        <h2 className="text-2xl md:text-3xl font-bold text-coco-gold mb-10 md:mb-12 text-center">Why Choose Our {product.title}?</h2>
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                             {whyPoints.map((point: string, i: number) => (
                                 <div
