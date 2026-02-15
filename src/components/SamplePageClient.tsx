@@ -109,7 +109,7 @@ const SamplePageClient = ({ products, dbCountries }: Props) => {
         </div>
       </section>
 
-      <section className="py-20">
+      <section className="py-20 bg-white">
         <div className="container mx-auto px-6 max-w-6xl">
           <form onSubmit={handleSubmit} className="space-y-16">
             {/* PERSONAL DETAILS */}
