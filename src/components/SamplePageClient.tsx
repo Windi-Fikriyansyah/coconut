@@ -228,7 +228,7 @@ const SamplePageClient = ({ products, dbCountries }: Props) => {
                 Select <span className="text-gray-400">Payment Method</span>
               </h2>
               <div className="flex space-x-12">
-                {["Paypal", "Other"].map((method) => (
+                {["Visa", "Transfer Bank", "Paypal"].map((method) => (
                   <label
                     key={method}
                     className="flex items-center space-x-2 cursor-pointer"
