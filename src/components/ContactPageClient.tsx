@@ -66,7 +66,7 @@ const ContactPageClient = ({ data }: { data: ContactData }) => {
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
                         >
-                            <h2 className="text-xl md:text-3xl font-bold text-coco-forest mb-10">Contact Information</h2>
+                            <h2 className="text-xl md:text-3xl font-bold text-coco-gold mb-10">Contact Information</h2>
 
                             <div className="space-y-10">
                                 <div className="flex gap-4 md:gap-6 group">
@@ -138,7 +138,7 @@ const ContactPageClient = ({ data }: { data: ContactData }) => {
                             viewport={{ once: true }}
                             className="bg-[#eff6ff] p-7 md:p-12 rounded-2xl md:rounded-[2.5rem] shadow-[0_20px_60px_rgba(0,0,0,0.05)] border border-coco-forest/5"
                         >
-                            <h3 className="text-xl md:text-3xl font-bold text-coco-forest mb-6 md:mb-8">Send a Message (Inquiry Form)</h3>
+                            <h3 className="text-xl md:text-3xl font-bold text-coco-gold mb-6 md:mb-8">Send a Message (Inquiry Form)</h3>
                             <form
                                 className="space-y-6"
                                 onSubmit={async (e) => {

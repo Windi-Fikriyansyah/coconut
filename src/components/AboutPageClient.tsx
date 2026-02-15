@@ -122,7 +122,7 @@ export default function AboutPageClient({ data }: { data: AboutPageData }) {
                                 Our Journey
                             </span>
 
-                            <h2 className="text-3xl md:text-5xl font-bold text-coco-forest mb-6 md:mb-8 leading-tight mt-4">
+                            <h2 className="text-3xl md:text-5xl font-bold text-coco-gold mb-6 md:mb-8 leading-tight mt-4">
                                 {data.journey_title}
                             </h2>
 
@@ -257,7 +257,7 @@ export default function AboutPageClient({ data }: { data: AboutPageData }) {
                                 viewport={{ once: true }}
                                 className="order-1 lg:order-2"
                             >
-                                <h2 className="text-3xl md:text-5xl font-bold text-coco-forest mb-6 md:mb-8 leading-tight">{data.commitment_title}</h2>
+                                <h2 className="text-3xl md:text-5xl font-bold text-coco-gold mb-6 md:mb-8 leading-tight">{data.commitment_title}</h2>
                                 <p className="text-coco-forest/60 text-sm md:text-lg leading-relaxed mb-6">
                                     {data.commitment_description}
                                 </p>
@@ -285,7 +285,7 @@ export default function AboutPageClient({ data }: { data: AboutPageData }) {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ delay: 0.1 }}
-                                className="text-3xl md:text-6xl font-bold text-coco-forest"
+                                className="text-3xl md:text-6xl font-bold text-coco-gold"
                             >
                                 {data.process_title}
                             </motion.h2>
@@ -376,7 +376,7 @@ export default function AboutPageClient({ data }: { data: AboutPageData }) {
             <section className="py-24">
                 <div className="container mx-auto px-6">
                     <div className="text-center mb-10 md:mb-16">
-                        <h2 className="text-3xl md:text-4xl font-bold text-coco-forest mb-4">Core Values</h2>
+                        <h2 className="text-3xl md:text-4xl font-bold text-coco-gold mb-4">Core Values</h2>
                         <div className="w-20 h-1 bg-coco-gold mx-auto"></div>
                     </div>
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">

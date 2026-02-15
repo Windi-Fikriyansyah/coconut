@@ -43,7 +43,7 @@ const Contact = ({ data, isGlobal }: ContactProps) => {
                   {subtitle}
                 </span>
                 <h2
-                  className="text-2xl md:text-3xl lg:text-5xl font-bold mb-6 md:mb-8 leading-[1.2] tracking-tight text-coco-forest/60"
+                  className="text-2xl md:text-3xl lg:text-5xl font-bold mb-6 md:mb-8 leading-[1.2] tracking-tight text-coco-gold"
                   dangerouslySetInnerHTML={{ __html: title }}
                 />
                 <p className="text-coco-forest/60 text-base md:text-lg mb-12 max-w-md leading-relaxed">

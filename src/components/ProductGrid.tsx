@@ -9,7 +9,7 @@ const ProductGrid = ({ data }: { data?: any[] }) => {
                 <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 md:mb-16 gap-6">
                     <div className="max-w-xl">
 
-                        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-coco-forest">Products<br /></h2>
+                        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-coco-gold">Products<br /></h2>
                     </div>
 
                 </div>

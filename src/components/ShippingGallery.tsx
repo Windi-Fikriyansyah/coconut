@@ -69,7 +69,7 @@ const ShippingGallery = ({ data, section }: ShippingGalleryProps) => {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.1 }}
-                        className="text-3xl md:text-4xl lg:text-5xl font-bold text-coco-forest mb-6"
+                        className="text-3xl md:text-4xl lg:text-5xl font-bold text-coco-gold mb-6"
                     >
                         {title}
                     </motion.h2>
