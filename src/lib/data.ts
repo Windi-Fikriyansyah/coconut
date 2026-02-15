@@ -771,6 +771,25 @@ export async function getTeamMetadata(): Promise<TeamMetadata | null> {
   }
 }
 
+export interface CompanyStat extends RowDataPacket {
+  id: number;
+  value: string;
+  label: string;
+  display_order: number;
+}
+
+export async function getCompanyStats(): Promise<CompanyStat[]> {
+  try {
+    const [rows] = await pool.query<CompanyStat[]>(
+      "SELECT * FROM company_stats ORDER BY display_order ASC"
+    );
+    return rows;
+  } catch (error) {
+    console.error("Error fetching company stats:", error);
+    return [];
+  }
+}
+
 
 
 

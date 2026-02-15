@@ -31,8 +31,11 @@ import {
   getTestimonialsMetadata,
   getTeamMembers,
   getTeamMetadata,
-  getProductsPageData // Added
+  getProductsPageData,
+  getCompanyStats
 } from "@/lib/data";
+
+import StatsSection from "@/components/StatsSection";
 
 export const revalidate = 0;
 
@@ -55,7 +58,8 @@ export default async function Home() {
     testimonialsMetadata,
     teamData,
     teamMetadata,
-    productsPageData // Added
+    productsPageData,
+    companyStats
   ] = await Promise.all([
     getProcessSteps(),
     getProducts(),
@@ -74,7 +78,8 @@ export default async function Home() {
     getTestimonialsMetadata(),
     getTeamMembers(),
     getTeamMetadata(),
-    getProductsPageData() // Added
+    getProductsPageData(),
+    getCompanyStats()
   ]);
 
   return (
@@ -104,6 +109,8 @@ export default async function Home() {
         title={testimonialsMetadata?.title}
         subtitle={testimonialsMetadata?.subtitle}
       />
+
+      <StatsSection data={companyStats} />
 
       {/* Sustainable Quality Section */}
       <section className="py-16 md:py-24 bg-white border-t border-coco-forest/5">
