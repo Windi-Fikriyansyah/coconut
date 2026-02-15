@@ -35,7 +35,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
     >
       <Link
         href={`/products/${slug}`}
-        className="relative h-64 md:h-48 overflow-hidden block"
+        className="relative h-64 md:h-80 overflow-hidden block"
       >
         <Image
           src={getOptimizedImage(image, 600)}
