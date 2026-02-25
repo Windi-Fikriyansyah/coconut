@@ -64,8 +64,8 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
             <Navbar solid />
 
             {/* Hero Header */}
-            <section className="relative min-h-[100dvh] flex items-center justify-center overflow-hidden text-center">
-                {/* Background with overlay */}
+            <section className="relative min-h-[100dvh] flex items-end overflow-hidden pb-5 md:pb-9">
+                {/* Background - Now bright without dark overlay */}
                 <div className="absolute inset-0 z-0">
                     <Image
                         src={product.image}
@@ -76,20 +76,32 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
                         sizes="100vw"
                         quality={90}
                     />
-                    <div className="absolute inset-0 bg-black/50"></div>
-                    <div className="absolute inset-0 bg-gradient-to-t from-coco-forest via-transparent to-transparent"></div>
                 </div>
 
                 <div className="container mx-auto px-5 md:px-16 relative z-10">
-                    <div className="flex flex-col items-start pt-12">
-                        <div className="max-w-4xl text-left">
-                            <h1 className="text-2xl md:text-4xl font-bold text-white leading-[1.2] mb-6 drop-shadow-lg">
-                                {product.title}
-                            </h1>
-                            <p className="text-sm md:text-base text-coco-sandy/90 max-w-3xl leading-relaxed drop-shadow-md">
-                                {product.short_description}
-                            </p>
-                        </div>
+                    <div className="max-w-sm bg-white/90 backdrop-blur-md p-5 md:p-6 rounded-2xl shadow-xl border border-white/20">
+                        <h1 className="text-lg md:text-2xl font-bold text-coco-forest leading-tight mb-2">
+                            {product.title}
+                        </h1>
+                        <p className="text-[10px] md:text-xs text-coco-forest/80 max-w-xs leading-relaxed">
+                            {product.short_description}
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            {/* Product Description Section */}
+            <section className="py-12 md:py-20 bg-white border-b border-coco-forest/5">
+                <div className="container mx-auto px-5 md:px-16">
+                    <div className="max-w-3xl mx-auto text-center">
+                        <h2 className="text-2xl md:text-3xl font-bold text-coco-gold mb-10 relative inline-block">
+                            {product.title_long_description}
+                            <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-12 h-1 bg-coco-gold rounded-full"></span>
+                        </h2>
+                        <div
+                            className="text-coco-forest/80 text-sm md:text-base leading-relaxed space-y-4 product-long-description text-center"
+                            dangerouslySetInnerHTML={{ __html: product.long_description || '' }}
+                        />
                     </div>
                 </div>
             </section>
