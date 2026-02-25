@@ -130,7 +130,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
                                     {/* Image Container - Tambahkan self-stretch */}
                                     <div className="flex-none w-full md:w-[350px] lg:w-[400px] self-stretch">
                                         <ProductGallery
-                                            imageData={detail.image}
+                                            imageData={imageGallery}
                                             title={detail.title || product.title}
                                         />
                                     </div>

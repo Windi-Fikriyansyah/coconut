@@ -59,31 +59,45 @@ export interface ProcessStep extends RowDataPacket {
 function sanitizeImageUrl(url: any, updatedAt?: Date): string {
   if (!url) return "";
 
-  // If it is a JSON string (for product gallery), parse it and sanitize each URL
-  if (typeof url === 'string' && (url.startsWith('[') || url.startsWith('{'))) {
-    try {
-      const parsed = JSON.parse(url);
-      if (Array.isArray(parsed)) {
-        return JSON.stringify(parsed.map(img => ({
-          ...img,
-          url: sanitizeImageUrl(typeof img === 'string' ? img : img.url, updatedAt)
-        })));
-      }
-      if (typeof parsed === 'object' && parsed.url) {
-        return JSON.stringify({
-          ...parsed,
-          url: sanitizeImageUrl(parsed.url, updatedAt)
-        });
-      }
-    } catch (e) {
-      // Not a valid JSON, continue with normal sanitization
+  // 1. Handle if it's already an array or object (parsed JSON or DB object)
+  if (typeof url === 'object' && url !== null) {
+    if (Array.isArray(url)) {
+      if (url.length === 0) return "";
+      // It's a gallery array, sanitize each item and stringify back
+      const sanitizedArray = url.map(img => {
+        const imgUrl = typeof img === 'string' ? img : (img.url || img.src || "");
+        return {
+          ...(typeof img === 'object' ? img : {}),
+          url: sanitizeImageUrl(imgUrl, updatedAt)
+        };
+      });
+      return JSON.stringify(sanitizedArray);
+    } else {
+      // It's a single image object
+      const imgUrl = url.url || url.src || "";
+      if (imgUrl) return sanitizeImageUrl(imgUrl, updatedAt);
+      // If it's an object but doesn't have url/src, it might be a weird DB row, 
+      // but we can't do much with it.
     }
   }
 
-  // Handle if url is an object (common from DB queries)
+  // 2. Handle potential JSON string
+  if (typeof url === 'string') {
+    const trimmed = url.trim();
+    if (trimmed.startsWith('[') || trimmed.startsWith('{')) {
+      try {
+        const parsed = JSON.parse(trimmed);
+        return sanitizeImageUrl(parsed, updatedAt);
+      } catch (e) {
+        // Not valid JSON, continue to normal string processing
+      }
+    }
+  }
+
+  // Handle if url is an object (redundant fallback but safe)
   let strUrl = "";
   if (typeof url === 'string') {
-    strUrl = url;
+    strUrl = url.trim();
   } else if (typeof url === 'object' && url !== null) {
     strUrl = url.url || url.src || "";
   }
@@ -119,20 +133,31 @@ function sanitizeImageUrl(url: any, updatedAt?: Date): string {
 
 function extractFirstImage(url: any, updatedAt?: Date): string {
   if (!url) return "";
-  if (typeof url === 'string' && (url.startsWith('[') || url.startsWith('{'))) {
-    try {
-      const parsed = JSON.parse(url);
-      if (Array.isArray(parsed) && parsed.length > 0) {
-        const first = parsed[0];
-        return sanitizeImageUrl(typeof first === 'string' ? first : first.url, updatedAt);
-      }
-      if (typeof parsed === 'object' && parsed.url) {
-        return sanitizeImageUrl(parsed.url, updatedAt);
-      }
-    } catch (e) {
-      // Not valid JSON, continue with normal sanitization
+
+  // If it's already an array/object
+  if (typeof url === 'object' && url !== null) {
+    if (Array.isArray(url) && url.length > 0) {
+      const first = url[0];
+      const firstUrl = typeof first === 'string' ? first : (first.url || first.src || "");
+      return sanitizeImageUrl(firstUrl, updatedAt);
+    } else if (url.url || url.src) {
+      return sanitizeImageUrl(url.url || url.src, updatedAt);
     }
   }
+
+  // If it's a JSON string
+  if (typeof url === 'string') {
+    const trimmed = url.trim();
+    if (trimmed.startsWith('[') || trimmed.startsWith('{')) {
+      try {
+        const parsed = JSON.parse(trimmed);
+        return extractFirstImage(parsed, updatedAt);
+      } catch (e) {
+        // Not valid JSON
+      }
+    }
+  }
+
   return sanitizeImageUrl(url, updatedAt);
 }
 
