@@ -91,9 +91,7 @@ const SamplePageClient = ({ products, dbCountries }: Props) => {
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: `url('/background_hero.webp')` }}
-        >
-          <div className="absolute inset-0 bg-black/60"></div>
-        </div>
+        />
         <div className="relative z-10 text-center text-white px-6">
           <motion.h1
             initial={{ opacity: 0, y: 20 }}

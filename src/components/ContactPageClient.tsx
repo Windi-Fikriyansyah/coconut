@@ -14,7 +14,7 @@ const ContactPageClient = ({ data }: { data: ContactData }) => {
 
             {/* Hero Header */}
             <section className="relative min-h-[100dvh] flex items-center justify-center overflow-hidden">
-                {/* Background with overlay */}
+                {/* Background - Now bright without dark overlay */}
                 <div className="absolute inset-0 z-0">
                     <Image
                         src={(data as any).hero_image || '/background_hero.webp'}
@@ -25,8 +25,6 @@ const ContactPageClient = ({ data }: { data: ContactData }) => {
                         sizes="100vw"
                         quality={90}
                     />
-                    <div className="absolute inset-0 bg-black/60"></div>
-                    <div className="absolute inset-0 bg-gradient-to-t from-coco-forest via-transparent to-transparent"></div>
                 </div>
 
                 <div className="container mx-auto px-5 relative z-10 text-center">

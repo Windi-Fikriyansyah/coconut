@@ -19,7 +19,7 @@ const ProductsPageClient = ({ products, data }: ProductsPageClientProps) => {
 
             {/* Hero Header */}
             <section className="relative min-h-[100dvh] flex items-center justify-center overflow-hidden text-center">
-                {/* Background with overlay */}
+                {/* Background - Now bright without dark overlay */}
                 <div className="absolute inset-0 z-0">
                     <Image
                         src={data.hero_image}
@@ -30,8 +30,6 @@ const ProductsPageClient = ({ products, data }: ProductsPageClientProps) => {
                         sizes="100vw"
                         quality={90}
                     />
-                    <div className="absolute inset-0 bg-black/50"></div>
-                    <div className="absolute inset-0 bg-gradient-to-t from-coco-forest via-transparent to-transparent"></div>
                 </div>
 
                 <div className="container mx-auto px-5 relative z-10 pt-12">
@@ -41,7 +39,6 @@ const ProductsPageClient = ({ products, data }: ProductsPageClientProps) => {
                         transition={{ duration: 0.8 }}
                         className="flex flex-col items-center"
                     >
-
                         <h1
                             className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-[1.2] mb-6 drop-shadow-lg max-w-4xl"
                             dangerouslySetInnerHTML={{ __html: data.hero_title }}

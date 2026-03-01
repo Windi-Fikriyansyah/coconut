@@ -82,8 +82,7 @@ const Hero = ({ data = [] }: HeroProps) => {
                     sizes="100vw"
                     quality={90}
                   />
-                  <div className="absolute inset-0 bg-black/50"></div>
-                  <div className="absolute inset-0 bg-gradient-to-t from-coco-forest via-transparent to-transparent"></div>
+                  {/* No dark overlay for a bright, clean look */}
                 </div>
 
                 {/* Content */}
@@ -95,11 +94,11 @@ const Hero = ({ data = [] }: HeroProps) => {
                       transition={{ duration: 0.8 }}
                     >
                       <h1
-                        className="text-2xl sm:text-3xl md:text-5xl font-bold text-white leading-[1.15] mb-4 md:mb-6 drop-shadow-lg"
+                        className="text-2xl sm:text-3xl md:text-5xl font-bold text-white leading-[1.15] mb-4 md:mb-6 drop-shadow-2xl"
                         dangerouslySetInnerHTML={{ __html: title }}
                       />
 
-                      <p className="text-sm md:text-base text-coco-sandy/90 mb-8 md:mb-10 max-w-2xl mx-auto">
+                      <p className="text-sm md:text-base text-white mb-8 md:mb-10 max-w-2xl mx-auto drop-shadow-lg font-medium">
                         {subtitle}
                       </p>
 
