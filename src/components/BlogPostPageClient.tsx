@@ -20,42 +20,44 @@ const BlogPostPageClient = ({ post }: BlogPostPageClientProps) => {
             <Navbar solid />
 
             {/* Hero Section */}
-            <section className="relative pt-32 pb-20 bg-coco-forest overflow-hidden">
-                <div className="absolute inset-0 opacity-20">
+            <section className="relative pt-40 pb-20 overflow-hidden min-h-[60vh] flex items-end">
+                {/* Background Image - Full Visibility */}
+                <div className="absolute inset-0 z-0">
                     <Image
                         src={post.image}
                         fill
                         unoptimized
-                        className="object-cover blur-sm"
+                        className="object-cover"
                         alt=""
                         priority
                     />
                 </div>
-                <div className="container mx-auto px-6 relative z-10">
-                    <Link href="/blog" className="inline-flex items-center gap-2 text-coco-gold font-bold text-sm mb-8 hover:translate-x-[-4px] transition-transform">
-                        <ChevronLeft size={18} />
-                        Back to Blog
-                    </Link>
 
+                <div className="container mx-auto px-6 relative z-10">
                     <motion.div
-                        initial={{ opacity: 0, y: 20 }}
+                        initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
                         className="max-w-4xl"
                     >
+                        <Link href="/blog" className="inline-flex items-center gap-2 text-white font-bold text-sm mb-6 hover:translate-x-[-4px] transition-transform drop-shadow-md">
+                            <ChevronLeft size={18} />
+                            Back to Blog
+                        </Link>
+
                         <div className="flex flex-wrap gap-4 mb-6">
                             {tags && tags.map((tag: string, i: number) => (
-                                <span key={i} className="flex items-center gap-1.5 bg-coco-gold/20 backdrop-blur-md text-coco-gold px-3 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-wider border border-coco-gold/30">
+                                <span key={i} className="flex items-center gap-1.5 bg-coco-gold text-white px-3 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-wider shadow-lg">
                                     <Tag size={12} />
                                     {tag}
                                 </span>
                             ))}
                         </div>
 
-                        <h1 className="text-2xl sm:text-3xl md:text-5xl font-bold text-white mb-8 leading-tight">
+                        <h1 className="text-2xl sm:text-3xl md:text-5xl font-bold text-white mb-8 leading-tight drop-shadow-2xl">
                             {post.title}
                         </h1>
 
-                        <div className="flex items-center gap-6 text-white/50 text-[10px] font-bold uppercase tracking-widest">
+                        <div className="flex items-center gap-6 text-white/80 text-[10px] font-bold uppercase tracking-widest pt-8 border-t border-white/20 drop-shadow-md">
                             <span className="flex items-center gap-2">
                                 <Calendar size={14} className="text-coco-gold" />
                                 {post.date_str}
@@ -77,7 +79,6 @@ const BlogPostPageClient = ({ post }: BlogPostPageClientProps) => {
                             initial={{ opacity: 0, y: 30 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.2 }}
-                            className="bg-white p-10 md:p-16 rounded-[3rem] shadow-2xl shadow-coco-forest/5 border border-coco-forest/5"
                         >
                             <div
                                 className="blog-content prose prose-lg max-w-none text-coco-forest/70 leading-relaxed
