@@ -20,7 +20,7 @@ const BlogPostPageClient = ({ post }: BlogPostPageClientProps) => {
             <Navbar solid />
 
             {/* Hero Section */}
-            <section className="relative pt-40 pb-20 overflow-hidden min-h-[60vh] flex items-end">
+            <section className="relative min-h-[100dvh] flex items-end overflow-hidden pb-5 md:pb-9">
                 {/* Background Image - Full Visibility */}
                 <div className="absolute inset-0 z-0">
                     <Image
@@ -44,10 +44,10 @@ const BlogPostPageClient = ({ post }: BlogPostPageClientProps) => {
                             Back to Blog
                         </Link>
 
-                        <div className="flex flex-wrap gap-2 mb-4">
+                        <div className="flex flex-wrap gap-1.5 mb-3">
                             {tags && tags.map((tag: string, i: number) => (
-                                <span key={i} className="flex items-center gap-1 bg-coco-gold/10 text-coco-gold px-2 py-1 rounded-full text-[9px] font-bold uppercase tracking-wider border border-coco-gold/20">
-                                    <Tag size={10} />
+                                <span key={i} className="flex items-center gap-1 bg-coco-gold/10 text-coco-gold px-1.5 py-0.5 rounded-full text-[8px] font-bold uppercase tracking-tight border border-coco-gold/20">
+                                    <Tag size={8} />
                                     {tag}
                                 </span>
                             ))}
