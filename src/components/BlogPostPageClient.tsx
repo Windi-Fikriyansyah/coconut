@@ -37,33 +37,33 @@ const BlogPostPageClient = ({ post }: BlogPostPageClientProps) => {
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
-                        className="max-w-4xl"
+                        className="max-w-sm bg-white/90 backdrop-blur-md p-5 md:p-6 rounded-2xl shadow-xl border border-white/20"
                     >
-                        <Link href="/blog" className="inline-flex items-center gap-2 text-white font-bold text-sm mb-6 hover:translate-x-[-4px] transition-transform drop-shadow-md">
-                            <ChevronLeft size={18} />
+                        <Link href="/blog" className="inline-flex items-center gap-2 text-coco-gold font-bold text-[10px] mb-4 hover:translate-x-[-4px] transition-transform uppercase tracking-widest">
+                            <ChevronLeft size={14} />
                             Back to Blog
                         </Link>
 
-                        <div className="flex flex-wrap gap-4 mb-6">
+                        <div className="flex flex-wrap gap-2 mb-4">
                             {tags && tags.map((tag: string, i: number) => (
-                                <span key={i} className="flex items-center gap-1.5 bg-coco-gold text-white px-3 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-wider shadow-lg">
-                                    <Tag size={12} />
+                                <span key={i} className="flex items-center gap-1 bg-coco-gold/10 text-coco-gold px-2 py-1 rounded-full text-[9px] font-bold uppercase tracking-wider border border-coco-gold/20">
+                                    <Tag size={10} />
                                     {tag}
                                 </span>
                             ))}
                         </div>
 
-                        <h1 className="text-2xl sm:text-3xl md:text-5xl font-bold text-white mb-8 leading-tight drop-shadow-2xl">
+                        <h1 className="text-xl md:text-2xl font-bold text-coco-forest mb-4 leading-tight">
                             {post.title}
                         </h1>
 
-                        <div className="flex items-center gap-6 text-white/80 text-[10px] font-bold uppercase tracking-widest pt-8 border-t border-white/20 drop-shadow-md">
-                            <span className="flex items-center gap-2">
-                                <Calendar size={14} className="text-coco-gold" />
+                        <div className="flex items-center gap-4 text-coco-forest/60 text-[9px] font-bold uppercase tracking-widest border-t border-coco-forest/10 pt-4">
+                            <span className="flex items-center gap-1.5">
+                                <Calendar size={12} className="text-coco-gold" />
                                 {post.date_str}
                             </span>
-                            <span className="flex items-center gap-2">
-                                <User size={14} className="text-coco-gold" />
+                            <span className="flex items-center gap-1.5">
+                                <User size={12} className="text-coco-gold" />
                                 {post.author}
                             </span>
                         </div>
@@ -79,6 +79,7 @@ const BlogPostPageClient = ({ post }: BlogPostPageClientProps) => {
                             initial={{ opacity: 0, y: 30 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.2 }}
+                            className="bg-white p-10 md:p-16 rounded-[3rem] shadow-2xl shadow-coco-forest/5 border border-coco-forest/5"
                         >
                             <div
                                 className="blog-content prose prose-lg max-w-none text-coco-forest/70 leading-relaxed
